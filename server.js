@@ -1,4 +1,3 @@
-```js
 const express = require("express");
 const path = require("path");
 
@@ -9,27 +8,74 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 /* =========================================
-   POPULAR SEARCH TRACKING
+   GAMESEARCH / POPULAR SEARCHES
 ========================================= */
-
-// Stores searches while the server is running.
-//
-// Example:
-// {
-//     "horror": 8,
-//     "obby": 5,
-//     "cars": 3
-// }
 
 const popularSearches = new Map();
 
+/* =========================================
+   GAME RATINGS
+========================================= */
+
+const gameRatings = new Map();
+
+/*
+    Stored like:
+
+    universeId -> {
+        total: 42,
+        count: 8
+    }
+
+    This is intentionally in-memory for now.
+    Later we can connect a real database.
+*/
+
+function recordRating(universeId, rating) {
+    const id = String(universeId);
+
+    const current =
+        gameRatings.get(id) || {
+            total: 0,
+            count: 0
+        };
+
+    current.total += rating;
+    current.count += 1;
+
+    gameRatings.set(id, current);
+
+    return current;
+}
+
+function getRating(universeId) {
+    const data =
+        gameRatings.get(
+            String(universeId)
+        );
+
+    if (!data || !data.count) {
+        return {
+            score: null,
+            count: 0
+        };
+    }
+
+    return {
+        score:
+            Math.round(
+                (data.total / data.count) * 10
+            ) / 10,
+
+        count: data.count
+    };
+}
 
 /* =========================================
    ROBLOX SEARCH
 ========================================= */
 
 async function searchRoblox(query) {
-
     const sessionId =
         "gamescout-" +
         Date.now() +
@@ -45,35 +91,32 @@ async function searchRoblox(query) {
         "&pageType=all";
 
     console.log("");
-    console.log("🔎 Searching Roblox for:", query);
+    console.log(
+        "🔎 Searching Roblox for:",
+        query
+    );
 
-    const response = await fetch(url);
+    const response =
+        await fetch(url);
 
     if (!response.ok) {
-
         throw new Error(
             `Roblox search failed: ${response.status}`
         );
-
     }
 
     return await response.json();
-
 }
 
-
 /* =========================================
-   EXTRACT GAMES FROM ROBLOX RESPONSE
+   EXTRACT GAMES
 ========================================= */
 
 function extractGames(data) {
-
     const games = [];
-
     const visited = new Set();
 
     function walk(value) {
-
         if (
             !value ||
             typeof value !== "object"
@@ -88,7 +131,6 @@ function extractGames(data) {
         visited.add(value);
 
         if (Array.isArray(value)) {
-
             for (const item of value) {
                 walk(item);
             }
@@ -116,7 +158,6 @@ function extractGames(data) {
             name &&
             typeof name === "string"
         ) {
-
             const creator =
                 value.creator?.name ??
                 value.creatorName ??
@@ -130,9 +171,7 @@ function extractGames(data) {
                 0;
 
             games.push({
-
                 id: String(universeId),
-
                 universeId:
                     String(universeId),
 
@@ -141,11 +180,11 @@ function extractGames(data) {
                         ? String(placeId)
                         : "",
 
-                name:
-                    String(name),
+                name: String(name),
 
                 creator:
-                    typeof creator === "object"
+                    typeof creator ===
+                    "object"
                         ? String(
                             creator.name ||
                             "Roblox Creator"
@@ -154,75 +193,50 @@ function extractGames(data) {
 
                 playing:
                     Number(playing) || 0
-
             });
-
         }
 
         for (
-            const key of Object.keys(value)
+            const key of
+            Object.keys(value)
         ) {
-
             walk(value[key]);
-
         }
-
     }
 
     walk(data);
 
-
-    /* =====================================
-       REMOVE DUPLICATES
-    ===================================== */
-
     const unique =
         new Map();
 
-    for (
-        const game of games
-    ) {
-
+    for (const game of games) {
         if (
             !unique.has(
                 game.universeId
             )
         ) {
-
             unique.set(
                 game.universeId,
                 game
             );
-
         }
-
     }
 
     return Array.from(
         unique.values()
     );
-
 }
 
-
 /* =========================================
-   GET ROBLOX THUMBNAILS
+   THUMBNAILS
 ========================================= */
 
 async function getGameThumbnails(
     universeIds
 ) {
-
-    if (
-        !universeIds.length
-    ) {
-
+    if (!universeIds.length) {
         return new Map();
-
     }
-
-    // Roblox allows batches, so only
-    // send the first 50 at a time.
 
     const ids =
         universeIds
@@ -245,19 +259,16 @@ async function getGameThumbnails(
     );
 
     try {
-
         const response =
             await fetch(url);
 
         if (!response.ok) {
-
             console.error(
                 "Thumbnail request failed:",
                 response.status
             );
 
             return new Map();
-
         }
 
         const data =
@@ -271,22 +282,21 @@ async function getGameThumbnails(
                 data.data
             )
         ) {
-
             return thumbnailMap;
-
         }
 
         for (
-            const item of data.data
+            const item of
+            data.data
         ) {
-
             if (!item) {
                 continue;
             }
 
             const universeId =
                 String(
-                    item.universeId || ""
+                    item.universeId ||
+                    ""
                 );
 
             const thumbnails =
@@ -307,60 +317,38 @@ async function getGameThumbnails(
                 universeId &&
                 thumbnail?.imageUrl
             ) {
-
                 thumbnailMap.set(
                     universeId,
                     thumbnail.imageUrl
                 );
-
             }
-
         }
 
         return thumbnailMap;
 
     } catch (error) {
-
         console.error(
             "Thumbnail error:",
             error
         );
 
         return new Map();
-
     }
-
 }
 
-
 /* =========================================
-   GET GAME DETAILS
+   GAME DETAILS
 ========================================= */
-
-// Roblox's Games API can give us a more
-// reliable rootPlaceId.
-//
-// This helps make the PLAY button work
-// even when the search response doesn't
-// include placeId.
 
 async function getGameDetails(
     universeIds
 ) {
-
-    if (
-        !universeIds.length
-    ) {
-
+    if (!universeIds.length) {
         return new Map();
-
     }
 
     const detailsMap =
         new Map();
-
-    // Roblox supports multiple universe IDs
-    // in one request.
 
     const batches = [];
 
@@ -369,22 +357,19 @@ async function getGameDetails(
         i < universeIds.length;
         i += 50
     ) {
-
         batches.push(
             universeIds.slice(
                 i,
                 i + 50
             )
         );
-
     }
 
     for (
-        const batch of batches
+        const batch of
+        batches
     ) {
-
         try {
-
             const url =
                 "https://games.roblox.com/v1/games" +
                 `?universeIds=${encodeURIComponent(
@@ -395,14 +380,12 @@ async function getGameDetails(
                 await fetch(url);
 
             if (!response.ok) {
-
                 console.error(
                     "Game details request failed:",
                     response.status
                 );
 
                 continue;
-
             }
 
             const data =
@@ -413,57 +396,44 @@ async function getGameDetails(
                     data.data
                 )
             ) {
-
                 continue;
-
             }
 
             for (
-                const game of data.data
+                const game of
+                data.data
             ) {
-
                 if (
                     game &&
                     game.id
                 ) {
-
                     detailsMap.set(
                         String(game.id),
                         game
                     );
-
                 }
-
             }
 
         } catch (error) {
-
             console.error(
                 "Game details error:",
                 error
             );
-
         }
-
     }
 
     return detailsMap;
-
 }
 
-
 /* =========================================
-   COMBINE GAME DATA
+   BUILD FINAL GAME RESULTS
 ========================================= */
 
 async function buildGameResults(
     games
 ) {
-
     if (!games.length) {
-
         return [];
-
     }
 
     const universeIds =
@@ -485,20 +455,18 @@ async function buildGameResults(
     const finalGames =
         games.map(
             (game) => {
-
                 const detail =
                     details.get(
                         game.universeId
                     );
 
+                const rating =
+                    getRating(
+                        game.universeId
+                    );
+
                 return {
-
                     ...game,
-
-                    // Use the search result's
-                    // placeId first, then fall
-                    // back to Roblox's official
-                    // game details.
 
                     placeId:
                         game.placeId ||
@@ -528,24 +496,25 @@ async function buildGameResults(
                     thumbnail:
                         thumbnails.get(
                             game.universeId
-                        ) || null
+                        ) || null,
 
+                    rating:
+                        rating.score,
+
+                    ratingCount:
+                        rating.count
                 };
-
             }
         );
 
     return finalGames;
-
 }
 
-
 /* =========================================
-   RECORD SEARCH
+   POPULAR SEARCHES
 ========================================= */
 
 function recordSearch(query) {
-
     const clean =
         String(query || "")
             .trim()
@@ -555,12 +524,7 @@ function recordSearch(query) {
         return;
     }
 
-    // Don't let someone make the list
-    // ridiculous with a massive query.
-
-    if (
-        clean.length > 100
-    ) {
+    if (clean.length > 100) {
         return;
     }
 
@@ -580,9 +544,7 @@ function recordSearch(query) {
         "→",
         current + 1
     );
-
 }
-
 
 /* =========================================
    SEARCH API
@@ -591,37 +553,29 @@ function recordSearch(query) {
 app.get(
     "/api/search",
     async (req, res) => {
-
         try {
-
             const query =
                 String(
                     req.query.q || ""
                 ).trim();
 
             if (!query) {
-
                 return res.json({
                     games: []
                 });
-
             }
 
             if (
-                query.length > 200
+                query.length >
+                200
             ) {
-
-                return res.status(400)
+                return res
+                    .status(400)
                     .json({
-
                         error:
                             "Search query is too long."
-
                     });
-
             }
-
-            // Record the search.
 
             recordSearch(query);
 
@@ -645,47 +599,36 @@ app.get(
                     games
                 );
 
-            console.log(
-                "🖼️ Thumbnails/details loaded."
-            );
-
             res.json({
-                games: finalGames
+                games:
+                    finalGames
             });
 
         } catch (error) {
-
             console.error(
                 "❌ Search error:",
                 error
             );
 
-            res.status(500)
+            res
+                .status(500)
                 .json({
-
                     error:
                         "Failed to search Roblox.",
-
                     games: []
-
                 });
-
         }
-
     }
 );
 
-
 /* =========================================
-   TRENDING API
+   TRENDING
 ========================================= */
 
 app.get(
     "/api/trending",
     async (req, res) => {
-
         try {
-
             const searchData =
                 await searchRoblox(
                     "popular"
@@ -707,92 +650,147 @@ app.get(
                 );
 
             res.json({
-                games: finalGames
+                games:
+                    finalGames
             });
 
         } catch (error) {
-
             console.error(
                 "❌ Trending error:",
                 error
             );
 
-            res.status(500)
+            res
+                .status(500)
                 .json({
-
                     error:
                         "Failed to load trending games.",
-
                     games: []
-
                 });
-
         }
-
     }
 );
 
-
 /* =========================================
-   POPULAR SEARCHES API
+   POPULAR SEARCHES
 ========================================= */
 
 app.get(
     "/api/popular-searches",
     (req, res) => {
-
         const searches =
             Array.from(
                 popularSearches.entries()
             )
             .sort(
-                (
-                    a,
-                    b
-                ) =>
+                (a, b) =>
                     b[1] - a[1]
             )
             .slice(0, 8)
             .map(
-                (
-                    [
-                        query,
-                        count
-                    ]
-                ) => ({
-
+                ([query, count]) => ({
                     query,
                     count
-
                 })
             );
 
         res.json({
             searches
         });
-
     }
 );
 
+/* =========================================
+   RATE A GAME
+========================================= */
+
+app.post(
+    "/api/rating",
+    (req, res) => {
+        try {
+            const universeId =
+                String(
+                    req.body?.universeId ||
+                    ""
+                ).trim();
+
+            const rating =
+                Number(
+                    req.body?.rating
+                );
+
+            if (
+                !universeId ||
+                !Number.isInteger(
+                    rating
+                ) ||
+                rating < 1 ||
+                rating > 5
+            ) {
+                return res
+                    .status(400)
+                    .json({
+                        error:
+                            "Invalid rating."
+                    });
+            }
+
+            const result =
+                recordRating(
+                    universeId,
+                    rating
+                );
+
+            const score =
+                Math.round(
+                    (
+                        result.total /
+                        result.count
+                    ) * 10
+                ) / 10;
+
+            console.log(
+                `⭐ Rating received: ${universeId} → ${rating}/5`
+            );
+
+            res.json({
+                success: true,
+                score,
+                count:
+                    result.count
+            });
+
+        } catch (error) {
+            console.error(
+                "❌ Rating error:",
+                error
+            );
+
+            res
+                .status(500)
+                .json({
+                    error:
+                        "Failed to save rating."
+                });
+        }
+    }
+);
 
 /* =========================================
-   HOME PAGE
+   ROOT
 ========================================= */
 
 app.get(
     "/",
     (req, res) => {
-
         res.sendFile(
             path.join(
                 __dirname,
                 "index.html"
             )
         );
-
     }
 );
-
 
 /* =========================================
    404
@@ -800,15 +798,14 @@ app.get(
 
 app.use(
     (req, res) => {
-
-        res.status(404)
+        res
+            .status(404)
             .json({
-                error: "Not found."
+                error:
+                    "Not found."
             });
-
     }
 );
-
 
 /* =========================================
    START SERVER
@@ -817,7 +814,6 @@ app.use(
 app.listen(
     PORT,
     () => {
-
         console.log("");
 
         console.log(
@@ -837,7 +833,5 @@ app.listen(
         );
 
         console.log("");
-
     }
 );
-```
