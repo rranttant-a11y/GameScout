@@ -2350,11 +2350,13 @@
                 "";
 
 
-            const gameUrl =
-                universeId
-                    ? `https://www.roblox.com/games/${universeId}`
-                    : "https://www.roblox.com";
-
+                const placeId =
+        game.placeId || "";
+    
+    const gameUrl =
+        placeId
+            ? `https://www.roblox.com/games/${placeId}`
+            : "https://www.roblox.com";
 
             const name =
                 escapeHtml(
