@@ -3,7 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>GameScout — Find Your Next Roblox Game</title>
 
@@ -11,23 +14,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
     <style>
         :root {
-            --cream: #f6f2e9;
+            --cream: #f7f1e7;
             --paper: #fffdf8;
-            --ink: #101114;
-            --muted: #77736b;
-            --orange: #ff5b2e;
-            --orange-dark: #df3f17;
-            --blue: #3155ff;
-            --yellow: #ffd83d;
-            --green: #5ed66f;
-            --pink: #ff83bd;
-            --line: #ded9ce;
+            --ink: #101010;
+            --navy: #11182b;
+            --orange: #ff641f;
+            --yellow: #ffd84d;
+            --pink: #ff82b7;
+            --blue: #7fd7ff;
+            --green: #8de3a7;
+            --border: 3px solid var(--ink);
+            --shadow: 7px 7px 0 var(--ink);
+            --small-shadow: 4px 4px 0 var(--ink);
+            --radius: 22px;
         }
 
         * {
@@ -41,9 +46,10 @@
         }
 
         body {
-            font-family: "DM Sans", sans-serif;
+            min-height: 100vh;
             background: var(--cream);
             color: var(--ink);
+            font-family: "DM Sans", sans-serif;
             overflow-x: hidden;
         }
 
@@ -61,604 +67,500 @@
             text-decoration: none;
         }
 
-        /* =========================================
+        /* =========================
            DECORATIONS
-        ========================================= */
+        ========================= */
 
         .blob {
-            position: fixed;
-            border-radius: 999px;
+            position: absolute;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
         }
 
-        .blob.one {
-            width: 260px;
-            height: 260px;
-            background: var(--yellow);
-            top: 100px;
-            right: -100px;
-            transform: rotate(20deg);
-        }
-
-        .blob.two {
+        .blob-one {
             width: 180px;
             height: 180px;
+            background: var(--yellow);
+            border: var(--border);
+            border-radius: 46% 54% 60% 40%;
+            top: 110px;
+            right: -55px;
+            transform: rotate(18deg);
+        }
+
+        .blob-two {
+            width: 130px;
+            height: 130px;
             background: var(--pink);
-            left: -90px;
-            top: 650px;
+            border: var(--border);
+            border-radius: 50%;
+            top: 500px;
+            left: -55px;
         }
 
-        .blob.three {
-            width: 230px;
-            height: 230px;
+        .blob-three {
+            width: 90px;
+            height: 90px;
             background: var(--blue);
-            opacity: 0.12;
-            right: 12%;
-            bottom: 80px;
+            border: var(--border);
+            border-radius: 25px;
+            transform: rotate(19deg);
+            right: 9%;
+            bottom: 100px;
         }
 
-        /* =========================================
+        /* =========================
            NAV
-        ========================================= */
+        ========================= */
 
         nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-
-            height: 78px;
+            position: relative;
+            z-index: 20;
+            width: min(1240px, calc(100% - 36px));
+            margin: 18px auto 0;
+            padding: 15px 18px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
 
-            padding: 0 5vw;
-
-            background: rgba(246, 242, 233, 0.88);
-            backdrop-filter: blur(18px);
-
-            border-bottom: 2px solid var(--ink);
+            background: var(--paper);
+            border: var(--border);
+            border-radius: 18px;
+            box-shadow: var(--small-shadow);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 11px;
-
+            gap: 10px;
             font-family: "Space Grotesk", sans-serif;
-            font-size: 23px;
             font-weight: 700;
-            letter-spacing: -1px;
+            font-size: 1.35rem;
+            letter-spacing: -0.04em;
         }
 
         .logo-mark {
             width: 38px;
             height: 38px;
-
             display: grid;
             place-items: center;
-
             background: var(--orange);
-
             border: 2px solid var(--ink);
-            border-radius: 10px;
-
-            box-shadow: 4px 4px 0 var(--ink);
-
-            transform: rotate(-5deg);
+            border-radius: 11px;
+            transform: rotate(-6deg);
         }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .live-pill {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-
-            padding: 8px 13px;
-
-            border: 1.5px solid var(--ink);
+        .nav-pill {
+            padding: 8px 14px;
+            border: 2px solid var(--ink);
             border-radius: 999px;
-
-            background: var(--paper);
-
-            font-size: 12px;
+            background: var(--yellow);
+            font-size: 0.8rem;
             font-weight: 700;
-            text-transform: uppercase;
         }
 
-        .live-dot {
-            width: 8px;
-            height: 8px;
-
-            background: var(--green);
-
-            border: 1px solid var(--ink);
-            border-radius: 50%;
-        }
-
-        .favorites-nav {
-            border: 2px solid var(--ink);
-            background: var(--ink);
-            color: white;
-
-            padding: 10px 16px;
-
-            border-radius: 9px;
-
-            font-weight: 700;
-
-            transition: 0.2s;
-        }
-
-        .favorites-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 4px 4px 0 var(--orange);
-        }
-
-        /* =========================================
+        /* =========================
            HERO
-        ========================================= */
+        ========================= */
 
         .hero {
-            min-height: 650px;
-
-            padding: 80px 7vw 70px;
+            position: relative;
+            z-index: 1;
+            width: min(1240px, calc(100% - 36px));
+            margin: 75px auto 40px;
 
             display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-
-            gap: 50px;
-
+            grid-template-columns: 1.15fr 0.85fr;
             align-items: center;
+            gap: 40px;
+        }
 
+        .hero-copy {
             position: relative;
+            z-index: 3;
         }
 
         .eyebrow {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
 
-            padding: 8px 12px;
-
+            padding: 8px 13px;
             background: var(--yellow);
+            border: var(--border);
+            border-radius: 999px;
+            box-shadow: var(--small-shadow);
 
-            border: 2px solid var(--ink);
-            border-radius: 7px;
-
-            font-size: 12px;
+            font-size: 0.78rem;
             font-weight: 800;
-            letter-spacing: 1px;
-
-            transform: rotate(-2deg);
-
-            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .hero h1 {
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: clamp(58px, 8vw, 112px);
-
-            line-height: 0.86;
-
-            letter-spacing: -7px;
-
+            margin-top: 20px;
             max-width: 850px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(4rem, 8vw, 8.5rem);
+            line-height: 0.84;
+            letter-spacing: -0.075em;
         }
 
         .hero h1 span {
+            display: block;
+        }
+
+        .hero h1 .orange {
             color: var(--orange);
-
-            display: inline-block;
-
-            transform: rotate(-2deg);
         }
 
         .hero-description {
             max-width: 610px;
+            margin-top: 27px;
 
-            margin-top: 30px;
-
-            font-size: 18px;
+            font-size: 1.15rem;
             line-height: 1.6;
-
-            color: var(--muted);
+            font-weight: 500;
         }
 
-        /* =========================================
+        .sticker {
+            position: absolute;
+            top: -30px;
+            right: 5%;
+            width: 120px;
+            height: 120px;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--pink);
+            border: var(--border);
+            border-radius: 50%;
+            box-shadow: var(--small-shadow);
+
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 800;
+            text-align: center;
+            font-size: 0.85rem;
+
+            transform: rotate(12deg);
+        }
+
+        /* =========================
+           HERO ART
+        ========================= */
+
+        .hero-art {
+            position: relative;
+            min-height: 440px;
+        }
+
+        .art-card {
+            position: absolute;
+            border: var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .art-main {
+            width: 82%;
+            height: 340px;
+            right: 2%;
+            top: 45px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffb05a,
+                    #ff641f 48%,
+                    #11182b 48%
+                );
+
+            border-radius: 30px;
+            transform: rotate(4deg);
+        }
+
+        .art-main::before {
+            content: "PLAY";
+            position: absolute;
+            left: 25px;
+            bottom: 20px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.08em;
+        }
+
+        .art-main::after {
+            content: "🎮";
+            position: absolute;
+            top: 45px;
+            right: 45px;
+            font-size: 6rem;
+            transform: rotate(-12deg);
+        }
+
+        .art-small {
+            width: 160px;
+            height: 160px;
+            left: 0;
+            bottom: 15px;
+
+            background: var(--blue);
+            border-radius: 26px;
+            transform: rotate(-9deg);
+        }
+
+        .art-small::before {
+            content: "★";
+            position: absolute;
+            font-size: 5rem;
+            left: 45px;
+            top: 35px;
+        }
+
+        .art-tag {
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            padding: 12px 17px;
+            background: var(--paper);
+            border: var(--border);
+            border-radius: 13px;
+            box-shadow: var(--small-shadow);
+
+            font-weight: 800;
+            transform: rotate(-6deg);
+        }
+
+        /* =========================
            SEARCH
-        ========================================= */
+        ========================= */
 
         .search-wrap {
-            margin-top: 35px;
-
-            max-width: 720px;
-
-            display: flex;
-            gap: 10px;
+            position: relative;
+            z-index: 5;
+            width: min(1050px, calc(100% - 36px));
+            margin: 55px auto 0;
         }
 
         .search-box {
-            flex: 1;
-
             display: flex;
-            align-items: center;
+            align-items: stretch;
+            gap: 0;
 
             background: var(--paper);
-
-            border: 2px solid var(--ink);
-            border-radius: 12px;
-
-            padding: 5px 7px 5px 18px;
-
-            box-shadow: 7px 7px 0 var(--ink);
+            border: 4px solid var(--ink);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
         }
 
-        .search-box input {
+        .search-icon {
+            width: 60px;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+        }
+
+        #searchInput {
             flex: 1;
+            min-width: 0;
 
-            border: none;
-            outline: none;
-
+            border: 0;
+            outline: 0;
             background: transparent;
 
-            font-size: 16px;
-
-            color: var(--ink);
+            padding: 20px 8px;
+            font-size: 1.08rem;
+            font-weight: 600;
         }
 
-        .search-box input::placeholder {
-            color: #aaa59b;
+        #searchInput::placeholder {
+            color: #777;
         }
 
         .search-button {
-            border: 2px solid var(--ink);
-
+            border: 0;
+            border-left: 3px solid var(--ink);
             background: var(--orange);
-            color: var(--ink);
+            color: white;
 
-            border-radius: 8px;
+            padding: 0 30px;
 
-            padding: 12px 20px;
-
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1rem;
             font-weight: 800;
 
-            transition: 0.2s;
+            transition:
+                transform 0.15s ease,
+                background 0.15s ease;
         }
 
         .search-button:hover {
-            background: var(--orange-dark);
-            color: white;
+            background: #e94f0e;
         }
 
-        .quick-searches {
-            display: flex;
-            flex-wrap: wrap;
-
-            gap: 8px;
-
-            margin-top: 22px;
+        .search-button:active {
+            transform: scale(0.97);
         }
 
-        .quick-searches button {
-            background: transparent;
+        /* =========================
+           SEARCH SECTIONS
+        ========================= */
 
-            border: 1.5px solid var(--ink);
-            border-radius: 999px;
-
-            padding: 8px 13px;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            transition: 0.2s;
+        .search-section {
+            margin-top: 32px;
         }
-
-        .quick-searches button:hover {
-            background: var(--ink);
-            color: white;
-
-            transform: rotate(-2deg);
-        }
-
-        /* =========================================
-           RECOMMENDED SEARCHES
-        ========================================= */
 
         .search-section-label {
-            margin-top: 22px;
-            margin-bottom: 9px;
+            margin-bottom: 13px;
 
-            font-size: 10px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 0.8rem;
             font-weight: 800;
-
-            letter-spacing: 1.4px;
-
-            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .recommended-searches {
             display: flex;
             flex-wrap: wrap;
-
-            gap: 8px;
-
-            max-width: 720px;
+            gap: 10px;
         }
 
-        .recommended-searches button {
-            border: 1.5px solid var(--ink);
-            border-radius: 8px;
+        .search-chip {
+            padding: 9px 14px;
 
-            padding: 8px 12px;
-
+            border: 2px solid var(--ink);
+            border-radius: 999px;
             background: var(--paper);
+            box-shadow: 3px 3px 0 var(--ink);
 
-            font-size: 12px;
+            font-size: 0.86rem;
             font-weight: 700;
 
             transition:
-                transform 0.18s ease,
-                background 0.18s ease,
-                box-shadow 0.18s ease;
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
-        .recommended-searches button:hover {
-            background: var(--yellow);
-
-            transform:
-                translateY(-3px)
-                rotate(-1.5deg);
-
-            box-shadow: 3px 3px 0 var(--ink);
-        }
-
-        .popular-label {
-            margin-top: 18px;
+        .search-chip:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--ink);
         }
 
         .popular-searches {
-            min-height: 34px;
+            min-height: 40px;
         }
 
         .popular-empty {
-            color: #aaa59b;
-
-            font-size: 11px;
-            font-style: italic;
+            color: #777;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        /* =========================================
+        /* =========================
            DISCOVER ACTIONS
-        ========================================= */
+        ========================= */
 
         .discover-actions {
-            margin-top: 30px;
+            width: min(1240px, calc(100% - 36px));
+            margin: 60px auto 30px;
 
             display: flex;
-            align-items: center;
-
-            gap: 22px;
-
             flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
         }
 
-        .discover-games-button {
-            display: flex;
-            align-items: center;
-
-            gap: 20px;
-
-            padding: 18px 22px;
+        .discover-button {
+            border: var(--border);
+            border-radius: 15px;
+            padding: 17px 24px;
 
             background: var(--orange);
-            color: var(--ink);
+            color: white;
 
-            border: 3px solid var(--ink);
-            border-radius: 12px;
-
-            box-shadow: 8px 8px 0 var(--ink);
+            box-shadow: var(--shadow);
 
             font-family: "Space Grotesk", sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
 
-            font-size: 17px;
-            font-weight: 700;
-
-            transform: rotate(-2.5deg);
+            transform: rotate(-2deg);
 
             transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.2s ease;
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
-        .discover-games-button:hover {
-            transform:
-                rotate(1deg)
-                translateY(-5px);
-
-            box-shadow: 11px 11px 0 var(--ink);
-
-            background: var(--yellow);
-        }
-
-        .discover-arrow {
-            font-size: 25px;
-            line-height: 1;
-        }
-
-        .recommend-button {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            gap: 4px;
-
-            border: 2px solid var(--ink);
-
-            background: var(--paper);
-
-            border-radius: 12px;
-
-            padding: 13px 18px;
-
-            font-weight: 800;
-            text-align: left;
-
-            box-shadow: 5px 5px 0 var(--ink);
-
-            transition: 0.2s;
-        }
-
-        .recommend-button:hover {
-            transform:
-                translateY(-4px)
-                rotate(1deg);
-
-            background: var(--yellow);
-        }
-
-        .recommend-button small {
-            color: var(--muted);
-
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        /* =========================================
-           HERO ART
-        ========================================= */
-
-        .hero-art {
-            min-height: 470px;
-
-            position: relative;
-        }
-
-        .art-card {
-            position: absolute;
-
-            border: 3px solid var(--ink);
-            border-radius: 18px;
-
-            overflow: hidden;
-
+        .discover-button:hover {
+            transform: translate(-2px, -4px) rotate(-2deg);
             box-shadow: 10px 10px 0 var(--ink);
         }
 
-        .art-back {
-            width: 62%;
-            height: 240px;
-
-            top: 20px;
-            right: 0;
-
-            background: var(--blue);
-
-            transform: rotate(7deg);
-        }
-
-        .art-middle {
-            width: 65%;
-            height: 270px;
-
-            top: 100px;
-            left: 10px;
+        .recommend-button {
+            border: var(--border);
+            border-radius: 15px;
+            padding: 17px 24px;
 
             background: var(--yellow);
+            color: var(--ink);
 
-            transform: rotate(-6deg);
-        }
-
-        .art-front {
-            width: 70%;
-            height: 290px;
-
-            right: 8%;
-            bottom: 0;
-
-            background: var(--orange);
-
-            transform: rotate(3deg);
-        }
-
-        .art-placeholder {
-            width: 100%;
-            height: 100%;
-
-            display: grid;
-            place-items: center;
+            box-shadow: var(--shadow);
 
             font-family: "Space Grotesk", sans-serif;
+            font-weight: 800;
 
-            font-size: 55px;
-            font-weight: 700;
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
-        .sticker {
-            position: absolute;
-
-            bottom: 30px;
-            left: -10px;
-
-            width: 125px;
-            height: 125px;
-
-            display: grid;
-            place-items: center;
-
-            padding: 20px;
-
-            background: var(--pink);
-
-            border: 3px solid var(--ink);
-            border-radius: 50%;
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-weight: 700;
-            text-align: center;
-
-            transform: rotate(-12deg);
-
-            box-shadow: 5px 5px 0 var(--ink);
+        .recommend-button:hover {
+            transform: translate(-2px, -4px);
+            box-shadow: 10px 10px 0 var(--ink);
         }
 
-        /* =========================================
+        /* =========================
            MARQUEE
-        ========================================= */
+        ========================= */
 
         .marquee {
+            width: 100%;
             overflow: hidden;
+            border-top: var(--border);
+            border-bottom: var(--border);
 
-            border-top: 2px solid var(--ink);
-            border-bottom: 2px solid var(--ink);
-
-            background: var(--ink);
+            background: var(--navy);
             color: white;
 
-            padding: 13px 0;
-
-            white-space: nowrap;
+            padding: 15px 0;
+            margin: 65px 0;
         }
 
         .marquee-track {
-            display: inline-block;
+            display: flex;
+            width: max-content;
+            animation: marquee 24s linear infinite;
+        }
 
-            animation:
-                marquee 20s linear infinite;
+        .marquee span {
+            padding: 0 22px;
 
             font-family: "Space Grotesk", sans-serif;
-
-            font-size: 18px;
+            font-size: 1.1rem;
             font-weight: 700;
-
-            letter-spacing: 1px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
         @keyframes marquee {
@@ -671,351 +573,468 @@
             }
         }
 
-        /* =========================================
-           CONTENT
-        ========================================= */
+        /* =========================
+           MAIN CONTENT
+        ========================= */
 
-        .content {
-            padding: 70px 7vw 100px;
+        main {
+            position: relative;
+            z-index: 2;
+            width: min(1240px, calc(100% - 36px));
+            margin: 0 auto 100px;
         }
 
-        .section-heading {
+        .content-heading {
             display: flex;
+            align-items: end;
             justify-content: space-between;
-            align-items: flex-end;
-
             gap: 20px;
 
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
-        .section-heading h2 {
+        .content-heading h2 {
             font-family: "Space Grotesk", sans-serif;
-
-            font-size: clamp(35px, 5vw, 62px);
-
-            line-height: 0.95;
-
-            letter-spacing: -3px;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.065em;
         }
 
-        .section-heading p {
-            max-width: 400px;
+        .content-heading p {
+            max-width: 390px;
+            line-height: 1.5;
+            color: #555;
+            font-weight: 500;
+        }
 
-            color: var(--muted);
+        /* =========================
+           GAME OF THE DAY
+        ========================= */
 
+        .game-of-day {
+            position: relative;
+            margin: 0 0 45px;
+
+            border: 4px solid var(--ink);
+            border-radius: 28px;
+            overflow: hidden;
+
+            background: var(--navy);
+            color: white;
+
+            box-shadow: 10px 10px 0 var(--ink);
+        }
+
+        .game-of-day-inner {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            min-height: 350px;
+        }
+
+        .game-of-day-image {
+            position: relative;
+            min-height: 350px;
+            background: #222;
+            overflow: hidden;
+        }
+
+        .game-of-day-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .game-of-day:hover .game-of-day-image img {
+            transform: scale(1.04);
+        }
+
+        .game-of-day-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 55%,
+                    rgba(17, 24, 43, 0.9)
+                );
+            pointer-events: none;
+        }
+
+        .game-of-day-badge {
+            position: absolute;
+            z-index: 3;
+            left: 20px;
+            top: 20px;
+
+            padding: 9px 13px;
+            border: 2px solid var(--ink);
+            border-radius: 999px;
+
+            background: var(--yellow);
+            color: var(--ink);
+
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .game-of-day-copy {
+            position: relative;
+            z-index: 4;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 45px;
+        }
+
+        .game-of-day-copy .mini-label {
+            color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .game-of-day-copy h3 {
+            margin-top: 10px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 4vw, 4rem);
+            line-height: 0.92;
+            letter-spacing: -0.06em;
+        }
+
+        .game-of-day-copy p {
+            margin-top: 15px;
+            color: #c9ccda;
             line-height: 1.5;
         }
 
-        /* =========================================
-           FAVORITES
-        ========================================= */
-
-        .favorites-panel {
-            display: none;
-
-            margin-bottom: 55px;
-
-            background: var(--yellow);
-
-            border: 2px solid var(--ink);
-            border-radius: 16px;
-
-            padding: 25px;
-
-            box-shadow: 7px 7px 0 var(--ink);
-        }
-
-        .favorites-panel.visible {
-            display: block;
-        }
-
-        .favorites-title {
+        .game-of-day-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 20px;
         }
 
-        .favorites-title h3 {
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 25px;
-        }
-
-        .favorites-count {
-            font-size: 12px;
+        .game-of-day-meta span {
+            padding: 7px 10px;
+            border: 2px solid #ffffff;
+            border-radius: 999px;
+            font-size: 0.75rem;
             font-weight: 800;
         }
 
-        .favorites-list {
+        .game-of-day-actions {
             display: flex;
-
-            gap: 15px;
-
-            overflow-x: auto;
-
-            padding-bottom: 5px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
         }
 
-        .favorite-mini {
-            min-width: 220px;
-
-            background: var(--paper);
-
+        .game-of-day-play,
+        .game-of-day-save {
             border: 2px solid var(--ink);
             border-radius: 11px;
-
-            padding: 13px;
+            padding: 11px 15px;
+            font-weight: 800;
         }
 
-        .favorite-mini strong {
-            display: block;
-
-            margin-bottom: 5px;
+        .game-of-day-play {
+            background: var(--orange);
+            color: white;
         }
 
-        .favorite-mini span {
-            font-size: 12px;
-
-            color: var(--muted);
+        .game-of-day-save {
+            background: white;
+            color: var(--ink);
         }
 
-        /* =========================================
+        .game-of-day-play:hover,
+        .game-of-day-save:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =========================
            GAME GRID
-        ========================================= */
+        ========================= */
 
         .game-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-
-            gap: 25px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
         }
 
         .game-card {
             position: relative;
-
-            background: var(--paper);
-
-            border: 2px solid var(--ink);
-            border-radius: 15px;
-
             overflow: hidden;
 
-            box-shadow: 6px 6px 0 var(--ink);
+            background: var(--paper);
+            border: var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
 
             transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
         .game-card:hover {
-            transform:
-                translateY(-8px)
-                rotate(-1deg);
-
-            box-shadow:
-                11px 11px 0 var(--ink);
+            transform: translate(-5px, -7px) rotate(-0.4deg);
+            box-shadow: 12px 13px 0 var(--ink);
         }
 
-        .game-image {
-            width: 100%;
+        .game-card::before {
+            content: "";
+            position: absolute;
+            z-index: 5;
+            top: -40px;
+            right: -40px;
 
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+            background: var(--yellow);
+            border: 3px solid var(--ink);
+
+            opacity: 0;
+            transform: scale(0.5);
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .game-card-image {
+            position: relative;
             aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #ddd;
+            border-bottom: var(--border);
+        }
+
+        .game-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+
+            transition:
+                transform 0.35s ease,
+                filter 0.35s ease;
+        }
+
+        .game-card:hover .game-card-image img {
+            transform: scale(1.07);
+            filter: saturate(1.1);
+        }
+
+        .game-card-image-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: grid;
+            place-items: center;
 
             background:
                 linear-gradient(
                     135deg,
-                    var(--orange),
-                    var(--yellow)
+                    var(--blue),
+                    var(--pink)
                 );
 
-            border-bottom: 2px solid var(--ink);
-
-            overflow: hidden;
-        }
-
-        .game-image img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            display: block;
-
-            transition:
-                transform 0.4s ease;
-        }
-
-        .game-card:hover
-        .game-image img {
-            transform: scale(1.07);
-        }
-
-        .game-image.no-image {
-            display: grid;
-            place-items: center;
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 35px;
-            font-weight: 700;
-        }
-
-        .game-info {
-            padding: 19px;
-        }
-
-        .game-name {
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 22px;
-
-            line-height: 1.05;
-
-            margin-bottom: 8px;
-        }
-
-        .game-creator {
-            color: var(--muted);
-
-            font-size: 13px;
-
-            margin-bottom: 14px;
-        }
-
-        .game-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            margin-bottom: 17px;
-
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .playing {
-            display: flex;
-            align-items: center;
-
-            gap: 6px;
-        }
-
-        .playing-dot {
-            width: 7px;
-            height: 7px;
-
-            border-radius: 50%;
-
-            background: var(--green);
-
-            border: 1px solid var(--ink);
-        }
-
-        .game-actions {
-            display: flex;
-
-            gap: 8px;
-        }
-
-        .play-button {
-            flex: 1;
-
-            display: grid;
-            place-items: center;
-
-            min-height: 42px;
-
-            border: 2px solid var(--ink);
-            border-radius: 8px;
-
-            background: var(--orange);
-
-            font-weight: 800;
-
-            transition: 0.2s;
-        }
-
-        .play-button:hover {
-            background: var(--ink);
-            color: white;
-        }
-
-        .play-button.disabled {
-            background: #d8d4cb;
-
-            color: #777;
-
-            cursor: not-allowed;
+            font-size: 3rem;
         }
 
         .favorite-button {
-            width: 45px;
+            position: absolute;
+            z-index: 8;
+            top: 12px;
+            right: 12px;
+
+            width: 43px;
+            height: 43px;
+
+            display: grid;
+            place-items: center;
 
             border: 2px solid var(--ink);
-            border-radius: 8px;
+            border-radius: 50%;
 
             background: var(--paper);
+            box-shadow: 3px 3px 0 var(--ink);
 
-            font-size: 20px;
+            font-size: 1.2rem;
 
-            transition: 0.2s;
+            transition:
+                transform 0.15s ease,
+                background 0.15s ease;
         }
 
         .favorite-button:hover {
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        .favorite-button.active {
             background: var(--pink);
         }
 
-        .favorite-button.saved {
-            background: var(--pink);
+        .game-card-body {
+            padding: 19px;
         }
 
-        /* =========================================
+        .game-card-title {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .game-card-creator {
+            margin-top: 7px;
+            color: #6c6c6c;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .game-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+
+            margin-top: 18px;
+        }
+
+        .players {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .player-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #28b463;
+            border: 1px solid var(--ink);
+        }
+
+        .play-game {
+            padding: 8px 12px;
+
+            border: 2px solid var(--ink);
+            border-radius: 9px;
+
+            background: var(--orange);
+            color: white;
+
+            font-size: 0.78rem;
+            font-weight: 800;
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+        .play-game:hover {
+            transform: translateY(-2px);
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        /* =========================
+           FAVORITES
+        ========================= */
+
+        .favorites-section {
+            margin-bottom: 65px;
+        }
+
+        .favorites-section.hidden {
+            display: none;
+        }
+
+        .favorites-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .favorites-heading h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: -0.06em;
+        }
+
+        /* =========================
            STATES
-        ========================================= */
+        ========================= */
 
         .state {
-            display: none;
+            padding: 55px 25px;
 
-            padding: 70px 20px;
+            border: var(--border);
+            border-radius: 22px;
+            background: var(--paper);
+            box-shadow: var(--shadow);
 
             text-align: center;
         }
 
-        .state.visible {
-            display: block;
+        .state.hidden {
+            display: none;
+        }
+
+        .state-icon {
+            font-size: 3.2rem;
+            margin-bottom: 12px;
         }
 
         .state h3 {
             font-family: "Space Grotesk", sans-serif;
-
-            font-size: 30px;
-
-            margin-bottom: 10px;
+            font-size: 2rem;
+            letter-spacing: -0.04em;
         }
 
         .state p {
-            color: var(--muted);
+            max-width: 520px;
+            margin: 10px auto 0;
+            color: #666;
+            line-height: 1.5;
         }
 
-        .loader {
+        .spinner {
             width: 45px;
             height: 45px;
+            margin: 0 auto 18px;
 
-            margin: 0 auto 20px;
-
-            border: 5px solid var(--line);
-
+            border: 5px solid #ddd;
             border-top-color: var(--orange);
-
             border-radius: 50%;
 
-            animation:
-                spin 0.8s linear infinite;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
@@ -1024,431 +1043,295 @@
             }
         }
 
-        /* =========================================
+        /* =========================
            RECOMMENDATION MODAL
-        ========================================= */
+        ========================= */
 
         .recommend-overlay {
             position: fixed;
-
             inset: 0;
+            z-index: 100;
 
-            display: none;
-
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
 
             padding: 20px;
 
-            background:
-                rgba(16, 17, 20, 0.75);
-
-            backdrop-filter: blur(12px);
-
-            z-index: 500;
+            background: rgba(10, 12, 20, 0.75);
+            backdrop-filter: blur(7px);
         }
 
-        .recommend-overlay.open {
-            display: flex;
+        .recommend-overlay.hidden {
+            display: none;
         }
 
         .recommend-modal {
-            width: min(850px, 100%);
+            width: min(650px, 100%);
 
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            background: var(--paper);
-
-            border: 3px solid var(--ink);
-
-            border-radius: 20px;
-
-            box-shadow:
-                14px 14px 0 var(--orange);
+            position: relative;
 
             padding: 35px;
 
-            position: relative;
+            background: var(--paper);
+            border: 4px solid var(--ink);
+            border-radius: 25px;
+            box-shadow: 12px 12px 0 var(--ink);
         }
 
         .modal-close {
             position: absolute;
-
-            top: 17px;
-            right: 17px;
+            top: 14px;
+            right: 14px;
 
             width: 40px;
             height: 40px;
 
-            border: 2px solid var(--ink);
+            display: grid;
+            place-items: center;
 
+            border: 2px solid var(--ink);
             border-radius: 50%;
 
-            background: var(--yellow);
+            background: var(--pink);
 
-            font-size: 20px;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 900;
         }
 
-        .vibe-screen h2,
-        .recommend-result h2 {
+        .recommend-modal h2 {
             font-family: "Space Grotesk", sans-serif;
-
-            font-size: clamp(38px, 6vw, 65px);
-
-            line-height: 0.9;
-
-            letter-spacing: -3px;
-
-            max-width: 700px;
-
-            margin-bottom: 15px;
+            font-size: 3rem;
+            line-height: 0.95;
+            letter-spacing: -0.06em;
         }
 
-        .vibe-screen > p {
-            color: var(--muted);
-
-            margin-bottom: 28px;
+        .recommend-modal > p {
+            margin-top: 10px;
+            color: #666;
         }
 
         .vibe-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 13px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 25px;
         }
 
         .vibe-button {
-            min-height: 100px;
+            padding: 17px;
 
-            border: 2px solid var(--ink);
+            border: 3px solid var(--ink);
+            border-radius: 14px;
 
-            border-radius: 12px;
-
-            background: var(--cream);
-
-            padding: 16px;
+            background: white;
+            box-shadow: 4px 4px 0 var(--ink);
 
             text-align: left;
 
             font-family: "Space Grotesk", sans-serif;
+            font-weight: 800;
 
-            font-size: 18px;
-            font-weight: 700;
-
-            box-shadow: 4px 4px 0 var(--ink);
-
-            transition: 0.2s;
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
         .vibe-button:hover {
-            background: var(--yellow);
-
-            transform:
-                translateY(-4px)
-                rotate(-1deg);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--ink);
         }
 
-        .vibe-button small {
+        .vibe-emoji {
             display: block;
-
-            margin-top: 6px;
-
-            color: var(--muted);
-
-            font-family: "DM Sans", sans-serif;
-
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 1.7rem;
+            margin-bottom: 7px;
         }
 
-        .recommend-result {
-            display: none;
-        }
-
-        .recommend-result.visible {
-            display: block;
-        }
-
-        .recommend-result-card {
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 25px;
-
-            margin-top: 25px;
-        }
-
-        .recommend-image {
-            width: 100%;
-
-            aspect-ratio: 16 / 9;
-
-            border: 2px solid var(--ink);
-
-            border-radius: 12px;
-
-            overflow: hidden;
-
-            background: var(--orange);
-        }
-
-        .recommend-image img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-        }
-
-        .recommend-details {
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-        }
-
-        .recommend-details h3 {
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 35px;
-
-            line-height: 1;
-
-            margin-bottom: 10px;
-        }
-
-        .recommend-details p {
-            color: var(--muted);
-
-            margin-bottom: 20px;
-        }
-
-        .recommend-actions {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 9px;
-        }
-
-        .recommend-actions button,
-        .recommend-actions a {
-            border: 2px solid var(--ink);
-
-            border-radius: 8px;
-
-            padding: 11px 14px;
-
-            font-weight: 800;
-
-            background: var(--orange);
-
-            transition: 0.2s;
-        }
-
-        .recommend-actions button:hover,
-        .recommend-actions a:hover {
-            background: var(--yellow);
-        }
-
-        .recommend-actions .secondary {
-            background: var(--cream);
-        }
-
-        .recommend-loading {
-            display: none;
-
-            text-align: center;
-
-            padding: 50px;
-        }
-
-        .recommend-loading.visible {
-            display: block;
-        }
-
-        .recommend-error {
-            display: none;
-
-            padding: 30px;
-
-            border: 2px solid var(--ink);
-
-            border-radius: 12px;
-
-            background: #ffe1d8;
-
-            margin-top: 25px;
-        }
-
-        .recommend-error.visible {
-            display: block;
-        }
-
-        /* =========================================
+        /* =========================
            FOOTER
-        ========================================= */
+        ========================= */
 
         footer {
-            border-top: 2px solid var(--ink);
+            width: min(1240px, calc(100% - 36px));
+            margin: 0 auto 30px;
 
-            padding: 35px 7vw;
+            padding: 25px 0;
+
+            border-top: var(--border);
 
             display: flex;
-
             justify-content: space-between;
-
             gap: 20px;
 
-            font-size: 12px;
-
-            color: var(--muted);
+            color: #666;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         footer strong {
             color: var(--ink);
         }
 
-        /* =========================================
+        /* =========================
            RESPONSIVE
-        ========================================= */
+        ========================= */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 950px) {
             .hero {
                 grid-template-columns: 1fr;
             }
 
             .hero-art {
-                min-height: 400px;
+                min-height: 390px;
+                max-width: 650px;
+                width: 100%;
+                margin: 0 auto;
             }
 
             .game-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .game-of-day-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .game-of-day-image {
+                min-height: 280px;
+            }
+
+            .game-of-day-copy {
+                padding: 30px;
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 650px) {
             nav {
-                height: 68px;
-
-                padding: 0 20px;
+                width: calc(100% - 22px);
             }
 
-            .live-pill {
+            .nav-pill {
                 display: none;
             }
 
+            .hero,
+            .search-wrap,
+            .discover-actions,
+            main,
+            footer {
+                width: calc(100% - 22px);
+            }
+
             .hero {
-                padding: 55px 20px;
+                margin-top: 50px;
             }
 
             .hero h1 {
-                font-size: 65px;
-
-                letter-spacing: -4px;
+                font-size: clamp(3.5rem, 18vw, 6rem);
             }
 
             .hero-description {
-                font-size: 16px;
+                font-size: 1rem;
             }
 
-            .search-wrap {
-                flex-direction: column;
+            .sticker {
+                width: 85px;
+                height: 85px;
+                font-size: 0.65rem;
+                top: -35px;
+            }
+
+            .hero-art {
+                min-height: 310px;
+            }
+
+            .art-main {
+                height: 250px;
+            }
+
+            .art-main::before {
+                font-size: 3.7rem;
+            }
+
+            .art-main::after {
+                font-size: 4rem;
+            }
+
+            .art-small {
+                width: 105px;
+                height: 105px;
+            }
+
+            .art-small::before {
+                font-size: 3.2rem;
+                left: 31px;
+                top: 25px;
             }
 
             .search-box {
-                box-shadow:
-                    5px 5px 0 var(--ink);
+                flex-wrap: wrap;
+            }
+
+            .search-icon {
+                width: 50px;
+            }
+
+            #searchInput {
+                width: calc(100% - 50px);
+            }
+
+            .search-button {
+                width: 100%;
+                min-height: 55px;
+                border-left: 0;
+                border-top: 3px solid var(--ink);
             }
 
             .discover-actions {
-                flex-direction: column;
-
                 align-items: stretch;
+                flex-direction: column;
             }
 
-            .discover-games-button,
+            .discover-button,
             .recommend-button {
                 width: 100%;
             }
 
-            .hero-art {
-                min-height: 340px;
-            }
-
-            .art-back {
-                width: 65%;
-                height: 180px;
-            }
-
-            .art-middle {
-                width: 68%;
-                height: 205px;
-            }
-
-            .art-front {
-                width: 72%;
-                height: 220px;
-            }
-
-            .content {
-                padding:
-                    55px 20px 80px;
-            }
-
-            .section-heading {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
             .game-grid {
                 grid-template-columns: 1fr;
             }
 
-            .vibe-grid {
-                grid-template-columns:
-                    1fr 1fr;
+            .content-heading {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .recommend-modal {
+            .content-heading h2 {
+                font-size: 3.2rem;
+            }
+
+            .game-of-day-copy h3 {
+                font-size: 2.5rem;
+            }
+
+            .game-of-day-copy {
                 padding: 25px;
             }
 
-            .recommend-result-card {
+            .vibe-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .recommend-modal {
+                padding: 27px 20px 22px;
+            }
+
+            .recommend-modal h2 {
+                font-size: 2.4rem;
             }
 
             footer {
                 flex-direction: column;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .vibe-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 56px;
-            }
-
-            .logo {
-                font-size: 19px;
-            }
-
-            .favorites-nav {
-                padding: 8px 11px;
-
-                font-size: 12px;
             }
         }
     </style>
@@ -1456,164 +1339,198 @@
 
 <body>
 
-    <div class="blob one"></div>
-    <div class="blob two"></div>
-    <div class="blob three"></div>
+    <div class="blob blob-one"></div>
+    <div class="blob blob-two"></div>
+    <div class="blob blob-three"></div>
 
-    <!-- =========================================
+    <!-- =========================
          NAV
-    ========================================= -->
+    ========================= -->
 
     <nav>
+        <a href="/" class="logo">
+            <span class="logo-mark">🎮</span>
+            <span>GameScout</span>
+        </a>
 
-        <div class="logo">
-            <div class="logo-mark">
-                G
-            </div>
-
-            GameScout
+        <div class="nav-pill">
+            FIND SOMETHING GOOD
         </div>
-
-        <div class="nav-right">
-
-            <div class="live-pill">
-                <span class="live-dot"></span>
-
-                Roblox Discovery
-            </div>
-
-            <button
-                class="favorites-nav"
-                onclick="scrollToFavorites()"
-            >
-                ♡ Favorites
-            </button>
-
-        </div>
-
     </nav>
 
-    <!-- =========================================
+    <!-- =========================
          HERO
-    ========================================= -->
+    ========================= -->
 
     <section class="hero">
 
         <div class="hero-copy">
 
             <div class="eyebrow">
-                YOUR NEXT OBSESSION IS HERE
+                ✦ ROBLOX GAME DISCOVERY
+            </div>
+
+            <div class="sticker">
+                NO MORE<br>
+                SCROLLING<br>
+                FOREVER ✦
             </div>
 
             <h1>
-                FIND<br>
-                SOMETHING<br>
-                <span>FUN.</span>
+                FIND
+                <span class="orange">YOUR</span>
+                GAME.
             </h1>
 
             <p class="hero-description">
-                GameScout searches Roblox for games you'll actually
-                want to play. Search by game, mood, genre, or literally
-                whatever you're thinking.
+                Search millions of Roblox experiences, discover hidden
+                gems, and find something actually worth playing.
             </p>
 
-            <!-- SEARCH -->
+        </div>
 
-            <div class="search-wrap">
+        <div class="hero-art">
 
-                <div class="search-box">
-
-                    <input
-                        id="searchInput"
-                        type="text"
-                        placeholder="Try “scary games”, “obby”, “cars”..."
-                        autocomplete="off"
-                        onkeydown="handleSearchKey(event)"
-                    >
-
-                    <button
-                        class="search-button"
-                        onclick="searchGames()"
-                    >
-                        SEARCH →
-                    </button>
-
-                </div>
-
+            <div class="art-tag">
+                WHAT'S NEXT?
             </div>
 
-            <!-- QUICK SEARCH -->
+            <div class="art-card art-main"></div>
 
-            <div class="quick-searches">
+            <div class="art-card art-small"></div>
 
-                <button onclick="quickSearch('horror')">
+        </div>
+
+    </section>
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <section class="search-wrap">
+
+        <div class="search-box">
+
+            <div class="search-icon">
+                🔎
+            </div>
+
+            <input
+                id="searchInput"
+                type="text"
+                autocomplete="off"
+                placeholder="Try “scary games with friends”..."
+                onkeydown="handleSearchKey(event)"
+            >
+
+            <button
+                class="search-button"
+                onclick="searchGames()"
+            >
+                SEARCH →
+            </button>
+
+        </div>
+
+        <div class="search-section">
+
+            <div class="search-section-label">
+                QUICK SEARCHES
+            </div>
+
+            <div class="recommended-searches">
+
+                <button
+                    class="search-chip"
+                    onclick="quickSearch('horror')"
+                >
                     👻 Horror
                 </button>
 
-                <button onclick="quickSearch('obby')">
-                    🏃 Obbies
+                <button
+                    class="search-chip"
+                    onclick="quickSearch('obby')"
+                >
+                    🧗 Obbies
                 </button>
 
-                <button onclick="quickSearch('simulator')">
+                <button
+                    class="search-chip"
+                    onclick="quickSearch('simulator')"
+                >
                     ⚙️ Simulators
                 </button>
 
-                <button onclick="quickSearch('tycoon')">
+                <button
+                    class="search-chip"
+                    onclick="quickSearch('tycoon')"
+                >
                     💰 Tycoons
                 </button>
 
-                <button onclick="quickSearch('funny')">
+                <button
+                    class="search-chip"
+                    onclick="quickSearch('funny')"
+                >
                     😂 Funny
                 </button>
 
-                <button onclick="quickSearch('adventure')">
+                <button
+                    class="search-chip"
+                    onclick="quickSearch('adventure')"
+                >
                     🗺️ Adventure
                 </button>
 
             </div>
 
-            <!-- RECOMMENDED -->
+        </div>
+
+        <div class="search-section">
 
             <div class="search-section-label">
-                <span>✦ RECOMMENDED</span>
+                RECOMMENDED SEARCHES
             </div>
 
-            <div
-                class="recommended-searches"
-                id="recommendedSearches"
-            >
+            <div class="recommended-searches">
 
                 <button
+                    class="search-chip"
                     onclick="quickSearch('roleplay')"
                 >
                     🎭 Roleplay
                 </button>
 
                 <button
+                    class="search-chip"
                     onclick="quickSearch('survival')"
                 >
-                    🧟 Survival
+                    🌲 Survival
                 </button>
 
                 <button
+                    class="search-chip"
                     onclick="quickSearch('murder mystery')"
                 >
-                    🔎 Murder Mystery
+                    🔪 Murder Mystery
                 </button>
 
                 <button
+                    class="search-chip"
                     onclick="quickSearch('cars')"
                 >
                     🚗 Cars
                 </button>
 
                 <button
+                    class="search-chip"
                     onclick="quickSearch('anime')"
                 >
-                    ⚔️ Anime
+                    ⚡ Anime
                 </button>
 
                 <button
+                    class="search-chip"
                     onclick="quickSearch('fighting')"
                 >
                     🥊 Fighting
@@ -1621,7 +1538,9 @@
 
             </div>
 
-            <!-- POPULAR -->
+        </div>
+
+        <div class="search-section">
 
             <div class="search-section-label popular-label">
                 <span>🔥 PEOPLE ARE SEARCHING</span>
@@ -1636,481 +1555,342 @@
                 </span>
             </div>
 
-            <!-- ACTIONS -->
-
-            <div class="discover-actions">
-
-                <button
-                    class="discover-games-button"
-                    onclick="document.getElementById('gameGrid').scrollIntoView({ behavior: 'smooth' })"
-                >
-                    <span>
-                        DISCOVER GAMES
-                    </span>
-
-                    <span class="discover-arrow">
-                        ↗
-                    </span>
-                </button>
-
-                <button
-                    class="recommend-button"
-                    onclick="openRecommendation()"
-                >
-                    🎮 WHAT SHOULD I PLAY?
-
-                    <small>
-                        Tell GameScout your vibe and we'll find something.
-                    </small>
-                </button>
-
-            </div>
-
-        </div>
-
-        <!-- HERO ART -->
-
-        <div class="hero-art">
-
-            <div class="art-card art-back">
-                <div class="art-placeholder">
-                    PLAY
-                </div>
-            </div>
-
-            <div class="art-card art-middle">
-                <div class="art-placeholder">
-                    DISCOVER
-                </div>
-            </div>
-
-            <div class="art-card art-front">
-                <div class="art-placeholder">
-                    ROBLOX
-                </div>
-            </div>
-
-            <div class="sticker">
-                NEW<br>
-                GAMES<br>
-                EVERYWHERE
-            </div>
-
         </div>
 
     </section>
 
-    <!-- =========================================
+    <!-- =========================
+         ACTIONS
+    ========================= -->
+
+    <div class="discover-actions">
+
+        <button
+            class="discover-button"
+            onclick="document.getElementById('results').scrollIntoView({ behavior: 'smooth' })"
+        >
+            DISCOVER GAMES ↓
+        </button>
+
+        <button
+            class="recommend-button"
+            onclick="openRecommendationModal()"
+        >
+            🎮 WHAT SHOULD I PLAY?
+        </button>
+
+    </div>
+
+    <!-- =========================
          MARQUEE
-    ========================================= -->
+    ========================= -->
 
     <div class="marquee">
 
         <div class="marquee-track">
-            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
-            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
-            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
-            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
+
+            <span>DISCOVER ✦</span>
+            <span>SEARCH ✦</span>
+            <span>PLAY ✦</span>
+            <span>FIND YOUR NEXT FAVORITE ✦</span>
+
+            <span>DISCOVER ✦</span>
+            <span>SEARCH ✦</span>
+            <span>PLAY ✦</span>
+            <span>FIND YOUR NEXT FAVORITE ✦</span>
+
         </div>
 
     </div>
 
-    <!-- =========================================
-         CONTENT
-    ========================================= -->
+    <!-- =========================
+         MAIN
+    ========================= -->
 
-    <main
-        class="content"
-        id="gameGrid"
-    >
+    <main id="results">
 
-        <!-- FAVORITES -->
+        <!-- =========================
+             GAME OF THE DAY
+        ========================= -->
 
         <section
-            class="favorites-panel"
-            id="favoritesPanel"
+            class="game-of-day"
+            id="gameOfTheDay"
+            style="display: none;"
         >
 
-            <div class="favorites-title">
+            <div class="game-of-day-inner">
 
-                <h3>
-                    ♡ Your Favorites
-                </h3>
+                <div class="game-of-day-image">
 
-                <span
-                    class="favorites-count"
-                    id="favoritesCount"
-                >
-                    0 SAVED
-                </span>
+                    <div class="game-of-day-badge">
+                        ⭐ GAME OF THE DAY
+                    </div>
+
+                    <img
+                        id="gameOfTheDayImage"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+                <div class="game-of-day-copy">
+
+                    <div class="mini-label">
+                        TODAY'S PICK
+                    </div>
+
+                    <h3 id="gameOfTheDayTitle">
+                        Loading...
+                    </h3>
+
+                    <p id="gameOfTheDayDescription">
+                        A game worth checking out today.
+                    </p>
+
+                    <div
+                        class="game-of-day-meta"
+                        id="gameOfTheDayMeta"
+                    ></div>
+
+                    <div class="game-of-day-actions">
+
+                        <a
+                            id="gameOfTheDayPlay"
+                            class="game-of-day-play"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            PLAY NOW →
+                        </a>
+
+                        <button
+                            id="gameOfTheDaySave"
+                            class="game-of-day-save"
+                            onclick="toggleGameOfTheDayFavorite()"
+                        >
+                            ♡ SAVE
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div
-                class="favorites-list"
-                id="favoritesList"
-            ></div>
-
         </section>
 
-        <!-- HEADING -->
+        <!-- =========================
+             HEADING
+        ========================= -->
 
-        <div class="section-heading">
+        <div class="content-heading">
 
             <div>
                 <h2 id="resultsTitle">
-                    TRENDING NOW
+                    TRENDING<br>
+                    NOW.
                 </h2>
             </div>
 
             <p id="resultsDescription">
-                A fresh batch of Roblox games to get you started.
+                Games people are checking out right now.
                 Search above to find something more specific.
             </p>
 
         </div>
 
-        <!-- LOADING -->
+        <!-- =========================
+             FAVORITES
+        ========================= -->
+
+        <section
+            class="favorites-section hidden"
+            id="favoritesSection"
+        >
+
+            <div class="favorites-heading">
+
+                <h2>♡ FAVORITES</h2>
+
+            </div>
+
+            <div
+                class="game-grid"
+                id="favoritesGrid"
+            ></div>
+
+        </section>
+
+        <!-- =========================
+             STATES
+        ========================= -->
 
         <div
             class="state"
             id="loadingState"
+            style="display: none;"
         >
 
-            <div class="loader"></div>
+            <div class="spinner"></div>
 
-            <h3>
-                HUNTING FOR GAMES...
-            </h3>
+            <h3>SCOUTING ROBLOX...</h3>
 
             <p>
-                GameScout is searching Roblox.
+                Give us a second. We're looking for something good.
             </p>
 
         </div>
-
-        <!-- ERROR -->
-
-        <div
-            class="state"
-            id="errorState"
-        >
-
-            <h3>
-                UH OH 😭
-            </h3>
-
-            <p id="errorMessage">
-                We couldn't discover games right now.
-            </p>
-
-        </div>
-
-        <!-- EMPTY -->
 
         <div
             class="state"
             id="emptyState"
+            style="display: none;"
         >
 
-            <h3>
-                NOTHING FOUND
-            </h3>
+            <div class="state-icon">
+                🕵️
+            </div>
+
+            <h3>NOTHING FOUND</h3>
 
             <p>
-                Try searching for something else.
+                Try a different search. Maybe go weird with it —
+                “banana”, “space”, “zombies”, whatever.
             </p>
 
         </div>
 
-        <!-- GAMES -->
+        <div
+            class="state"
+            id="errorState"
+            style="display: none;"
+        >
+
+            <div class="state-icon">
+                💥
+            </div>
+
+            <h3>UH OH</h3>
+
+            <p>
+                GameScout couldn't reach Roblox right now.
+                Make sure your server is running and try again.
+            </p>
+
+        </div>
 
         <div
             class="game-grid"
-            id="gamesContainer"
+            id="gameGrid"
         ></div>
 
     </main>
 
-    <!-- =========================================
+    <!-- =========================
          FOOTER
-    ========================================= -->
+    ========================= -->
 
     <footer>
 
         <div>
-            <strong>
-                GameScout
-            </strong>
-
-            — Roblox game discovery.
+            <strong>GameScout</strong> — made for finding games,
+            not endlessly scrolling.
         </div>
 
         <div>
-            Made for finding games,
-            not scrolling forever.
+            Powered by Roblox data.
         </div>
 
     </footer>
 
-    <!-- =========================================
+    <!-- =========================
          RECOMMENDATION MODAL
-    ========================================= -->
+    ========================= -->
 
     <div
-        class="recommend-overlay"
+        class="recommend-overlay hidden"
         id="recommendOverlay"
-        onclick="closeRecommendationFromBackground(event)"
     >
 
         <div class="recommend-modal">
 
             <button
                 class="modal-close"
-                onclick="closeRecommendation()"
+                onclick="closeRecommendationModal()"
+                aria-label="Close"
             >
                 ×
             </button>
 
-            <!-- VIBE SCREEN -->
+            <h2>
+                WHAT'S<br>
+                YOUR VIBE?
+            </h2>
 
-            <div
-                class="vibe-screen"
-                id="vibeScreen"
-            >
+            <p>
+                Pick a mood and GameScout will find some games for you.
+            </p>
 
-                <h2>
-                    WHAT'S<br>
-                    YOUR
-                    <span
-                        style="color:var(--orange);"
-                    >
-                        VIBE?
-                    </span>
-                </h2>
-
-                <p>
-                    Pick a mood and GameScout will hunt down
-                    some Roblox games for you.
-                </p>
-
-                <div class="vibe-grid">
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('chill')"
-                    >
-                        😌 Chill
-
-                        <small>
-                            Low stress. Good vibes.
-                        </small>
-                    </button>
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('competitive')"
-                    >
-                        🏆 Competitive
-
-                        <small>
-                            I need to WIN.
-                        </small>
-                    </button>
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('scary')"
-                    >
-                        👻 Scary
-
-                        <small>
-                            Make me regret this.
-                        </small>
-                    </button>
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('chaotic')"
-                    >
-                        💥 Chaotic
-
-                        <small>
-                            Absolute nonsense.
-                        </small>
-                    </button>
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('thinky')"
-                    >
-                        🧠 Thinky
-
-                        <small>
-                            Use my brain for once.
-                        </small>
-                    </button>
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('adventure')"
-                    >
-                        🗺️ Adventure
-
-                        <small>
-                            Let's go somewhere.
-                        </small>
-                    </button>
-
-                    <button
-                        class="vibe-button"
-                        onclick="chooseVibe('surprise')"
-                        style="background:var(--orange);"
-                    >
-                        🎲 Surprise Me
-
-                        <small>
-                            You choose. I trust you.
-                        </small>
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- RECOMMEND LOADING -->
-
-            <div
-                class="recommend-loading"
-                id="recommendLoading"
-            >
-
-                <div class="loader"></div>
-
-                <h3>
-                    FINDING YOUR GAME...
-                </h3>
-
-                <p>
-                    The GameScout brain is working.
-                </p>
-
-            </div>
-
-            <!-- RECOMMEND ERROR -->
-
-            <div
-                class="recommend-error"
-                id="recommendError"
-            >
-
-                <strong>
-                    GameScout couldn't find a recommendation 😭
-                </strong>
-
-                <p style="margin-top:8px;">
-                    Try another vibe or close this
-                    and search manually.
-                </p>
+            <div class="vibe-grid">
 
                 <button
-                    onclick="backToVibes()"
-                    style="
-                        margin-top:15px;
-                        border:2px solid var(--ink);
-                        background:var(--yellow);
-                        padding:10px 14px;
-                        border-radius:8px;
-                        font-weight:800;
-                    "
+                    class="vibe-button"
+                    onclick="recommendGames('chill')"
                 >
-                    TRY AGAIN
+                    <span class="vibe-emoji">🌿</span>
+                    Chill
                 </button>
 
-            </div>
+                <button
+                    class="vibe-button"
+                    onclick="recommendGames('competitive')"
+                >
+                    <span class="vibe-emoji">🏆</span>
+                    Competitive
+                </button>
 
-            <!-- RECOMMEND RESULT -->
+                <button
+                    class="vibe-button"
+                    onclick="recommendGames('horror')"
+                >
+                    <span class="vibe-emoji">👻</span>
+                    Scary
+                </button>
 
-            <div
-                class="recommend-result"
-                id="recommendResult"
-            >
+                <button
+                    class="vibe-button"
+                    onclick="recommendGames('funny')"
+                >
+                    <span class="vibe-emoji">🤪</span>
+                    Chaotic
+                </button>
 
-                <h2>
-                    YOU SHOULD<br>
-                    PLAY
-                    <span
-                        style="color:var(--orange);"
-                    >
-                        THIS.
-                    </span>
-                </h2>
+                <button
+                    class="vibe-button"
+                    onclick="recommendGames('strategy')"
+                >
+                    <span class="vibe-emoji">🧠</span>
+                    Thinky
+                </button>
 
-                <div class="recommend-result-card">
+                <button
+                    class="vibe-button"
+                    onclick="recommendGames('adventure')"
+                >
+                    <span class="vibe-emoji">🗺️</span>
+                    Adventure
+                </button>
 
-                    <div
-                        class="recommend-image"
-                        id="recommendImage"
-                    ></div>
-
-                    <div class="recommend-details">
-
-                        <h3
-                            id="recommendName"
-                        >
-                            Game Name
-                        </h3>
-
-                        <p
-                            id="recommendCreator"
-                        >
-                            By Creator
-                        </p>
-
-                        <p
-                            id="recommendPlaying"
-                        >
-                            👥 Players
-                        </p>
-
-                        <div class="recommend-actions">
-
-                            <a
-                                id="recommendPlay"
-                                href="#"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                PLAY →
-                            </a>
-
-                            <button
-                                class="secondary"
-                                onclick="showAnotherRecommendation()"
-                            >
-                                ANOTHER
-                            </button>
-
-                            <button
-                                class="secondary"
-                                onclick="backToVibes()"
-                            >
-                                CHANGE VIBE
-                            </button>
-
-                            <button
-                                id="recommendSave"
-                                class="secondary"
-                                onclick="toggleRecommendedFavorite()"
-                            >
-                                ♡ SAVE
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                <button
+                    class="vibe-button"
+                    onclick="recommendGames('popular')"
+                >
+                    <span class="vibe-emoji">🎲</span>
+                    Surprise Me
+                </button>
 
             </div>
 
@@ -2119,72 +1899,57 @@
     </div>
 
     <script>
-
-        /* =========================================
+        /* =========================
            STATE
-        ========================================= */
+        ========================= */
 
         let currentGames = [];
+        let recommendationGames = [];
+        let gameOfTheDay = null;
 
         let favorites =
             JSON.parse(
-                localStorage.getItem(
-                    "gamescoutFavorites"
-                ) || "[]"
+                localStorage.getItem("gamescoutFavorites") || "[]"
             );
 
-        let recommendationGames = [];
-
-        let recommendationIndex = 0;
-
-        let currentVibe = "";
-
-        /* =========================================
-           ESCAPE HTML
-        ========================================= */
+        /* =========================
+           HELPERS
+        ========================= */
 
         function escapeHtml(value) {
-
             return String(value ?? "")
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
-
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
-
-        /* =========================================
-           PLAYER FORMAT
-        ========================================= */
 
         function formatPlayers(number) {
+            const players = Number(number) || 0;
 
-            const value =
-                Number(number) || 0;
-
-            if (value >= 1000000) {
+            if (players >= 1000000) {
                 return (
-                    value / 1000000
-                ).toFixed(1) + "M";
+                    (players / 1000000)
+                        .toFixed(players >= 10000000 ? 0 : 1)
+                        .replace(".0", "") +
+                    "M"
+                );
             }
 
-            if (value >= 1000) {
+            if (players >= 1000) {
                 return (
-                    value / 1000
-                ).toFixed(1) + "K";
+                    (players / 1000)
+                        .toFixed(players >= 10000 ? 0 : 1)
+                        .replace(".0", "") +
+                    "K"
+                );
             }
 
-            return value.toLocaleString();
-
+            return players.toLocaleString();
         }
 
-        /* =========================================
-           SHUFFLE
-        ========================================= */
-
         function shuffle(array) {
-
             const copy = [...array];
 
             for (
@@ -2192,11 +1957,9 @@
                 i > 0;
                 i--
             ) {
-
                 const j =
                     Math.floor(
-                        Math.random() *
-                        (i + 1)
+                        Math.random() * (i + 1)
                     );
 
                 [
@@ -2206,56 +1969,29 @@
                     copy[j],
                     copy[i]
                 ];
-
             }
 
             return copy;
-
         }
-
-        /* =========================================
-           SEARCH KEY
-        ========================================= */
 
         function handleSearchKey(event) {
-
-            if (
-                event.key === "Enter"
-            ) {
+            if (event.key === "Enter") {
                 searchGames();
             }
-
         }
-
-        /* =========================================
-           QUICK SEARCH
-        ========================================= */
 
         function quickSearch(query) {
-
-            document.getElementById(
-                "searchInput"
-            ).value = query;
-
+            document.getElementById("searchInput").value = query;
             searchGames();
-
-            setTimeout(
-                loadPopularSearches,
-                700
-            );
-
         }
 
-        /* =========================================
-           SEARCH GAMES
-        ========================================= */
+        /* =========================
+           SEARCH
+        ========================= */
 
         async function searchGames() {
-
             const input =
-                document.getElementById(
-                    "searchInput"
-                );
+                document.getElementById("searchInput");
 
             const query =
                 input.value.trim();
@@ -2265,98 +2001,90 @@
                 return;
             }
 
-            setTimeout(
-                loadPopularSearches,
-                700
-            );
-
             showState("loading");
 
-            document.getElementById(
-                "resultsTitle"
-            ).textContent =
-                "SEARCH RESULTS";
+            document.getElementById("resultsTitle").innerHTML =
+                "SEARCH<br>RESULTS.";
 
-            document.getElementById(
-                "resultsDescription"
-            ).textContent =
+            document.getElementById("resultsDescription").textContent =
                 `Games matching “${query}”.`;
 
             try {
-
                 const response =
                     await fetch(
                         `/api/search?q=${encodeURIComponent(query)}`
                     );
 
+                if (!response.ok) {
+                    throw new Error(
+                        "Search request failed."
+                    );
+                }
+
                 const data =
                     await response.json();
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        data.error ||
-                        "Search failed."
-                    );
-
-                }
 
                 currentGames =
                     Array.isArray(data.games)
                         ? data.games
                         : [];
 
-                renderGames(
-                    currentGames
-                );
+                hideStates();
+
+                if (!currentGames.length) {
+                    showState("empty");
+                    return;
+                }
+
+                renderGameOfTheDay(currentGames);
+                renderGames(currentGames);
+
+                await loadPopularSearches();
 
             } catch (error) {
-
                 console.error(error);
-
                 showState("error");
-
-                document.getElementById(
-                    "errorMessage"
-                ).textContent =
-                    "We couldn't discover games right now. Try again in a moment.";
-
             }
 
+            document
+                .getElementById("results")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
         }
 
-        /* =========================================
+        /* =========================
            POPULAR SEARCHES
-        ========================================= */
+        ========================= */
 
         async function loadPopularSearches() {
-
             const container =
                 document.getElementById(
                     "popularSearches"
                 );
 
-            if (!container) return;
-
             try {
-
                 const response =
                     await fetch(
                         "/api/popular-searches"
                     );
 
+                if (!response.ok) {
+                    throw new Error(
+                        "Popular searches failed."
+                    );
+                }
+
                 const data =
                     await response.json();
 
                 const searches =
-                    Array.isArray(
-                        data.searches
-                    )
+                    Array.isArray(data.searches)
                         ? data.searches
                         : [];
 
                 if (!searches.length) {
-
                     container.innerHTML = `
                         <span class="popular-empty">
                             Start searching to build the list...
@@ -2369,964 +2097,668 @@
                 container.innerHTML =
                     searches
                         .map(
-                            (item, index) => {
-
-                                const icon =
-                                    index < 3
-                                        ? "🔥"
-                                        : "•";
-
-                                return `
-                                    <button
-                                        onclick="quickSearch('${escapeHtml(item.query)}')"
-                                        title="${item.count} search${item.count === 1 ? "" : "es"}"
-                                    >
-                                        ${icon}
-                                        ${escapeHtml(item.query)}
-                                    </button>
-                                `;
-
-                            }
+                            (item) => `
+                                <button
+                                    class="search-chip"
+                                    onclick='quickSearch(${JSON.stringify(item.query)})'
+                                >
+                                    🔥 ${escapeHtml(item.query)}
+                                </button>
+                            `
                         )
                         .join("");
 
             } catch (error) {
-
                 console.error(
                     "Popular searches error:",
                     error
                 );
-
             }
-
         }
 
-        /* =========================================
+        /* =========================
            TRENDING
-        ========================================= */
+        ========================= */
 
         async function loadTrending() {
-
             showState("loading");
 
             try {
-
                 const response =
                     await fetch(
                         "/api/trending"
                     );
 
-                const data =
-                    await response.json();
-
                 if (!response.ok) {
-
                     throw new Error(
-                        data.error ||
                         "Trending request failed."
                     );
-
                 }
+
+                const data =
+                    await response.json();
 
                 currentGames =
                     Array.isArray(data.games)
                         ? data.games
                         : [];
 
-                renderGames(
-                    currentGames
-                );
+                hideStates();
+
+                if (!currentGames.length) {
+                    showState("empty");
+                    return;
+                }
+
+                renderGameOfTheDay(currentGames);
+                renderGames(currentGames);
 
             } catch (error) {
-
                 console.error(error);
-
                 showState("error");
-
-                document.getElementById(
-                    "errorMessage"
-                ).textContent =
-                    "We couldn't load trending games. Try searching for a game instead.";
-
             }
-
         }
 
-        /* =========================================
-           RENDER GAMES
-        ========================================= */
+        /* =========================
+           GAME OF THE DAY
+        ========================= */
 
-        function renderGames(games) {
+        function getDailyIndex(length) {
+            if (!length) {
+                return 0;
+            }
 
-            const container =
+            const now =
+                new Date();
+
+            const dateString =
+                `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+
+            let hash = 0;
+
+            for (
+                let i = 0;
+                i < dateString.length;
+                i++
+            ) {
+                hash =
+                    (
+                        hash * 31 +
+                        dateString.charCodeAt(i)
+                    ) >>> 0;
+            }
+
+            return hash % length;
+        }
+
+        function renderGameOfTheDay(games) {
+            const section =
                 document.getElementById(
-                    "gamesContainer"
+                    "gameOfTheDay"
                 );
 
-            container.innerHTML = "";
-
-            hideStates();
-
-            if (!games.length) {
-
-                showState("empty");
-
+            if (!games || !games.length) {
+                section.style.display = "none";
+                gameOfTheDay = null;
                 return;
             }
 
-            games.forEach(
-                (game) => {
+            const index =
+                getDailyIndex(games.length);
 
-                    const card =
-                        document.createElement(
-                            "article"
-                        );
+            gameOfTheDay =
+                games[index];
 
-                    card.className =
-                        "game-card";
+            if (!gameOfTheDay) {
+                section.style.display = "none";
+                return;
+            }
 
-                    const saved =
-                        isFavorite(game);
+            section.style.display = "block";
 
-                    let imageHtml = `
-                        <div class="game-image no-image">
-                            🎮
-                        </div>
-                    `;
+            const image =
+                document.getElementById(
+                    "gameOfTheDayImage"
+                );
 
-                    if (game.thumbnail) {
+            const title =
+                document.getElementById(
+                    "gameOfTheDayTitle"
+                );
 
-                        imageHtml = `
-                            <div class="game-image">
-                                <img
-                                    src="${escapeHtml(game.thumbnail)}"
-                                    alt="${escapeHtml(game.name)}"
-                                    loading="lazy"
-                                    onerror="this.parentElement.classList.add('no-image'); this.remove();"
-                                >
-                            </div>
-                        `;
+            const description =
+                document.getElementById(
+                    "gameOfTheDayDescription"
+                );
 
-                    }
+            const meta =
+                document.getElementById(
+                    "gameOfTheDayMeta"
+                );
 
-                    let playButton = "";
+            const play =
+                document.getElementById(
+                    "gameOfTheDayPlay"
+                );
 
-                    if (game.placeId) {
+            title.textContent =
+                gameOfTheDay.name ||
+                "Unknown Game";
 
-                        playButton = `
-                            <a
-                                class="play-button"
-                                href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                PLAY →
-                            </a>
-                        `;
+            description.textContent =
+                `Jump into ${gameOfTheDay.name || "this game"} and see what makes it worth playing today.`;
 
-                    } else {
+            if (gameOfTheDay.thumbnail) {
+                image.src =
+                    gameOfTheDay.thumbnail;
 
-                        playButton = `
-                            <span
-                                class="play-button disabled"
-                            >
-                                UNAVAILABLE
-                            </span>
-                        `;
+                image.alt =
+                    gameOfTheDay.name || "Roblox game";
+            } else {
+                image.removeAttribute("src");
+                image.alt = "";
+            }
 
-                    }
+            meta.innerHTML = `
+                <span>
+                    👥 ${formatPlayers(gameOfTheDay.playing)} playing
+                </span>
 
-                    card.innerHTML = `
+                <span>
+                    ✦ ${escapeHtml(
+                        gameOfTheDay.creator ||
+                        "Roblox Creator"
+                    )}
+                </span>
+            `;
 
-                        ${imageHtml}
+            if (gameOfTheDay.placeId) {
+                play.href =
+                    `https://www.roblox.com/games/${encodeURIComponent(
+                        gameOfTheDay.placeId
+                    )}`;
 
-                        <div class="game-info">
+                play.style.display =
+                    "inline-block";
+            } else {
+                play.removeAttribute("href");
+                play.style.display =
+                    "none";
+            }
 
-                            <div class="game-name">
-                                ${escapeHtml(game.name)}
-                            </div>
-
-                            <div class="game-creator">
-                                by
-                                ${escapeHtml(
-                                    game.creator ||
-                                    "Roblox Creator"
-                                )}
-                            </div>
-
-                            <div class="game-meta">
-
-                                <div class="playing">
-
-                                    <span
-                                        class="playing-dot"
-                                    ></span>
-
-                                    ${formatPlayers(
-                                        game.playing
-                                    )}
-                                    playing
-
-                                </div>
-
-                                <span>
-                                    ROBLOX
-                                </span>
-
-                            </div>
-
-                            <div class="game-actions">
-
-                                ${playButton}
-
-                                <button
-                                    class="favorite-button ${
-                                        saved
-                                            ? "saved"
-                                            : ""
-                                    }"
-                                    onclick="toggleFavorite('${escapeHtml(
-                                        game.universeId ||
-                                        game.id
-                                    )}')"
-                                    aria-label="Save ${escapeHtml(
-                                        game.name
-                                    )}"
-                                >
-                                    ${
-                                        saved
-                                            ? "♥"
-                                            : "♡"
-                                    }
-                                </button>
-
-                            </div>
-
-                        </div>
-                    `;
-
-                    container.appendChild(
-                        card
-                    );
-
-                }
-            );
-
+            updateGameOfTheDaySaveButton();
         }
 
-        /* =========================================
+        function toggleGameOfTheDayFavorite() {
+            if (!gameOfTheDay) {
+                return;
+            }
+
+            toggleFavorite(
+                gameOfTheDay.universeId
+            );
+        }
+
+        function updateGameOfTheDaySaveButton() {
+            const button =
+                document.getElementById(
+                    "gameOfTheDaySave"
+                );
+
+            if (!gameOfTheDay) {
+                return;
+            }
+
+            const saved =
+                favorites.some(
+                    (game) =>
+                        String(game.universeId) ===
+                        String(
+                            gameOfTheDay.universeId
+                        )
+                );
+
+            button.textContent =
+                saved
+                    ? "♥ SAVED"
+                    : "♡ SAVE";
+
+            button.classList.toggle(
+                "active",
+                saved
+            );
+        }
+
+        /* =========================
+           RENDER GAMES
+        ========================= */
+
+        function renderGames(games) {
+            const grid =
+                document.getElementById(
+                    "gameGrid"
+                );
+
+            if (!games.length) {
+                grid.innerHTML = "";
+                return;
+            }
+
+            grid.innerHTML =
+                games
+                    .map(
+                        (game) => {
+                            const saved =
+                                favorites.some(
+                                    (favorite) =>
+                                        String(
+                                            favorite.universeId
+                                        ) ===
+                                        String(
+                                            game.universeId
+                                        )
+                                );
+
+                            const image =
+                                game.thumbnail
+                                    ? `
+                                        <img
+                                            src="${escapeHtml(game.thumbnail)}"
+                                            alt="${escapeHtml(game.name)}"
+                                            loading="lazy"
+                                        >
+                                    `
+                                    : `
+                                        <div class="game-card-image-placeholder">
+                                            🎮
+                                        </div>
+                                    `;
+
+                            const playButton =
+                                game.placeId
+                                    ? `
+                                        <a
+                                            class="play-game"
+                                            href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            PLAY →
+                                        </a>
+                                    `
+                                    : "";
+
+                            return `
+                                <article class="game-card">
+
+                                    <div class="game-card-image">
+
+                                        ${image}
+
+                                        <button
+                                            class="favorite-button ${
+                                                saved
+                                                    ? "active"
+                                                    : ""
+                                            }"
+                                            onclick='toggleFavorite(${JSON.stringify(game.universeId)})'
+                                            aria-label="Favorite ${escapeHtml(game.name)}"
+                                        >
+                                            ${
+                                                saved
+                                                    ? "♥"
+                                                    : "♡"
+                                            }
+                                        </button>
+
+                                    </div>
+
+                                    <div class="game-card-body">
+
+                                        <h3 class="game-card-title">
+                                            ${escapeHtml(
+                                                game.name ||
+                                                "Unknown Game"
+                                            )}
+                                        </h3>
+
+                                        <p class="game-card-creator">
+                                            by ${escapeHtml(
+                                                game.creator ||
+                                                "Roblox Creator"
+                                            )}
+                                        </p>
+
+                                        <div class="game-card-footer">
+
+                                            <div class="players">
+                                                <span class="player-dot"></span>
+                                                ${formatPlayers(
+                                                    game.playing
+                                                )}
+                                                playing
+                                            </div>
+
+                                            ${playButton}
+
+                                        </div>
+
+                                    </div>
+
+                                </article>
+                            `;
+                        }
+                    )
+                    .join("");
+        }
+
+        /* =========================
            STATES
-        ========================================= */
+        ========================= */
 
         function hideStates() {
+            document.getElementById(
+                "loadingState"
+            ).style.display = "none";
 
-            document
-                .querySelectorAll(".state")
-                .forEach(
-                    (state) => {
+            document.getElementById(
+                "emptyState"
+            ).style.display = "none";
 
-                        state.classList.remove(
-                            "visible"
-                        );
-
-                    }
-                );
-
+            document.getElementById(
+                "errorState"
+            ).style.display = "none";
         }
 
-        function showState(type) {
-
+        function showState(state) {
             hideStates();
 
-            if (
-                type === "loading"
-            ) {
+            const element =
+                document.getElementById(
+                    `${state}State`
+                );
 
-                document
-                    .getElementById(
-                        "loadingState"
-                    )
-                    .classList.add(
-                        "visible"
-                    );
-
+            if (element) {
+                element.style.display =
+                    "block";
             }
 
-            if (
-                type === "error"
-            ) {
+            if (state === "loading") {
+                document.getElementById(
+                    "gameGrid"
+                ).innerHTML = "";
 
-                document
-                    .getElementById(
-                        "errorState"
-                    )
-                    .classList.add(
-                        "visible"
-                    );
-
+                document.getElementById(
+                    "gameOfTheDay"
+                ).style.display = "none";
             }
-
-            if (
-                type === "empty"
-            ) {
-
-                document
-                    .getElementById(
-                        "emptyState"
-                    )
-                    .classList.add(
-                        "visible"
-                    );
-
-            }
-
         }
 
-        /* =========================================
+        /* =========================
            FAVORITES
-        ========================================= */
+        ========================= */
 
-        function getGameId(game) {
-
-            return String(
-                game.universeId ||
-                game.id ||
-                ""
-            );
-
-        }
-
-        function isFavorite(game) {
-
-            const id =
-                getGameId(game);
-
-            return favorites.some(
-                (favorite) =>
-                    String(
-                        favorite.universeId ||
-                        favorite.id
-                    ) === id
-            );
-
-        }
-
-        function toggleFavorite(id) {
-
-            const game =
-                currentGames.find(
-                    (item) =>
-                        getGameId(item) ===
-                        String(id)
-                ) ||
-                recommendationGames.find(
-                    (item) =>
-                        getGameId(item) ===
-                        String(id)
-                );
-
-            if (!game) return;
-
-            const existingIndex =
-                favorites.findIndex(
-                    (favorite) =>
-                        getGameId(
-                            favorite
-                        ) ===
-                        getGameId(game)
-                );
-
-            if (
-                existingIndex >= 0
-            ) {
-
-                favorites.splice(
-                    existingIndex,
-                    1
-                );
-
-            } else {
-
-                favorites.push(
-                    game
-                );
-
-            }
-
+        function saveFavorites() {
             localStorage.setItem(
                 "gamescoutFavorites",
                 JSON.stringify(
                     favorites
                 )
             );
-
-            renderFavorites();
-
-            renderGames(
-                currentGames
-            );
-
-            updateRecommendationSaveButton();
-
         }
 
-        function toggleRecommendedFavorite() {
+        function toggleFavorite(universeId) {
+            const id =
+                String(universeId);
 
-            const game =
-                recommendationGames[
-                    recommendationIndex
-                ];
+            const existingIndex =
+                favorites.findIndex(
+                    (game) =>
+                        String(
+                            game.universeId
+                        ) === id
+                );
 
-            if (!game) return;
+            if (existingIndex >= 0) {
+                favorites.splice(
+                    existingIndex,
+                    1
+                );
+            } else {
 
-            toggleFavorite(
-                getGameId(game)
-            );
+                const game =
+                    currentGames.find(
+                        (item) =>
+                            String(
+                                item.universeId
+                            ) === id
+                    ) ||
+                    recommendationGames.find(
+                        (item) =>
+                            String(
+                                item.universeId
+                            ) === id
+                    );
 
+                if (game) {
+                    favorites.push(
+                        game
+                    );
+                }
+            }
+
+            saveFavorites();
+
+            renderFavorites();
+            renderGames(currentGames);
+            updateGameOfTheDaySaveButton();
         }
 
         function renderFavorites() {
-
-            const panel =
+            const section =
                 document.getElementById(
-                    "favoritesPanel"
+                    "favoritesSection"
                 );
 
-            const list =
+            const grid =
                 document.getElementById(
-                    "favoritesList"
+                    "favoritesGrid"
                 );
-
-            const count =
-                document.getElementById(
-                    "favoritesCount"
-                );
-
-            count.textContent =
-                `${favorites.length} SAVED`;
-
-            list.innerHTML = "";
 
             if (!favorites.length) {
-
-                panel.classList.remove(
-                    "visible"
+                section.classList.add(
+                    "hidden"
                 );
+
+                grid.innerHTML = "";
 
                 return;
             }
 
-            panel.classList.add(
-                "visible"
+            section.classList.remove(
+                "hidden"
             );
 
-            favorites.forEach(
-                (game) => {
+            grid.innerHTML =
+                favorites
+                    .map(
+                        (game) => {
 
-                    const item =
-                        document.createElement(
-                            "div"
-                        );
+                            const image =
+                                game.thumbnail
+                                    ? `
+                                        <img
+                                            src="${escapeHtml(game.thumbnail)}"
+                                            alt="${escapeHtml(game.name)}"
+                                            loading="lazy"
+                                        >
+                                    `
+                                    : `
+                                        <div class="game-card-image-placeholder">
+                                            🎮
+                                        </div>
+                                    `;
 
-                    item.className =
-                        "favorite-mini";
+                            const playButton =
+                                game.placeId
+                                    ? `
+                                        <a
+                                            class="play-game"
+                                            href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            PLAY →
+                                        </a>
+                                    `
+                                    : "";
 
-                    item.innerHTML = `
-                        <strong>
-                            ${escapeHtml(
-                                game.name
-                            )}
-                        </strong>
+                            return `
+                                <article class="game-card">
 
-                        <span>
-                            by
-                            ${escapeHtml(
-                                game.creator ||
-                                "Roblox Creator"
-                            )}
-                        </span>
-                    `;
+                                    <div class="game-card-image">
 
-                    list.appendChild(
-                        item
-                    );
+                                        ${image}
 
-                }
-            );
+                                        <button
+                                            class="favorite-button active"
+                                            onclick='toggleFavorite(${JSON.stringify(game.universeId)})'
+                                            aria-label="Remove ${escapeHtml(game.name)} from favorites"
+                                        >
+                                            ♥
+                                        </button>
 
-        }
+                                    </div>
 
-        function scrollToFavorites() {
+                                    <div class="game-card-body">
 
-            const panel =
-                document.getElementById(
-                    "favoritesPanel"
-                );
+                                        <h3 class="game-card-title">
+                                            ${escapeHtml(
+                                                game.name ||
+                                                "Unknown Game"
+                                            )}
+                                        </h3>
 
-            if (favorites.length) {
+                                        <p class="game-card-creator">
+                                            by ${escapeHtml(
+                                                game.creator ||
+                                                "Roblox Creator"
+                                            )}
+                                        </p>
 
-                panel.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
+                                        <div class="game-card-footer">
 
-            } else {
+                                            <div class="players">
+                                                <span class="player-dot"></span>
+                                                ${formatPlayers(
+                                                    game.playing
+                                                )}
+                                                playing
+                                            </div>
 
-                document
-                    .getElementById(
-                        "gameGrid"
+                                            ${playButton}
+
+                                        </div>
+
+                                    </div>
+
+                                </article>
+                            `;
+                        }
                     )
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-            }
-
+                    .join("");
         }
 
-        /* =========================================
-           RECOMMENDATION
-        ========================================= */
+        /* =========================
+           RECOMMENDATIONS
+        ========================= */
 
-        function openRecommendation() {
-
-            const overlay =
-                document.getElementById(
-                    "recommendOverlay"
-                );
-
-            overlay.classList.add(
-                "open"
-            );
-
-            backToVibes();
-
-        }
-
-        function closeRecommendation() {
-
+        function openRecommendationModal() {
             document
                 .getElementById(
                     "recommendOverlay"
                 )
                 .classList.remove(
-                    "open"
+                    "hidden"
                 );
-
         }
 
-        function closeRecommendationFromBackground(
-            event
-        ) {
-
-            if (
-                event.target ===
-                document.getElementById(
+        function closeRecommendationModal() {
+            document
+                .getElementById(
                     "recommendOverlay"
                 )
-            ) {
-
-                closeRecommendation();
-
-            }
-
+                .classList.add(
+                    "hidden"
+                );
         }
 
-        function backToVibes() {
+        async function recommendGames(vibe) {
+            closeRecommendationModal();
 
-            document.getElementById(
-                "vibeScreen"
-            ).style.display =
-                "block";
-
-            document
-                .getElementById(
-                    "recommendLoading"
-                )
-                .classList.remove(
-                    "visible"
-                );
-
-            document
-                .getElementById(
-                    "recommendResult"
-                )
-                .classList.remove(
-                    "visible"
-                );
-
-            document
-                .getElementById(
-                    "recommendError"
-                )
-                .classList.remove(
-                    "visible"
-                );
-
-        }
-
-        async function chooseVibe(vibe) {
-
-            currentVibe =
-                vibe;
-
-            const searches = {
-
-                chill:
-                    "chill",
-
-                competitive:
-                    "competitive",
-
-                scary:
-                    "horror",
-
-                chaotic:
-                    "funny",
-
-                thinky:
-                    "strategy",
-
-                adventure:
-                    "adventure",
-
-                surprise:
-                    "popular"
-
+            const queries = {
+                chill: "chill relaxing",
+                competitive: "competitive",
+                horror: "horror scary",
+                funny: "funny chaotic",
+                strategy: "strategy thinking",
+                adventure: "adventure exploration",
+                popular: "popular"
             };
 
+            const query =
+                queries[vibe] ||
+                "popular";
+
             document.getElementById(
-                "vibeScreen"
-            ).style.display =
-                "none";
+                "searchInput"
+            ).value = query;
 
-            document
-                .getElementById(
-                    "recommendResult"
-                )
-                .classList.remove(
-                    "visible"
-                );
+            await searchGames();
+        }
 
-            document
-                .getElementById(
-                    "recommendError"
-                )
-                .classList.remove(
-                    "visible"
-                );
+        /* =========================
+           MODAL BEHAVIOR
+        ========================= */
 
-            document
-                .getElementById(
-                    "recommendLoading"
-                )
-                .classList.add(
-                    "visible"
-                );
+        document
+            .getElementById(
+                "recommendOverlay"
+            )
+            .addEventListener(
+                "click",
+                (event) => {
 
-            try {
-
-                const response =
-                    await fetch(
-                        `/api/search?q=${encodeURIComponent(
-                            searches[vibe] ||
-                            "popular"
-                        )}`
-                    );
-
-                const data =
-                    await response.json();
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        data.error ||
-                        "Recommendation failed."
-                    );
+                    if (
+                        event.target.id ===
+                        "recommendOverlay"
+                    ) {
+                        closeRecommendationModal();
+                    }
 
                 }
-
-                const games =
-                    Array.isArray(
-                        data.games
-                    )
-                        ? data.games.filter(
-                            (game) =>
-                                game &&
-                                game.name &&
-                                game.placeId
-                        )
-                        : [];
-
-                if (!games.length) {
-
-                    throw new Error(
-                        "No playable games found."
-                    );
-
-                }
-
-                recommendationGames =
-                    shuffle(games);
-
-                recommendationIndex =
-                    0;
-
-                document
-                    .getElementById(
-                        "recommendLoading"
-                    )
-                    .classList.remove(
-                        "visible"
-                    );
-
-                showRecommendation();
-
-            } catch (error) {
-
-                console.error(
-                    "Recommendation error:",
-                    error
-                );
-
-                document
-                    .getElementById(
-                        "recommendLoading"
-                    )
-                    .classList.remove(
-                        "visible"
-                    );
-
-                document
-                    .getElementById(
-                        "recommendError"
-                    )
-                    .classList.add(
-                        "visible"
-                    );
-
-            }
-
-        }
-
-        function showRecommendation() {
-
-            const game =
-                recommendationGames[
-                    recommendationIndex
-                ];
-
-            if (!game) return;
-
-            document
-                .getElementById(
-                    "recommendResult"
-                )
-                .classList.add(
-                    "visible"
-                );
-
-            document
-                .getElementById(
-                    "recommendName"
-                )
-                .textContent =
-                game.name ||
-                "Unknown Game";
-
-            document
-                .getElementById(
-                    "recommendCreator"
-                )
-                .textContent =
-                `by ${
-                    game.creator ||
-                    "Roblox Creator"
-                }`;
-
-            document
-                .getElementById(
-                    "recommendPlaying"
-                )
-                .textContent =
-                `👥 ${formatPlayers(
-                    game.playing
-                )} playing`;
-
-            const image =
-                document.getElementById(
-                    "recommendImage"
-                );
-
-            if (game.thumbnail) {
-
-                image.innerHTML = `
-                    <img
-                        src="${escapeHtml(
-                            game.thumbnail
-                        )}"
-                        alt="${escapeHtml(
-                            game.name
-                        )}"
-                    >
-                `;
-
-            } else {
-
-                image.innerHTML = `
-                    <div
-                        style="
-                            width:100%;
-                            height:100%;
-                            display:grid;
-                            place-items:center;
-                            font-size:60px;
-                        "
-                    >
-                        🎮
-                    </div>
-                `;
-
-            }
-
-            const play =
-                document.getElementById(
-                    "recommendPlay"
-                );
-
-            if (game.placeId) {
-
-                play.href =
-                    `https://www.roblox.com/games/${encodeURIComponent(
-                        game.placeId
-                    )}`;
-
-                play.style.pointerEvents =
-                    "auto";
-
-                play.style.opacity =
-                    "1";
-
-            } else {
-
-                play.href =
-                    "#";
-
-                play.style.pointerEvents =
-                    "none";
-
-                play.style.opacity =
-                    "0.5";
-
-            }
-
-            updateRecommendationSaveButton();
-
-        }
-
-        function showAnotherRecommendation() {
-
-            if (
-                !recommendationGames.length
-            ) {
-                return;
-            }
-
-            recommendationIndex++;
-
-            if (
-                recommendationIndex >=
-                recommendationGames.length
-            ) {
-
-                recommendationGames =
-                    shuffle(
-                        recommendationGames
-                    );
-
-                recommendationIndex =
-                    0;
-
-            }
-
-            showRecommendation();
-
-        }
-
-        function updateRecommendationSaveButton() {
-
-            const button =
-                document.getElementById(
-                    "recommendSave"
-                );
-
-            const game =
-                recommendationGames[
-                    recommendationIndex
-                ];
-
-            if (!game) return;
-
-            if (
-                isFavorite(game)
-            ) {
-
-                button.textContent =
-                    "♥ SAVED";
-
-                button.classList.remove(
-                    "secondary"
-                );
-
-            } else {
-
-                button.textContent =
-                    "♡ SAVE";
-
-                button.classList.add(
-                    "secondary"
-                );
-
-            }
-
-        }
-
-        /* =========================================
-           ESCAPE KEY
-        ========================================= */
+            );
 
         document.addEventListener(
             "keydown",
             (event) => {
 
                 if (
-                    event.key === "Escape" &&
-                    document
-                        .getElementById(
-                            "recommendOverlay"
-                        )
-                        .classList.contains(
-                            "open"
-                        )
+                    event.key === "Escape"
                 ) {
-
-                    closeRecommendation();
-
+                    closeRecommendationModal();
                 }
 
             }
         );
 
-        /* =========================================
-           START GAME SCOUT
-        ========================================= */
+        /* =========================
+           STARTUP
+        ========================= */
 
         renderFavorites();
-
         loadTrending();
-
         loadPopularSearches();
-
     </script>
 
 </body>
