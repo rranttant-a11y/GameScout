@@ -1,3 +1,4 @@
+```js
 const express = require("express");
 const path = require("path");
 
@@ -7,10 +8,48 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(__dirname));
 
+/*
+=========================================
+SEARCH ANALYTICS
+=========================================
 
-// =========================================
-// ROBLOX SEARCH
-// =========================================
+For now this lives in memory.
+
+Example:
+"horror" -> 12 searches
+"obby" -> 8 searches
+"cars" -> 5 searches
+
+When the server restarts, these reset.
+
+When you deploy GameScout, we can upgrade
+this to a real database later.
+*/
+
+const searchCounts = new Map();
+
+function recordSearch(query) {
+    const cleaned = String(query || "")
+        .trim()
+        .toLowerCase();
+
+    if (!cleaned) return;
+
+    const current =
+        searchCounts.get(cleaned) || 0;
+
+    searchCounts.set(cleaned, current + 1);
+
+    console.log(
+        `Search recorded: "${cleaned}" (${current + 1})`
+    );
+}
+
+/*
+=========================================
+ROBLOX SEARCH
+=========================================
+*/
 
 async function searchRoblox(query) {
     const sessionId =
@@ -38,28 +77,20 @@ async function searchRoblox(query) {
     return await response.json();
 }
 
-
-// =========================================
-// FIND GAME OBJECTS
-// =========================================
-
-// Roblox's search API can put games inside several
-// levels of nested objects. This searches the whole
-// response instead of only checking one location.
+/*
+=========================================
+EXTRACT GAMES
+=========================================
+*/
 
 function extractGames(data) {
     const games = [];
     const visited = new Set();
 
     function walk(value) {
-        if (!value || typeof value !== "object") {
-            return;
-        }
+        if (!value || typeof value !== "object") return;
 
-        // Prevent circular objects from causing problems
-        if (visited.has(value)) {
-            return;
-        }
+        if (visited.has(value)) return;
 
         visited.add(value);
 
@@ -71,7 +102,6 @@ function extractGames(data) {
             return;
         }
 
-        // Look for anything that resembles a Roblox game
         const universeId =
             value.universeId ??
             value.universeID ??
@@ -106,11 +136,18 @@ function extractGames(data) {
 
             games.push({
                 id: String(universeId),
-                universeId: String(universeId),
-                placeId: placeId
-                    ? String(placeId)
-                    : "",
-                name: String(name),
+
+                universeId:
+                    String(universeId),
+
+                placeId:
+                    placeId
+                        ? String(placeId)
+                        : "",
+
+                name:
+                    String(name),
+
                 creator:
                     typeof creator === "object"
                         ? String(
@@ -118,11 +155,12 @@ function extractGames(data) {
                             "Roblox Creator"
                         )
                         : String(creator),
-                playing: Number(playing) || 0
+
+                playing:
+                    Number(playing) || 0
             });
         }
 
-        // Search every property recursively
         for (const key of Object.keys(value)) {
             walk(value[key]);
         }
@@ -130,11 +168,14 @@ function extractGames(data) {
 
     walk(data);
 
-    // Remove duplicates
     const unique = new Map();
 
     for (const game of games) {
-        if (!unique.has(game.universeId)) {
+        if (
+            !unique.has(
+                game.universeId
+            )
+        ) {
             unique.set(
                 game.universeId,
                 game
@@ -142,24 +183,28 @@ function extractGames(data) {
         }
     }
 
-    return Array.from(unique.values());
+    return Array.from(
+        unique.values()
+    );
 }
 
+/*
+=========================================
+THUMBNAILS
+=========================================
+*/
 
-// =========================================
-// ROBLOX THUMBNAILS
-// =========================================
-
-async function getGameThumbnails(universeIds) {
+async function getGameThumbnails(
+    universeIds
+) {
     if (!universeIds.length) {
         return new Map();
     }
 
-    // Roblox allows multiple universe IDs
-    // in one thumbnail request.
-    const ids = universeIds
-        .slice(0, 50)
-        .join(",");
+    const ids =
+        universeIds
+            .slice(0, 50)
+            .join(",");
 
     const url =
         "https://thumbnails.roblox.com/v1/games/multiget/thumbnails" +
@@ -177,7 +222,8 @@ async function getGameThumbnails(universeIds) {
     );
 
     try {
-        const response = await fetch(url);
+        const response =
+            await fetch(url);
 
         if (!response.ok) {
             console.error(
@@ -188,24 +234,35 @@ async function getGameThumbnails(universeIds) {
             return new Map();
         }
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
-        const thumbnailMap = new Map();
+        const thumbnailMap =
+            new Map();
 
-        if (!Array.isArray(data.data)) {
+        if (
+            !Array.isArray(
+                data.data
+            )
+        ) {
             return thumbnailMap;
         }
 
-        for (const item of data.data) {
-            if (!item) {
-                continue;
-            }
+        for (
+            const item of data.data
+        ) {
+            if (!item) continue;
 
             const universeId =
-                String(item.universeId || "");
+                String(
+                    item.universeId ||
+                    ""
+                );
 
             const thumbnails =
-                Array.isArray(item.thumbnails)
+                Array.isArray(
+                    item.thumbnails
+                )
                     ? item.thumbnails
                     : [];
 
@@ -228,6 +285,7 @@ async function getGameThumbnails(universeIds) {
         }
 
         return thumbnailMap;
+
     } catch (error) {
         console.error(
             "Thumbnail error:",
@@ -238,188 +296,252 @@ async function getGameThumbnails(universeIds) {
     }
 }
 
+/*
+=========================================
+SEARCH API
+=========================================
+*/
 
-// =========================================
-// SEARCH API
-// =========================================
+app.get(
+    "/api/search",
+    async (req, res) => {
+        try {
+            const query =
+                String(
+                    req.query.q || ""
+                ).trim();
 
-app.get("/api/search", async (req, res) => {
-    try {
-        const query =
-            String(
-                req.query.q || ""
-            ).trim();
+            if (!query) {
+                return res.json({
+                    games: []
+                });
+            }
 
-        if (!query) {
-            return res.json({
+            if (query.length > 200) {
+                return res.status(400).json({
+                    error:
+                        "Search query is too long."
+                });
+            }
+
+            /*
+            Record the search only after
+            we have a real query.
+            */
+            recordSearch(query);
+
+            const searchData =
+                await searchRoblox(
+                    query
+                );
+
+            const games =
+                extractGames(
+                    searchData
+                );
+
+            console.log(
+                "Games found:",
+                games.length
+            );
+
+            const universeIds =
+                games.map(
+                    (game) =>
+                        game.universeId
+                );
+
+            const thumbnails =
+                await getGameThumbnails(
+                    universeIds
+                );
+
+            const finalGames =
+                games.map(
+                    (game) => ({
+                        ...game,
+
+                        thumbnail:
+                            thumbnails.get(
+                                game.universeId
+                            ) || null
+                    })
+                );
+
+            console.log(
+                "Thumbnails found:",
+                thumbnails.size
+            );
+
+            res.json({
+                games: finalGames
+            });
+
+        } catch (error) {
+            console.error(
+                "Search error:",
+                error
+            );
+
+            res.status(500).json({
+                error:
+                    "Failed to search Roblox.",
+
                 games: []
             });
         }
+    }
+);
 
-        if (query.length > 200) {
-            return res.status(400).json({
+/*
+=========================================
+POPULAR SEARCHES
+=========================================
+*/
+
+app.get(
+    "/api/popular-searches",
+    (req, res) => {
+        const searches =
+            Array.from(
+                searchCounts.entries()
+            )
+                .sort(
+                    (a, b) =>
+                        b[1] - a[1]
+                )
+                .slice(0, 8)
+                .map(
+                    ([query, count]) => ({
+                        query,
+                        count
+                    })
+                );
+
+        res.json({
+            searches
+        });
+    }
+);
+
+/*
+=========================================
+TRENDING
+=========================================
+*/
+
+app.get(
+    "/api/trending",
+    async (req, res) => {
+        try {
+            const searchData =
+                await searchRoblox(
+                    "popular"
+                );
+
+            const games =
+                extractGames(
+                    searchData
+                );
+
+            const universeIds =
+                games.map(
+                    (game) =>
+                        game.universeId
+                );
+
+            const thumbnails =
+                await getGameThumbnails(
+                    universeIds
+                );
+
+            const finalGames =
+                games.map(
+                    (game) => ({
+                        ...game,
+
+                        thumbnail:
+                            thumbnails.get(
+                                game.universeId
+                            ) || null
+                    })
+                );
+
+            res.json({
+                games: finalGames
+            });
+
+        } catch (error) {
+            console.error(
+                "Trending error:",
+                error
+            );
+
+            res.status(500).json({
                 error:
-                    "Search query is too long."
+                    "Failed to load trending games.",
+
+                games: []
             });
         }
+    }
+);
 
-        // Search Roblox
-        const searchData =
-            await searchRoblox(query);
+/*
+=========================================
+HOME PAGE
+=========================================
+*/
 
-        // Extract ALL games
-        const games =
-            extractGames(searchData);
-
-        console.log(
-            "Games found:",
-            games.length
+app.get(
+    "/",
+    (req, res) => {
+        res.sendFile(
+            path.join(
+                __dirname,
+                "index.html"
+            )
         );
+    }
+);
 
-        // Get universe IDs
-        const universeIds =
-            games.map(
-                (game) =>
-                    game.universeId
-            );
+/*
+=========================================
+404
+=========================================
+*/
 
-        // Get thumbnails
-        const thumbnails =
-            await getGameThumbnails(
-                universeIds
-            );
-
-        // Attach thumbnails
-        const finalGames =
-            games.map((game) => ({
-                ...game,
-
-                thumbnail:
-                    thumbnails.get(
-                        game.universeId
-                    ) || null
-            }));
-
-        console.log(
-            "Thumbnails found:",
-            thumbnails.size
-        );
-
-        res.json({
-            games: finalGames
-        });
-    } catch (error) {
-        console.error(
-            "Search error:",
-            error
-        );
-
-        res.status(500).json({
-            error:
-                "Failed to search Roblox.",
-
-            games: []
+app.use(
+    (req, res) => {
+        res.status(404).json({
+            error: "Not found."
         });
     }
-});
+);
 
+/*
+=========================================
+START
+=========================================
+*/
 
-// =========================================
-// TRENDING
-// =========================================
-
-app.get("/api/trending", async (req, res) => {
-    try {
-        const searchData =
-            await searchRoblox(
-                "popular Roblox games"
-            );
-
-        const games =
-            extractGames(searchData);
-
-        const universeIds =
-            games.map(
-                (game) =>
-                    game.universeId
-            );
-
-        const thumbnails =
-            await getGameThumbnails(
-                universeIds
-            );
-
-        const finalGames =
-            games.map((game) => ({
-                ...game,
-
-                thumbnail:
-                    thumbnails.get(
-                        game.universeId
-                    ) || null
-            }));
-
-        res.json({
-            games: finalGames
-        });
-    } catch (error) {
-        console.error(
-            "Trending error:",
-            error
+app.listen(
+    PORT,
+    () => {
+        console.log("");
+        console.log(
+            "===================================="
         );
-
-        res.status(500).json({
-            error:
-                "Failed to load trending games.",
-
-            games: []
-        });
+        console.log(
+            "       GameScout is running"
+        );
+        console.log(
+            "===================================="
+        );
+        console.log(
+            `http://localhost:${PORT}`
+        );
+        console.log("");
     }
-});
-
-
-// =========================================
-// HOME PAGE
-// =========================================
-
-app.get("/", (req, res) => {
-    res.sendFile(
-        path.join(
-            __dirname,
-            "index.html"
-        )
-    );
-});
-
-
-// =========================================
-// 404
-// =========================================
-
-app.use((req, res) => {
-    res.status(404).json({
-        error: "Not found."
-    });
-});
-
-
-// =========================================
-// START SERVER
-// =========================================
-
-app.listen(PORT, () => {
-    console.log("");
-    console.log(
-        "===================================="
-    );
-    console.log(
-        "       GameScout is running"
-    );
-    console.log(
-        "===================================="
-    );
-    console.log(
-        `http://localhost:${PORT}`
-    );
-    console.log("");
-});
+);
+```
