@@ -1,24 +1,32 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>GameScout — Find Your Next Roblox Game</title>
+    <title>
+        GameScout — Find Your Next Roblox Game
+    </title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
     <style>
+
         :root {
             --cream: #f7f1e7;
             --paper: #fffdf8;
@@ -29,9 +37,15 @@
             --pink: #ff82b7;
             --blue: #7fd7ff;
             --green: #8de3a7;
+
             --border: 3px solid var(--ink);
-            --shadow: 7px 7px 0 var(--ink);
-            --small-shadow: 4px 4px 0 var(--ink);
+
+            --shadow:
+                7px 7px 0 var(--ink);
+
+            --small-shadow:
+                4px 4px 0 var(--ink);
+
             --radius: 22px;
         }
 
@@ -47,9 +61,26 @@
 
         body {
             min-height: 100vh;
-            background: var(--cream);
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(255, 216, 77, 0.25),
+                    transparent 18%
+                ),
+                radial-gradient(
+                    circle at 90% 50%,
+                    rgba(255, 130, 183, 0.18),
+                    transparent 20%
+                ),
+                var(--cream);
+
             color: var(--ink);
-            font-family: "DM Sans", sans-serif;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
             overflow-x: hidden;
         }
 
@@ -67,9 +98,9 @@
             text-decoration: none;
         }
 
-        /* =========================
+        /* =================================
            DECORATIONS
-        ========================= */
+        ================================= */
 
         .blob {
             position: absolute;
@@ -80,20 +111,30 @@
         .blob-one {
             width: 180px;
             height: 180px;
+
             background: var(--yellow);
+
             border: var(--border);
-            border-radius: 46% 54% 60% 40%;
+
+            border-radius:
+                46% 54% 60% 40%;
+
             top: 110px;
             right: -55px;
+
             transform: rotate(18deg);
         }
 
         .blob-two {
             width: 130px;
             height: 130px;
+
             background: var(--pink);
+
             border: var(--border);
+
             border-radius: 50%;
+
             top: 500px;
             left: -55px;
         }
@@ -101,79 +142,154 @@
         .blob-three {
             width: 90px;
             height: 90px;
+
             background: var(--blue);
+
             border: var(--border);
+
             border-radius: 25px;
-            transform: rotate(19deg);
+
+            transform:
+                rotate(19deg);
+
             right: 9%;
             bottom: 100px;
         }
 
-        /* =========================
+        /* =================================
            NAV
-        ========================= */
+        ================================= */
 
         nav {
             position: relative;
             z-index: 20;
-            width: min(1240px, calc(100% - 36px));
-            margin: 18px auto 0;
-            padding: 15px 18px;
+
+            width:
+                min(
+                    1240px,
+                    calc(100% - 36px)
+                );
+
+            margin:
+                18px auto 0;
+
+            padding:
+                15px 18px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             gap: 20px;
 
-            background: var(--paper);
-            border: var(--border);
+            background:
+                rgba(
+                    255,
+                    253,
+                    248,
+                    0.92
+                );
+
+            border:
+                var(--border);
+
             border-radius: 18px;
-            box-shadow: var(--small-shadow);
+
+            box-shadow:
+                var(--small-shadow);
+
+            backdrop-filter:
+                blur(10px);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: "Space Grotesk", sans-serif;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
             font-weight: 700;
             font-size: 1.35rem;
-            letter-spacing: -0.04em;
+
+            letter-spacing:
+                -0.04em;
         }
 
         .logo-mark {
             width: 38px;
             height: 38px;
+
             display: grid;
             place-items: center;
-            background: var(--orange);
-            border: 2px solid var(--ink);
+
+            background:
+                var(--orange);
+
+            border:
+                2px solid var(--ink);
+
             border-radius: 11px;
-            transform: rotate(-6deg);
+
+            transform:
+                rotate(-6deg);
+
+            transition:
+                transform 0.2s ease;
+        }
+
+        .logo:hover .logo-mark {
+            transform:
+                rotate(6deg)
+                scale(1.08);
         }
 
         .nav-pill {
-            padding: 8px 14px;
-            border: 2px solid var(--ink);
-            border-radius: 999px;
-            background: var(--yellow);
-            font-size: 0.8rem;
-            font-weight: 700;
+            padding:
+                8px 14px;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                999px;
+
+            background:
+                var(--yellow);
+
+            font-size:
+                0.8rem;
+
+            font-weight:
+                700;
         }
 
-        /* =========================
+        /* =================================
            HERO
-        ========================= */
+        ================================= */
 
         .hero {
             position: relative;
             z-index: 1;
-            width: min(1240px, calc(100% - 36px));
-            margin: 75px auto 40px;
+
+            width:
+                min(
+                    1240px,
+                    calc(100% - 36px)
+                );
+
+            margin:
+                75px auto 40px;
 
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
+
+            grid-template-columns:
+                1.15fr 0.85fr;
+
             align-items: center;
+
             gap: 40px;
         }
 
@@ -185,91 +301,177 @@
         .eyebrow {
             display: inline-flex;
             align-items: center;
+
             gap: 8px;
 
-            padding: 8px 13px;
-            background: var(--yellow);
-            border: var(--border);
-            border-radius: 999px;
-            box-shadow: var(--small-shadow);
+            padding:
+                8px 13px;
 
-            font-size: 0.78rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+            background:
+                var(--yellow);
+
+            border:
+                var(--border);
+
+            border-radius:
+                999px;
+
+            box-shadow:
+                var(--small-shadow);
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.08em;
         }
 
         .hero h1 {
             margin-top: 20px;
-            max-width: 850px;
 
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(4rem, 8vw, 8.5rem);
-            line-height: 0.84;
-            letter-spacing: -0.075em;
+            max-width:
+                850px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    4rem,
+                    8vw,
+                    8.5rem
+                );
+
+            line-height:
+                0.84;
+
+            letter-spacing:
+                -0.075em;
         }
 
         .hero h1 span {
-            display: block;
+            display:
+                block;
         }
 
         .hero h1 .orange {
-            color: var(--orange);
+            color:
+                var(--orange);
         }
 
         .hero-description {
-            max-width: 610px;
-            margin-top: 27px;
+            max-width:
+                610px;
 
-            font-size: 1.15rem;
-            line-height: 1.6;
-            font-weight: 500;
+            margin-top:
+                27px;
+
+            font-size:
+                1.15rem;
+
+            line-height:
+                1.6;
+
+            font-weight:
+                500;
         }
 
         .sticker {
-            position: absolute;
-            top: -30px;
-            right: 5%;
-            width: 120px;
-            height: 120px;
+            position:
+                absolute;
 
-            display: grid;
-            place-items: center;
+            top:
+                -30px;
 
-            background: var(--pink);
-            border: var(--border);
-            border-radius: 50%;
-            box-shadow: var(--small-shadow);
+            right:
+                5%;
 
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 800;
-            text-align: center;
-            font-size: 0.85rem;
+            width:
+                120px;
 
-            transform: rotate(12deg);
+            height:
+                120px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            background:
+                var(--pink);
+
+            border:
+                var(--border);
+
+            border-radius:
+                50%;
+
+            box-shadow:
+                var(--small-shadow);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-weight:
+                800;
+
+            text-align:
+                center;
+
+            font-size:
+                0.85rem;
+
+            transform:
+                rotate(12deg);
         }
 
-        /* =========================
+        /* =================================
            HERO ART
-        ========================= */
+        ================================= */
 
         .hero-art {
-            position: relative;
-            min-height: 440px;
+            position:
+                relative;
+
+            min-height:
+                440px;
         }
 
         .art-card {
-            position: absolute;
-            border: var(--border);
-            box-shadow: var(--shadow);
-            overflow: hidden;
+            position:
+                absolute;
+
+            border:
+                var(--border);
+
+            box-shadow:
+                var(--shadow);
+
+            overflow:
+                hidden;
         }
 
         .art-main {
-            width: 82%;
-            height: 340px;
-            right: 2%;
-            top: 45px;
+            width:
+                82%;
+
+            height:
+                340px;
+
+            right:
+                2%;
+
+            top:
+                45px;
 
             background:
                 linear-gradient(
@@ -279,173 +481,336 @@
                     #11182b 48%
                 );
 
-            border-radius: 30px;
-            transform: rotate(4deg);
+            border-radius:
+                30px;
+
+            transform:
+                rotate(4deg);
         }
 
         .art-main::before {
-            content: "PLAY";
-            position: absolute;
-            left: 25px;
-            bottom: 20px;
+            content:
+                "PLAY";
 
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 5rem;
-            line-height: 1;
-            font-weight: 700;
-            color: white;
-            letter-spacing: -0.08em;
+            position:
+                absolute;
+
+            left:
+                25px;
+
+            bottom:
+                20px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                5rem;
+
+            line-height:
+                1;
+
+            font-weight:
+                700;
+
+            color:
+                white;
+
+            letter-spacing:
+                -0.08em;
         }
 
         .art-main::after {
-            content: "🎮";
-            position: absolute;
-            top: 45px;
-            right: 45px;
-            font-size: 6rem;
-            transform: rotate(-12deg);
+            content:
+                "🎮";
+
+            position:
+                absolute;
+
+            top:
+                45px;
+
+            right:
+                45px;
+
+            font-size:
+                6rem;
+
+            transform:
+                rotate(-12deg);
         }
 
         .art-small {
-            width: 160px;
-            height: 160px;
-            left: 0;
-            bottom: 15px;
+            width:
+                160px;
 
-            background: var(--blue);
-            border-radius: 26px;
-            transform: rotate(-9deg);
+            height:
+                160px;
+
+            left:
+                0;
+
+            bottom:
+                15px;
+
+            background:
+                var(--blue);
+
+            border-radius:
+                26px;
+
+            transform:
+                rotate(-9deg);
         }
 
         .art-small::before {
-            content: "★";
-            position: absolute;
-            font-size: 5rem;
-            left: 45px;
-            top: 35px;
+            content:
+                "★";
+
+            position:
+                absolute;
+
+            font-size:
+                5rem;
+
+            left:
+                45px;
+
+            top:
+                35px;
         }
 
         .art-tag {
-            position: absolute;
-            right: 0;
-            top: 0;
+            position:
+                absolute;
 
-            padding: 12px 17px;
-            background: var(--paper);
-            border: var(--border);
-            border-radius: 13px;
-            box-shadow: var(--small-shadow);
+            right:
+                0;
 
-            font-weight: 800;
-            transform: rotate(-6deg);
+            top:
+                0;
+
+            padding:
+                12px 17px;
+
+            background:
+                var(--paper);
+
+            border:
+                var(--border);
+
+            border-radius:
+                13px;
+
+            box-shadow:
+                var(--small-shadow);
+
+            font-weight:
+                800;
+
+            transform:
+                rotate(-6deg);
+
+            z-index:
+                4;
         }
 
-        /* =========================
+        /* =================================
            SEARCH
-        ========================= */
+        ================================= */
 
         .search-wrap {
-            position: relative;
-            z-index: 5;
-            width: min(1050px, calc(100% - 36px));
-            margin: 55px auto 0;
+            position:
+                relative;
+
+            z-index:
+                5;
+
+            width:
+                min(
+                    1050px,
+                    calc(100% - 36px)
+                );
+
+            margin:
+                55px auto 0;
         }
 
         .search-box {
-            display: flex;
-            align-items: stretch;
-            gap: 0;
+            display:
+                flex;
 
-            background: var(--paper);
-            border: 4px solid var(--ink);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
+            align-items:
+                stretch;
+
+            background:
+                var(--paper);
+
+            border:
+                4px solid var(--ink);
+
+            border-radius:
+                20px;
+
+            box-shadow:
+                var(--shadow);
+
+            overflow:
+                hidden;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .search-box:focus-within {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                9px 10px 0 var(--ink);
         }
 
         .search-icon {
-            width: 60px;
-            display: grid;
-            place-items: center;
-            font-size: 1.5rem;
+            width:
+                60px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            font-size:
+                1.5rem;
         }
 
         #searchInput {
-            flex: 1;
-            min-width: 0;
+            flex:
+                1;
 
-            border: 0;
-            outline: 0;
-            background: transparent;
+            min-width:
+                0;
 
-            padding: 20px 8px;
-            font-size: 1.08rem;
-            font-weight: 600;
+            border:
+                0;
+
+            outline:
+                0;
+
+            background:
+                transparent;
+
+            padding:
+                20px 8px;
+
+            font-size:
+                1.08rem;
+
+            font-weight:
+                600;
         }
 
         #searchInput::placeholder {
-            color: #777;
+            color:
+                #777;
         }
 
         .search-button {
-            border: 0;
-            border-left: 3px solid var(--ink);
-            background: var(--orange);
-            color: white;
+            border:
+                0;
 
-            padding: 0 30px;
+            border-left:
+                3px solid var(--ink);
 
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
+            background:
+                var(--orange);
 
-            transition:
-                transform 0.15s ease,
-                background 0.15s ease;
+            color:
+                white;
+
+            padding:
+                0 30px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                1rem;
+
+            font-weight:
+                800;
         }
 
         .search-button:hover {
-            background: #e94f0e;
+            background:
+                #e94f0e;
         }
 
-        .search-button:active {
-            transform: scale(0.97);
-        }
-
-        /* =========================
-           SEARCH SECTIONS
-        ========================= */
+        /* =================================
+           SEARCH CHIPS
+        ================================= */
 
         .search-section {
-            margin-top: 32px;
+            margin-top:
+                32px;
         }
 
         .search-section-label {
-            margin-bottom: 13px;
+            margin-bottom:
+                13px;
 
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                0.8rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.08em;
+
+            text-transform:
+                uppercase;
         }
 
         .recommended-searches {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                10px;
         }
 
         .search-chip {
-            padding: 9px 14px;
+            padding:
+                9px 14px;
 
-            border: 2px solid var(--ink);
-            border-radius: 999px;
-            background: var(--paper);
-            box-shadow: 3px 3px 0 var(--ink);
+            border:
+                2px solid var(--ink);
 
-            font-size: 0.86rem;
-            font-weight: 700;
+            border-radius:
+                999px;
+
+            background:
+                var(--paper);
+
+            box-shadow:
+                3px 3px 0 var(--ink);
+
+            font-size:
+                0.86rem;
+
+            font-weight:
+                700;
 
             transition:
                 transform 0.15s ease,
@@ -453,400 +818,907 @@
         }
 
         .search-chip:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 5px 5px 0 var(--ink);
+            transform:
+                translate(
+                    -2px,
+                    -2px
+                );
+
+            box-shadow:
+                5px 5px 0 var(--ink);
         }
 
         .popular-searches {
-            min-height: 40px;
+            min-height:
+                40px;
         }
 
         .popular-empty {
-            color: #777;
-            font-size: 0.9rem;
-            font-weight: 600;
+            color:
+                #777;
+
+            font-size:
+                0.9rem;
+
+            font-weight:
+                600;
         }
 
-        /* =========================
+        /* =================================
            DISCOVER ACTIONS
-        ========================= */
+        ================================= */
 
         .discover-actions {
-            width: min(1240px, calc(100% - 36px));
-            margin: 60px auto 30px;
+            width:
+                min(
+                    1240px,
+                    calc(100% - 36px)
+                );
 
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            align-items: center;
+            margin:
+                60px auto 30px;
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                18px;
+
+            align-items:
+                center;
+        }
+
+        .discover-button,
+        .recommend-button {
+            border:
+                var(--border);
+
+            border-radius:
+                15px;
+
+            padding:
+                17px 24px;
+
+            box-shadow:
+                var(--shadow);
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-weight:
+                800;
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
         }
 
         .discover-button {
-            border: var(--border);
-            border-radius: 15px;
-            padding: 17px 24px;
+            background:
+                var(--orange);
 
-            background: var(--orange);
-            color: white;
+            color:
+                white;
 
-            box-shadow: var(--shadow);
-
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-
-            transform: rotate(-2deg);
-
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
-        }
-
-        .discover-button:hover {
-            transform: translate(-2px, -4px) rotate(-2deg);
-            box-shadow: 10px 10px 0 var(--ink);
+            transform:
+                rotate(-2deg);
         }
 
         .recommend-button {
-            border: var(--border);
-            border-radius: 15px;
-            padding: 17px 24px;
+            background:
+                var(--yellow);
 
-            background: var(--yellow);
-            color: var(--ink);
-
-            box-shadow: var(--shadow);
-
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 800;
-
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.15s ease;
+            color:
+                var(--ink);
         }
 
+        .discover-button:hover,
         .recommend-button:hover {
-            transform: translate(-2px, -4px);
-            box-shadow: 10px 10px 0 var(--ink);
+            transform:
+                translate(
+                    -3px,
+                    -4px
+                );
+
+            box-shadow:
+                10px 10px 0 var(--ink);
         }
 
-        /* =========================
+        /* =================================
            MARQUEE
-        ========================= */
+        ================================= */
 
         .marquee {
-            width: 100%;
-            overflow: hidden;
-            border-top: var(--border);
-            border-bottom: var(--border);
+            width:
+                100%;
 
-            background: var(--navy);
-            color: white;
+            overflow:
+                hidden;
 
-            padding: 15px 0;
-            margin: 65px 0;
+            border-top:
+                var(--border);
+
+            border-bottom:
+                var(--border);
+
+            background:
+                var(--navy);
+
+            color:
+                white;
+
+            padding:
+                15px 0;
+
+            margin:
+                65px 0;
         }
 
         .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marquee 24s linear infinite;
+            display:
+                flex;
+
+            width:
+                max-content;
+
+            animation:
+                marquee 24s linear infinite;
         }
 
         .marquee span {
-            padding: 0 22px;
+            padding:
+                0 22px;
 
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                1.1rem;
+
+            font-weight:
+                700;
+
+            text-transform:
+                uppercase;
         }
 
         @keyframes marquee {
             from {
-                transform: translateX(0);
+                transform:
+                    translateX(0);
             }
 
             to {
-                transform: translateX(-50%);
+                transform:
+                    translateX(-50%);
             }
         }
 
-        /* =========================
-           MAIN CONTENT
-        ========================= */
+        /* =================================
+           MAIN
+        ================================= */
 
         main {
-            position: relative;
-            z-index: 2;
-            width: min(1240px, calc(100% - 36px));
-            margin: 0 auto 100px;
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            width:
+                min(
+                    1240px,
+                    calc(100% - 36px)
+                );
+
+            margin:
+                0 auto 100px;
         }
 
         .content-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 20px;
+            display:
+                flex;
 
-            margin-bottom: 28px;
+            align-items:
+                end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                28px;
         }
 
         .content-heading h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(2.5rem, 5vw, 5rem);
-            line-height: 0.9;
-            letter-spacing: -0.065em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    2.5rem,
+                    5vw,
+                    5rem
+                );
+
+            line-height:
+                0.9;
+
+            letter-spacing:
+                -0.065em;
         }
 
         .content-heading p {
-            max-width: 390px;
-            line-height: 1.5;
-            color: #555;
-            font-weight: 500;
+            max-width:
+                390px;
+
+            line-height:
+                1.5;
+
+            color:
+                #555;
+
+            font-weight:
+                500;
         }
 
-        /* =========================
+        /* =================================
+           PEOPLE ARE PLAYING
+        ================================= */
+
+        .playing-now-section {
+            margin:
+                0 0 55px;
+        }
+
+        .section-kicker {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                14px;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.08em;
+
+            text-transform:
+                uppercase;
+        }
+
+        .live-dot {
+            width:
+                10px;
+
+            height:
+                10px;
+
+            background:
+                #29c96f;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                50%;
+
+            animation:
+                pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform:
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    scale(1.25);
+            }
+        }
+
+        .playing-now-grid {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap:
+                18px;
+        }
+
+        .playing-now-card {
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            min-height:
+                225px;
+
+            background:
+                var(--navy);
+
+            color:
+                white;
+
+            border:
+                3px solid var(--ink);
+
+            border-radius:
+                19px;
+
+            box-shadow:
+                6px 6px 0 var(--ink);
+
+            transition:
+                transform 0.2s ease;
+        }
+
+        .playing-now-card:hover {
+            transform:
+                translate(
+                    -3px,
+                    -4px
+                );
+        }
+
+        .playing-now-card img {
+            width:
+                100%;
+
+            height:
+                130px;
+
+            display:
+                block;
+
+            object-fit:
+                cover;
+
+            opacity:
+                0.82;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        .playing-now-card:hover img {
+            transform:
+                scale(1.06);
+        }
+
+        .playing-now-info {
+            padding:
+                13px;
+        }
+
+        .playing-now-name {
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                1rem;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+        }
+
+        .playing-now-count {
+            margin-top:
+                7px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                var(--green);
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                800;
+        }
+
+        /* =================================
            GAME OF THE DAY
-        ========================= */
+        ================================= */
 
         .game-of-day {
-            position: relative;
-            margin: 0 0 45px;
+            position:
+                relative;
 
-            border: 4px solid var(--ink);
-            border-radius: 28px;
-            overflow: hidden;
+            margin:
+                0 0 55px;
 
-            background: var(--navy);
-            color: white;
+            border:
+                4px solid var(--ink);
 
-            box-shadow: 10px 10px 0 var(--ink);
+            border-radius:
+                28px;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--navy);
+
+            color:
+                white;
+
+            box-shadow:
+                10px 10px 0 var(--ink);
         }
 
         .game-of-day-inner {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            min-height: 350px;
+            display:
+                grid;
+
+            grid-template-columns:
+                1.15fr 0.85fr;
+
+            min-height:
+                350px;
         }
 
         .game-of-day-image {
-            position: relative;
-            min-height: 350px;
-            background: #222;
-            overflow: hidden;
+            position:
+                relative;
+
+            min-height:
+                350px;
+
+            overflow:
+                hidden;
+
+            background:
+                #222;
         }
 
         .game-of-day-image img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.45s ease;
+            width:
+                100%;
+
+            height:
+                100%;
+
+            display:
+                block;
+
+            object-fit:
+                cover;
+
+            transition:
+                transform 0.45s ease;
         }
 
-        .game-of-day:hover .game-of-day-image img {
-            transform: scale(1.04);
+        .game-of-day:hover
+        .game-of-day-image
+        img {
+            transform:
+                scale(1.04);
         }
 
         .game-of-day-image::after {
-            content: "";
-            position: absolute;
-            inset: 0;
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
             background:
                 linear-gradient(
                     90deg,
-                    transparent 55%,
-                    rgba(17, 24, 43, 0.9)
+                    transparent 50%,
+                    rgba(
+                        17,
+                        24,
+                        43,
+                        0.95
+                    )
                 );
-            pointer-events: none;
+
+            pointer-events:
+                none;
         }
 
         .game-of-day-badge {
-            position: absolute;
-            z-index: 3;
-            left: 20px;
-            top: 20px;
+            position:
+                absolute;
 
-            padding: 9px 13px;
-            border: 2px solid var(--ink);
-            border-radius: 999px;
+            z-index:
+                3;
 
-            background: var(--yellow);
-            color: var(--ink);
+            left:
+                20px;
 
-            font-size: 0.75rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+            top:
+                20px;
+
+            padding:
+                9px 13px;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                999px;
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--ink);
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                900;
+
+            text-transform:
+                uppercase;
         }
 
         .game-of-day-copy {
-            position: relative;
-            z-index: 4;
+            position:
+                relative;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            z-index:
+                4;
 
-            padding: 45px;
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            padding:
+                45px;
         }
 
-        .game-of-day-copy .mini-label {
-            color: var(--yellow);
-            font-size: 0.75rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+        .mini-label {
+            color:
+                var(--yellow);
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.1em;
+
+            text-transform:
+                uppercase;
         }
 
         .game-of-day-copy h3 {
-            margin-top: 10px;
+            margin-top:
+                10px;
 
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(2rem, 4vw, 4rem);
-            line-height: 0.92;
-            letter-spacing: -0.06em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    2rem,
+                    4vw,
+                    4rem
+                );
+
+            line-height:
+                0.92;
+
+            letter-spacing:
+                -0.06em;
         }
 
         .game-of-day-copy p {
-            margin-top: 15px;
-            color: #c9ccda;
-            line-height: 1.5;
+            margin-top:
+                15px;
+
+            color:
+                #c9ccda;
+
+            line-height:
+                1.5;
         }
 
         .game-of-day-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin-top: 20px;
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                9px;
+
+            margin-top:
+                20px;
         }
 
         .game-of-day-meta span {
-            padding: 7px 10px;
-            border: 2px solid #ffffff;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 800;
+            padding:
+                7px 10px;
+
+            border:
+                2px solid white;
+
+            border-radius:
+                999px;
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                800;
         }
 
         .game-of-day-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 24px;
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                10px;
+
+            margin-top:
+                24px;
         }
 
         .game-of-day-play,
         .game-of-day-save {
-            border: 2px solid var(--ink);
-            border-radius: 11px;
-            padding: 11px 15px;
-            font-weight: 800;
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                11px;
+
+            padding:
+                11px 15px;
+
+            font-weight:
+                800;
         }
 
         .game-of-day-play {
-            background: var(--orange);
-            color: white;
+            background:
+                var(--orange);
+
+            color:
+                white;
         }
 
         .game-of-day-save {
-            background: white;
-            color: var(--ink);
+            background:
+                white;
+
+            color:
+                var(--ink);
         }
 
-        .game-of-day-play:hover,
-        .game-of-day-save:hover {
-            transform: translateY(-2px);
-        }
-
-        /* =========================
+        /* =================================
            GAME GRID
-        ========================= */
+        ================================= */
 
         .game-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 24px;
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap:
+                24px;
         }
 
-        .game-card {
-            position: relative;
-            overflow: hidden;
+        /* =================================
+           PREMIUM GAME CARD
+        ================================= */
 
-            background: var(--paper);
-            border: var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+        .game-card {
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--paper);
+
+            border:
+                var(--border);
+
+            border-radius:
+                var(--radius);
+
+            box-shadow:
+                var(--shadow);
 
             transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+                transform 0.22s ease,
+                box-shadow 0.22s ease;
         }
 
         .game-card:hover {
-            transform: translate(-5px, -7px) rotate(-0.4deg);
-            box-shadow: 12px 13px 0 var(--ink);
+            transform:
+                translate(
+                    -5px,
+                    -7px
+                )
+                rotate(
+                    -0.5deg
+                );
+
+            box-shadow:
+                12px 13px 0 var(--ink);
         }
 
-        .game-card::before {
-            content: "";
-            position: absolute;
-            z-index: 5;
-            top: -40px;
-            right: -40px;
+        .game-card::after {
+            content:
+                "";
 
-            width: 100px;
-            height: 100px;
+            position:
+                absolute;
 
-            border-radius: 50%;
-            background: var(--yellow);
-            border: 3px solid var(--ink);
+            inset:
+                0;
 
-            opacity: 0;
-            transform: scale(0.5);
+            border-radius:
+                inherit;
+
+            pointer-events:
+                none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.28
+                    ),
+                    transparent 35%
+                );
+
+            opacity:
+                0;
+
             transition:
-                opacity 0.2s ease,
-                transform 0.2s ease;
-            pointer-events: none;
+                opacity 0.25s ease;
         }
 
-        .game-card:hover::before {
-            opacity: 1;
-            transform: scale(1);
+        .game-card:hover::after {
+            opacity:
+                1;
         }
 
         .game-card-image {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            background: #ddd;
-            border-bottom: var(--border);
+            position:
+                relative;
+
+            aspect-ratio:
+                16 / 9;
+
+            overflow:
+                hidden;
+
+            background:
+                #ddd;
+
+            border-bottom:
+                var(--border);
         }
 
         .game-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
 
             transition:
                 transform 0.35s ease,
                 filter 0.35s ease;
         }
 
-        .game-card:hover .game-card-image img {
-            transform: scale(1.07);
-            filter: saturate(1.1);
+        .game-card:hover
+        .game-card-image
+        img {
+            transform:
+                scale(1.08);
+
+            filter:
+                saturate(1.12);
         }
 
         .game-card-image-placeholder {
-            width: 100%;
-            height: 100%;
+            width:
+                100%;
 
-            display: grid;
-            place-items: center;
+            height:
+                100%;
+
+            display:
+                grid;
+
+            place-items:
+                center;
 
             background:
                 linear-gradient(
@@ -855,28 +1727,119 @@
                     var(--pink)
                 );
 
-            font-size: 3rem;
+            font-size:
+                3rem;
         }
 
+        /* =================================
+           CARD BADGES
+        ================================= */
+
+        .card-badges {
+            position:
+                absolute;
+
+            z-index:
+                7;
+
+            left:
+                12px;
+
+            top:
+                12px;
+
+            display:
+                flex;
+
+            gap:
+                6px;
+
+            flex-wrap:
+                wrap;
+        }
+
+        .card-badge {
+            padding:
+                6px 9px;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                999px;
+
+            background:
+                var(--yellow);
+
+            color:
+                var(--ink);
+
+            font-size:
+                0.66rem;
+
+            font-weight:
+                900;
+
+            text-transform:
+                uppercase;
+        }
+
+        .card-badge.hot {
+            background:
+                var(--orange);
+
+            color:
+                white;
+        }
+
+        .card-badge.green {
+            background:
+                var(--green);
+        }
+
+        /* =================================
+           FAVORITE
+        ================================= */
+
         .favorite-button {
-            position: absolute;
-            z-index: 8;
-            top: 12px;
-            right: 12px;
+            position:
+                absolute;
 
-            width: 43px;
-            height: 43px;
+            z-index:
+                8;
 
-            display: grid;
-            place-items: center;
+            top:
+                12px;
 
-            border: 2px solid var(--ink);
-            border-radius: 50%;
+            right:
+                12px;
 
-            background: var(--paper);
-            box-shadow: 3px 3px 0 var(--ink);
+            width:
+                43px;
 
-            font-size: 1.2rem;
+            height:
+                43px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                50%;
+
+            background:
+                var(--paper);
+
+            box-shadow:
+                3px 3px 0 var(--ink);
+
+            font-size:
+                1.2rem;
 
             transition:
                 transform 0.15s ease,
@@ -884,74 +1847,171 @@
         }
 
         .favorite-button:hover {
-            transform: scale(1.08) rotate(5deg);
+            transform:
+                scale(1.08)
+                rotate(5deg);
         }
 
         .favorite-button.active {
-            background: var(--pink);
+            background:
+                var(--pink);
         }
 
+        /* =================================
+           CARD BODY
+        ================================= */
+
         .game-card-body {
-            padding: 19px;
+            padding:
+                19px;
         }
 
         .game-card-title {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -0.035em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
 
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size:
+                1.35rem;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.05;
+
+            letter-spacing:
+                -0.035em;
+
+            display:
+                -webkit-box;
+
+            -webkit-line-clamp:
+                2;
+
+            -webkit-box-orient:
+                vertical;
+
+            overflow:
+                hidden;
         }
 
         .game-card-creator {
-            margin-top: 7px;
-            color: #6c6c6c;
-            font-size: 0.84rem;
-            font-weight: 600;
+            margin-top:
+                7px;
+
+            color:
+                #6c6c6c;
+
+            font-size:
+                0.84rem;
+
+            font-weight:
+                600;
+        }
+
+        .game-card-stats {
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+            margin-top:
+                15px;
+        }
+
+        .stat-pill {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+            padding:
+                6px 8px;
+
+            background:
+                #f0ebe1;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                8px;
+
+            font-size:
+                0.7rem;
+
+            font-weight:
+                800;
+        }
+
+        .stat-pill.rating {
+            background:
+                var(--yellow);
+        }
+
+        .stat-pill.players {
+            background:
+                var(--green);
         }
 
         .game-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
+            display:
+                flex;
 
-            margin-top: 18px;
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            margin-top:
+                16px;
         }
 
-        .players {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        .card-actions {
+            display:
+                flex;
 
-            font-size: 0.82rem;
-            font-weight: 800;
-        }
+            align-items:
+                center;
 
-        .player-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #28b463;
-            border: 1px solid var(--ink);
+            gap:
+                7px;
         }
 
         .play-game {
-            padding: 8px 12px;
+            padding:
+                8px 12px;
 
-            border: 2px solid var(--ink);
-            border-radius: 9px;
+            border:
+                2px solid var(--ink);
 
-            background: var(--orange);
-            color: white;
+            border-radius:
+                9px;
 
-            font-size: 0.78rem;
-            font-weight: 800;
+            background:
+                var(--orange);
+
+            color:
+                white;
+
+            font-size:
+                0.78rem;
+
+            font-weight:
+                800;
 
             transition:
                 transform 0.15s ease,
@@ -959,177 +2019,417 @@
         }
 
         .play-game:hover {
-            transform: translateY(-2px);
-            box-shadow: 3px 3px 0 var(--ink);
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                3px 3px 0 var(--ink);
         }
 
-        /* =========================
+        /* =================================
+           RATING
+        ================================= */
+
+        .rating-area {
+            margin-top:
+                16px;
+
+            padding-top:
+                14px;
+
+            border-top:
+                2px dashed #c8c0b3;
+        }
+
+        .rating-label {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom:
+                8px;
+
+            font-size:
+                0.7rem;
+
+            font-weight:
+                800;
+
+            color:
+                #666;
+        }
+
+        .stars {
+            display:
+                flex;
+
+            gap:
+                3px;
+        }
+
+        .star-button {
+            border:
+                0;
+
+            background:
+                transparent;
+
+            padding:
+                0;
+
+            font-size:
+                1.2rem;
+
+            filter:
+                grayscale(1);
+
+            opacity:
+                0.55;
+
+            transition:
+                transform 0.12s ease,
+                filter 0.12s ease,
+                opacity 0.12s ease;
+        }
+
+        .star-button:hover {
+            transform:
+                scale(1.2);
+
+            filter:
+                grayscale(0);
+
+            opacity:
+                1;
+        }
+
+        .star-button.selected {
+            filter:
+                grayscale(0);
+
+            opacity:
+                1;
+        }
+
+        .rating-message {
+            margin-top:
+                7px;
+
+            min-height:
+                16px;
+
+            font-size:
+                0.68rem;
+
+            color:
+                #777;
+
+            font-weight:
+                600;
+        }
+
+        /* =================================
            FAVORITES
-        ========================= */
+        ================================= */
 
         .favorites-section {
-            margin-bottom: 65px;
+            margin-bottom:
+                65px;
         }
 
         .favorites-section.hidden {
-            display: none;
+            display:
+                none;
         }
 
         .favorites-heading {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom:
+                25px;
         }
 
         .favorites-heading h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 2.5rem;
-            letter-spacing: -0.06em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                2.5rem;
+
+            letter-spacing:
+                -0.06em;
         }
 
-        /* =========================
+        /* =================================
            STATES
-        ========================= */
+        ================================= */
 
         .state {
-            padding: 55px 25px;
+            padding:
+                55px 25px;
 
-            border: var(--border);
-            border-radius: 22px;
-            background: var(--paper);
-            box-shadow: var(--shadow);
+            border:
+                var(--border);
 
-            text-align: center;
-        }
+            border-radius:
+                22px;
 
-        .state.hidden {
-            display: none;
+            background:
+                var(--paper);
+
+            box-shadow:
+                var(--shadow);
+
+            text-align:
+                center;
         }
 
         .state-icon {
-            font-size: 3.2rem;
-            margin-bottom: 12px;
+            font-size:
+                3.2rem;
+
+            margin-bottom:
+                12px;
         }
 
         .state h3 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 2rem;
-            letter-spacing: -0.04em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                2rem;
+
+            letter-spacing:
+                -0.04em;
         }
 
         .state p {
-            max-width: 520px;
-            margin: 10px auto 0;
-            color: #666;
-            line-height: 1.5;
+            max-width:
+                520px;
+
+            margin:
+                10px auto 0;
+
+            color:
+                #666;
+
+            line-height:
+                1.5;
         }
 
         .spinner {
-            width: 45px;
-            height: 45px;
-            margin: 0 auto 18px;
+            width:
+                45px;
 
-            border: 5px solid #ddd;
-            border-top-color: var(--orange);
-            border-radius: 50%;
+            height:
+                45px;
 
-            animation: spin 0.8s linear infinite;
+            margin:
+                0 auto 18px;
+
+            border:
+                5px solid #ddd;
+
+            border-top-color:
+                var(--orange);
+
+            border-radius:
+                50%;
+
+            animation:
+                spin 0.8s linear infinite;
         }
 
         @keyframes spin {
             to {
-                transform: rotate(360deg);
+                transform:
+                    rotate(360deg);
             }
         }
 
-        /* =========================
-           RECOMMENDATION MODAL
-        ========================= */
+        /* =================================
+           MODAL
+        ================================= */
 
         .recommend-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
+            position:
+                fixed;
 
-            display: grid;
-            place-items: center;
+            inset:
+                0;
 
-            padding: 20px;
+            z-index:
+                100;
 
-            background: rgba(10, 12, 20, 0.75);
-            backdrop-filter: blur(7px);
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            padding:
+                20px;
+
+            background:
+                rgba(
+                    10,
+                    12,
+                    20,
+                    0.75
+                );
+
+            backdrop-filter:
+                blur(7px);
         }
 
         .recommend-overlay.hidden {
-            display: none;
+            display:
+                none;
         }
 
         .recommend-modal {
-            width: min(650px, 100%);
+            width:
+                min(
+                    650px,
+                    100%
+                );
 
-            position: relative;
+            position:
+                relative;
 
-            padding: 35px;
+            padding:
+                35px;
 
-            background: var(--paper);
-            border: 4px solid var(--ink);
-            border-radius: 25px;
-            box-shadow: 12px 12px 0 var(--ink);
+            background:
+                var(--paper);
+
+            border:
+                4px solid var(--ink);
+
+            border-radius:
+                25px;
+
+            box-shadow:
+                12px 12px 0 var(--ink);
         }
 
         .modal-close {
-            position: absolute;
-            top: 14px;
-            right: 14px;
+            position:
+                absolute;
 
-            width: 40px;
-            height: 40px;
+            top:
+                14px;
 
-            display: grid;
-            place-items: center;
+            right:
+                14px;
 
-            border: 2px solid var(--ink);
-            border-radius: 50%;
+            width:
+                40px;
 
-            background: var(--pink);
+            height:
+                40px;
 
-            font-size: 1.2rem;
-            font-weight: 900;
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                2px solid var(--ink);
+
+            border-radius:
+                50%;
+
+            background:
+                var(--pink);
+
+            font-size:
+                1.2rem;
+
+            font-weight:
+                900;
         }
 
         .recommend-modal h2 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 3rem;
-            line-height: 0.95;
-            letter-spacing: -0.06em;
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                3rem;
+
+            line-height:
+                0.95;
+
+            letter-spacing:
+                -0.06em;
         }
 
         .recommend-modal > p {
-            margin-top: 10px;
-            color: #666;
+            margin-top:
+                10px;
+
+            color:
+                #666;
         }
 
         .vibe-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 25px;
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap:
+                12px;
+
+            margin-top:
+                25px;
         }
 
         .vibe-button {
-            padding: 17px;
+            padding:
+                17px;
 
-            border: 3px solid var(--ink);
-            border-radius: 14px;
+            border:
+                3px solid var(--ink);
 
-            background: white;
-            box-shadow: 4px 4px 0 var(--ink);
+            border-radius:
+                14px;
 
-            text-align: left;
+            background:
+                white;
 
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 800;
+            box-shadow:
+                4px 4px 0 var(--ink);
+
+            text-align:
+                left;
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-weight:
+                800;
 
             transition:
                 transform 0.15s ease,
@@ -1137,81 +2437,151 @@
         }
 
         .vibe-button:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--ink);
+            transform:
+                translate(
+                    -2px,
+                    -2px
+                );
+
+            box-shadow:
+                6px 6px 0 var(--ink);
         }
 
         .vibe-emoji {
-            display: block;
-            font-size: 1.7rem;
-            margin-bottom: 7px;
+            display:
+                block;
+
+            font-size:
+                1.7rem;
+
+            margin-bottom:
+                7px;
         }
 
-        /* =========================
+        /* =================================
            FOOTER
-        ========================= */
+        ================================= */
 
         footer {
-            width: min(1240px, calc(100% - 36px));
-            margin: 0 auto 30px;
+            width:
+                min(
+                    1240px,
+                    calc(100% - 36px)
+                );
 
-            padding: 25px 0;
+            margin:
+                0 auto 30px;
 
-            border-top: var(--border);
+            padding:
+                25px 0;
 
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
+            border-top:
+                var(--border);
 
-            color: #666;
-            font-size: 0.85rem;
-            font-weight: 600;
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            color:
+                #666;
+
+            font-size:
+                0.85rem;
+
+            font-weight:
+                600;
         }
 
         footer strong {
-            color: var(--ink);
+            color:
+                var(--ink);
         }
 
-        /* =========================
+        /* =================================
            RESPONSIVE
-        ========================= */
+        ================================= */
+
+        @media (max-width: 1050px) {
+
+            .playing-now-grid {
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
+            }
+
+        }
 
         @media (max-width: 950px) {
+
             .hero {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
             .hero-art {
-                min-height: 390px;
-                max-width: 650px;
-                width: 100%;
-                margin: 0 auto;
+                min-height:
+                    390px;
+
+                max-width:
+                    650px;
+
+                width:
+                    100%;
+
+                margin:
+                    0 auto;
             }
 
             .game-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
             }
 
             .game-of-day-inner {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
             .game-of-day-image {
-                min-height: 280px;
+                min-height:
+                    280px;
             }
 
             .game-of-day-copy {
-                padding: 30px;
+                padding:
+                    30px;
             }
+
         }
 
         @media (max-width: 650px) {
+
             nav {
-                width: calc(100% - 22px);
+                width:
+                    calc(
+                        100% - 22px
+                    );
             }
 
             .nav-pill {
-                display: none;
+                display:
+                    none;
             }
 
             .hero,
@@ -1219,122 +2589,186 @@
             .discover-actions,
             main,
             footer {
-                width: calc(100% - 22px);
+                width:
+                    calc(
+                        100% - 22px
+                    );
             }
 
             .hero {
-                margin-top: 50px;
+                margin-top:
+                    50px;
             }
 
             .hero h1 {
-                font-size: clamp(3.5rem, 18vw, 6rem);
+                font-size:
+                    clamp(
+                        3.5rem,
+                        18vw,
+                        6rem
+                    );
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size:
+                    1rem;
             }
 
             .sticker {
-                width: 85px;
-                height: 85px;
-                font-size: 0.65rem;
-                top: -35px;
+                width:
+                    85px;
+
+                height:
+                    85px;
+
+                font-size:
+                    0.65rem;
+
+                top:
+                    -35px;
             }
 
             .hero-art {
-                min-height: 310px;
+                min-height:
+                    310px;
             }
 
             .art-main {
-                height: 250px;
+                height:
+                    250px;
             }
 
             .art-main::before {
-                font-size: 3.7rem;
+                font-size:
+                    3.7rem;
             }
 
             .art-main::after {
-                font-size: 4rem;
+                font-size:
+                    4rem;
             }
 
             .art-small {
-                width: 105px;
-                height: 105px;
+                width:
+                    105px;
+
+                height:
+                    105px;
             }
 
             .art-small::before {
-                font-size: 3.2rem;
-                left: 31px;
-                top: 25px;
+                font-size:
+                    3.2rem;
+
+                left:
+                    31px;
+
+                top:
+                    25px;
             }
 
             .search-box {
-                flex-wrap: wrap;
+                flex-wrap:
+                    wrap;
             }
 
             .search-icon {
-                width: 50px;
+                width:
+                    50px;
             }
 
             #searchInput {
-                width: calc(100% - 50px);
+                width:
+                    calc(
+                        100% - 50px
+                    );
             }
 
             .search-button {
-                width: 100%;
-                min-height: 55px;
-                border-left: 0;
-                border-top: 3px solid var(--ink);
+                width:
+                    100%;
+
+                min-height:
+                    55px;
+
+                border-left:
+                    0;
+
+                border-top:
+                    3px solid var(--ink);
             }
 
             .discover-actions {
-                align-items: stretch;
-                flex-direction: column;
+                align-items:
+                    stretch;
+
+                flex-direction:
+                    column;
             }
 
             .discover-button,
             .recommend-button {
-                width: 100%;
+                width:
+                    100%;
             }
 
             .game-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
+            }
+
+            .playing-now-grid {
+                grid-template-columns:
+                    1fr;
             }
 
             .content-heading {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
             }
 
             .content-heading h2 {
-                font-size: 3.2rem;
+                font-size:
+                    3.2rem;
             }
 
             .game-of-day-copy h3 {
-                font-size: 2.5rem;
+                font-size:
+                    2.5rem;
             }
 
             .game-of-day-copy {
-                padding: 25px;
+                padding:
+                    25px;
             }
 
             .vibe-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
 
             .recommend-modal {
-                padding: 27px 20px 22px;
+                padding:
+                    27px 20px 22px;
             }
 
             .recommend-modal h2 {
-                font-size: 2.4rem;
+                font-size:
+                    2.4rem;
             }
 
             footer {
-                flex-direction: column;
+                flex-direction:
+                    column;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -1343,24 +2777,34 @@
     <div class="blob blob-two"></div>
     <div class="blob blob-three"></div>
 
-    <!-- =========================
+    <!-- =================================
          NAV
-    ========================= -->
+    ================================= -->
 
     <nav>
-        <a href="/" class="logo">
-            <span class="logo-mark">🎮</span>
-            <span>GameScout</span>
+
+        <a
+            href="/"
+            class="logo"
+        >
+            <span class="logo-mark">
+                🎮
+            </span>
+
+            <span>
+                GameScout
+            </span>
         </a>
 
         <div class="nav-pill">
             FIND SOMETHING GOOD
         </div>
+
     </nav>
 
-    <!-- =========================
+    <!-- =================================
          HERO
-    ========================= -->
+    ================================= -->
 
     <section class="hero">
 
@@ -1378,13 +2822,16 @@
 
             <h1>
                 FIND
-                <span class="orange">YOUR</span>
+                <span class="orange">
+                    YOUR
+                </span>
                 GAME.
             </h1>
 
             <p class="hero-description">
-                Search millions of Roblox experiences, discover hidden
-                gems, and find something actually worth playing.
+                Search millions of Roblox experiences,
+                discover hidden gems, and find something
+                actually worth playing.
             </p>
 
         </div>
@@ -1403,9 +2850,9 @@
 
     </section>
 
-    <!-- =========================
+    <!-- =================================
          SEARCH
-    ========================= -->
+    ================================= -->
 
     <section class="search-wrap">
 
@@ -1542,8 +2989,10 @@
 
         <div class="search-section">
 
-            <div class="search-section-label popular-label">
-                <span>🔥 PEOPLE ARE SEARCHING</span>
+            <div class="search-section-label">
+                <span>
+                    🔥 PEOPLE ARE SEARCHING
+                </span>
             </div>
 
             <div
@@ -1559,15 +3008,15 @@
 
     </section>
 
-    <!-- =========================
+    <!-- =================================
          ACTIONS
-    ========================= -->
+    ================================= -->
 
     <div class="discover-actions">
 
         <button
             class="discover-button"
-            onclick="document.getElementById('results').scrollIntoView({ behavior: 'smooth' })"
+            onclick="scrollToResults()"
         >
             DISCOVER GAMES ↓
         </button>
@@ -1581,37 +3030,59 @@
 
     </div>
 
-    <!-- =========================
+    <!-- =================================
          MARQUEE
-    ========================= -->
+    ================================= -->
 
     <div class="marquee">
 
         <div class="marquee-track">
 
-            <span>DISCOVER ✦</span>
-            <span>SEARCH ✦</span>
-            <span>PLAY ✦</span>
-            <span>FIND YOUR NEXT FAVORITE ✦</span>
+            <span>
+                DISCOVER ✦
+            </span>
 
-            <span>DISCOVER ✦</span>
-            <span>SEARCH ✦</span>
-            <span>PLAY ✦</span>
-            <span>FIND YOUR NEXT FAVORITE ✦</span>
+            <span>
+                SEARCH ✦
+            </span>
+
+            <span>
+                PLAY ✦
+            </span>
+
+            <span>
+                FIND YOUR NEXT FAVORITE ✦
+            </span>
+
+            <span>
+                DISCOVER ✦
+            </span>
+
+            <span>
+                SEARCH ✦
+            </span>
+
+            <span>
+                PLAY ✦
+            </span>
+
+            <span>
+                FIND YOUR NEXT FAVORITE ✦
+            </span>
 
         </div>
 
     </div>
 
-    <!-- =========================
+    <!-- =================================
          MAIN
-    ========================= -->
+    ================================= -->
 
     <main id="results">
 
-        <!-- =========================
+        <!-- =================================
              GAME OF THE DAY
-        ========================= -->
+        ================================= -->
 
         <section
             class="game-of-day"
@@ -1682,17 +3153,44 @@
 
         </section>
 
-        <!-- =========================
+        <!-- =================================
+             PEOPLE ARE PLAYING
+        ================================= -->
+
+        <section
+            class="playing-now-section"
+            id="playingNowSection"
+            style="display: none;"
+        >
+
+            <div class="section-kicker">
+
+                <span class="live-dot"></span>
+
+                PEOPLE ARE PLAYING…
+
+            </div>
+
+            <div
+                class="playing-now-grid"
+                id="playingNowGrid"
+            ></div>
+
+        </section>
+
+        <!-- =================================
              HEADING
-        ========================= -->
+        ================================= -->
 
         <div class="content-heading">
 
             <div>
+
                 <h2 id="resultsTitle">
                     TRENDING<br>
                     NOW.
                 </h2>
+
             </div>
 
             <p id="resultsDescription">
@@ -1702,9 +3200,9 @@
 
         </div>
 
-        <!-- =========================
+        <!-- =================================
              FAVORITES
-        ========================= -->
+        ================================= -->
 
         <section
             class="favorites-section hidden"
@@ -1713,7 +3211,9 @@
 
             <div class="favorites-heading">
 
-                <h2>♡ FAVORITES</h2>
+                <h2>
+                    ♡ FAVORITES
+                </h2>
 
             </div>
 
@@ -1724,9 +3224,9 @@
 
         </section>
 
-        <!-- =========================
+        <!-- =================================
              STATES
-        ========================= -->
+        ================================= -->
 
         <div
             class="state"
@@ -1736,10 +3236,13 @@
 
             <div class="spinner"></div>
 
-            <h3>SCOUTING ROBLOX...</h3>
+            <h3>
+                SCOUTING ROBLOX...
+            </h3>
 
             <p>
-                Give us a second. We're looking for something good.
+                Give us a second.
+                We're looking for something good.
             </p>
 
         </div>
@@ -1754,10 +3257,13 @@
                 🕵️
             </div>
 
-            <h3>NOTHING FOUND</h3>
+            <h3>
+                NOTHING FOUND
+            </h3>
 
             <p>
-                Try a different search. Maybe go weird with it —
+                Try a different search.
+                Maybe go weird with it —
                 “banana”, “space”, “zombies”, whatever.
             </p>
 
@@ -1773,7 +3279,9 @@
                 💥
             </div>
 
-            <h3>UH OH</h3>
+            <h3>
+                UH OH
+            </h3>
 
             <p>
                 GameScout couldn't reach Roblox right now.
@@ -1789,14 +3297,18 @@
 
     </main>
 
-    <!-- =========================
+    <!-- =================================
          FOOTER
-    ========================= -->
+    ================================= -->
 
     <footer>
 
         <div>
-            <strong>GameScout</strong> — made for finding games,
+            <strong>
+                GameScout
+            </strong>
+
+            — made for finding games,
             not endlessly scrolling.
         </div>
 
@@ -1806,9 +3318,9 @@
 
     </footer>
 
-    <!-- =========================
+    <!-- =================================
          RECOMMENDATION MODAL
-    ========================= -->
+    ================================= -->
 
     <div
         class="recommend-overlay hidden"
@@ -1831,7 +3343,8 @@
             </h2>
 
             <p>
-                Pick a mood and GameScout will find some games for you.
+                Pick a mood and GameScout
+                will find some games for you.
             </p>
 
             <div class="vibe-grid">
@@ -1840,7 +3353,10 @@
                     class="vibe-button"
                     onclick="recommendGames('chill')"
                 >
-                    <span class="vibe-emoji">🌿</span>
+                    <span class="vibe-emoji">
+                        🌿
+                    </span>
+
                     Chill
                 </button>
 
@@ -1848,7 +3364,10 @@
                     class="vibe-button"
                     onclick="recommendGames('competitive')"
                 >
-                    <span class="vibe-emoji">🏆</span>
+                    <span class="vibe-emoji">
+                        🏆
+                    </span>
+
                     Competitive
                 </button>
 
@@ -1856,7 +3375,10 @@
                     class="vibe-button"
                     onclick="recommendGames('horror')"
                 >
-                    <span class="vibe-emoji">👻</span>
+                    <span class="vibe-emoji">
+                        👻
+                    </span>
+
                     Scary
                 </button>
 
@@ -1864,7 +3386,10 @@
                     class="vibe-button"
                     onclick="recommendGames('funny')"
                 >
-                    <span class="vibe-emoji">🤪</span>
+                    <span class="vibe-emoji">
+                        🤪
+                    </span>
+
                     Chaotic
                 </button>
 
@@ -1872,7 +3397,10 @@
                     class="vibe-button"
                     onclick="recommendGames('strategy')"
                 >
-                    <span class="vibe-emoji">🧠</span>
+                    <span class="vibe-emoji">
+                        🧠
+                    </span>
+
                     Thinky
                 </button>
 
@@ -1880,7 +3408,10 @@
                     class="vibe-button"
                     onclick="recommendGames('adventure')"
                 >
-                    <span class="vibe-emoji">🗺️</span>
+                    <span class="vibe-emoji">
+                        🗺️
+                    </span>
+
                     Adventure
                 </button>
 
@@ -1888,7 +3419,10 @@
                     class="vibe-button"
                     onclick="recommendGames('popular')"
                 >
-                    <span class="vibe-emoji">🎲</span>
+                    <span class="vibe-emoji">
+                        🎲
+                    </span>
+
                     Surprise Me
                 </button>
 
@@ -1899,67 +3433,129 @@
     </div>
 
     <script>
-        /* =========================
+
+        /* =================================
            STATE
-        ========================= */
+        ================================= */
 
         let currentGames = [];
+
         let recommendationGames = [];
+
         let gameOfTheDay = null;
 
         let favorites =
             JSON.parse(
-                localStorage.getItem("gamescoutFavorites") || "[]"
+                localStorage.getItem(
+                    "gamescoutFavorites"
+                ) || "[]"
             );
 
-        /* =========================
+        /* =================================
            HELPERS
-        ========================= */
+        ================================= */
 
         function escapeHtml(value) {
-            return String(value ?? "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
         }
 
         function formatPlayers(number) {
-            const players = Number(number) || 0;
 
-            if (players >= 1000000) {
+            const players =
+                Number(number) || 0;
+
+            if (
+                players >= 1000000
+            ) {
+
                 return (
-                    (players / 1000000)
-                        .toFixed(players >= 10000000 ? 0 : 1)
-                        .replace(".0", "") +
+                    (
+                        players /
+                        1000000
+                    )
+                        .toFixed(
+                            players >=
+                            10000000
+                                ? 0
+                                : 1
+                        )
+                        .replace(
+                            ".0",
+                            ""
+                        ) +
                     "M"
                 );
+
             }
 
-            if (players >= 1000) {
+            if (
+                players >= 1000
+            ) {
+
                 return (
-                    (players / 1000)
-                        .toFixed(players >= 10000 ? 0 : 1)
-                        .replace(".0", "") +
+                    (
+                        players /
+                        1000
+                    )
+                        .toFixed(
+                            players >=
+                            10000
+                                ? 0
+                                : 1
+                        )
+                        .replace(
+                            ".0",
+                            ""
+                        ) +
                     "K"
                 );
+
             }
 
             return players.toLocaleString();
+
         }
 
         function shuffle(array) {
-            const copy = [...array];
+
+            const copy =
+                [...array];
 
             for (
-                let i = copy.length - 1;
+                let i =
+                    copy.length - 1;
                 i > 0;
                 i--
             ) {
+
                 const j =
                     Math.floor(
-                        Math.random() * (i + 1)
+                        Math.random() *
+                        (i + 1)
                     );
 
                 [
@@ -1969,53 +3565,97 @@
                     copy[j],
                     copy[i]
                 ];
+
             }
 
             return copy;
+
         }
 
         function handleSearchKey(event) {
-            if (event.key === "Enter") {
+
+            if (
+                event.key ===
+                "Enter"
+            ) {
                 searchGames();
             }
+
         }
 
         function quickSearch(query) {
-            document.getElementById("searchInput").value = query;
+
+            document.getElementById(
+                "searchInput"
+            ).value = query;
+
             searchGames();
+
         }
 
-        /* =========================
+        function scrollToResults() {
+
+            document
+                .getElementById(
+                    "results"
+                )
+                .scrollIntoView({
+                    behavior:
+                        "smooth",
+                    block:
+                        "start"
+                });
+
+        }
+
+        /* =================================
            SEARCH
-        ========================= */
+        ================================= */
 
         async function searchGames() {
+
             const input =
-                document.getElementById("searchInput");
+                document.getElementById(
+                    "searchInput"
+                );
 
             const query =
                 input.value.trim();
 
             if (!query) {
+
                 input.focus();
+
                 return;
+
             }
 
-            showState("loading");
+            showState(
+                "loading"
+            );
 
-            document.getElementById("resultsTitle").innerHTML =
+            document.getElementById(
+                "resultsTitle"
+            ).innerHTML =
                 "SEARCH<br>RESULTS.";
 
-            document.getElementById("resultsDescription").textContent =
+            document.getElementById(
+                "resultsDescription"
+            ).textContent =
                 `Games matching “${query}”.`;
 
             try {
+
                 const response =
                     await fetch(
-                        `/api/search?q=${encodeURIComponent(query)}`
+                        `/api/search?q=${encodeURIComponent(
+                            query
+                        )}`
                     );
 
-                if (!response.ok) {
+                if (
+                    !response.ok
+                ) {
                     throw new Error(
                         "Search request failed."
                     );
@@ -2025,52 +3665,79 @@
                     await response.json();
 
                 currentGames =
-                    Array.isArray(data.games)
+                    Array.isArray(
+                        data.games
+                    )
                         ? data.games
                         : [];
 
                 hideStates();
 
-                if (!currentGames.length) {
-                    showState("empty");
+                if (
+                    !currentGames.length
+                ) {
+
+                    hidePlayingNow();
+
+                    showState(
+                        "empty"
+                    );
+
                     return;
+
                 }
 
-                renderGameOfTheDay(currentGames);
-                renderGames(currentGames);
+                renderGameOfTheDay(
+                    currentGames
+                );
+
+                renderPlayingNow(
+                    currentGames
+                );
+
+                renderGames(
+                    currentGames
+                );
 
                 await loadPopularSearches();
 
             } catch (error) {
-                console.error(error);
-                showState("error");
+
+                console.error(
+                    error
+                );
+
+                showState(
+                    "error"
+                );
+
             }
 
-            document
-                .getElementById("results")
-                .scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+            scrollToResults();
+
         }
 
-        /* =========================
+        /* =================================
            POPULAR SEARCHES
-        ========================= */
+        ================================= */
 
         async function loadPopularSearches() {
+
             const container =
                 document.getElementById(
                     "popularSearches"
                 );
 
             try {
+
                 const response =
                     await fetch(
                         "/api/popular-searches"
                     );
 
-                if (!response.ok) {
+                if (
+                    !response.ok
+                ) {
                     throw new Error(
                         "Popular searches failed."
                     );
@@ -2080,11 +3747,16 @@
                     await response.json();
 
                 const searches =
-                    Array.isArray(data.searches)
+                    Array.isArray(
+                        data.searches
+                    )
                         ? data.searches
                         : [];
 
-                if (!searches.length) {
+                if (
+                    !searches.length
+                ) {
+
                     container.innerHTML = `
                         <span class="popular-empty">
                             Start searching to build the list...
@@ -2092,6 +3764,7 @@
                     `;
 
                     return;
+
                 }
 
                 container.innerHTML =
@@ -2100,36 +3773,49 @@
                             (item) => `
                                 <button
                                     class="search-chip"
-                                    onclick='quickSearch(${JSON.stringify(item.query)})'
+                                    onclick='quickSearch(${JSON.stringify(
+                                        item.query
+                                    )})'
                                 >
-                                    🔥 ${escapeHtml(item.query)}
+                                    🔥 ${escapeHtml(
+                                        item.query
+                                    )}
                                 </button>
                             `
                         )
                         .join("");
 
             } catch (error) {
+
                 console.error(
                     "Popular searches error:",
                     error
                 );
+
             }
+
         }
 
-        /* =========================
+        /* =================================
            TRENDING
-        ========================= */
+        ================================= */
 
         async function loadTrending() {
-            showState("loading");
+
+            showState(
+                "loading"
+            );
 
             try {
+
                 const response =
                     await fetch(
                         "/api/trending"
                     );
 
-                if (!response.ok) {
+                if (
+                    !response.ok
+                ) {
                     throw new Error(
                         "Trending request failed."
                     );
@@ -2139,31 +3825,62 @@
                     await response.json();
 
                 currentGames =
-                    Array.isArray(data.games)
+                    Array.isArray(
+                        data.games
+                    )
                         ? data.games
                         : [];
 
                 hideStates();
 
-                if (!currentGames.length) {
-                    showState("empty");
+                if (
+                    !currentGames.length
+                ) {
+
+                    hidePlayingNow();
+
+                    showState(
+                        "empty"
+                    );
+
                     return;
+
                 }
 
-                renderGameOfTheDay(currentGames);
-                renderGames(currentGames);
+                renderGameOfTheDay(
+                    currentGames
+                );
+
+                renderPlayingNow(
+                    currentGames
+                );
+
+                renderGames(
+                    currentGames
+                );
 
             } catch (error) {
-                console.error(error);
-                showState("error");
+
+                console.error(
+                    error
+                );
+
+                showState(
+                    "error"
+                );
+
             }
+
         }
 
-        /* =========================
+        /* =================================
            GAME OF THE DAY
-        ========================= */
+        ================================= */
 
-        function getDailyIndex(length) {
+        function getDailyIndex(
+            length
+        ) {
+
             if (!length) {
                 return 0;
             }
@@ -2178,43 +3895,73 @@
 
             for (
                 let i = 0;
-                i < dateString.length;
+                i <
+                dateString.length;
                 i++
             ) {
+
                 hash =
                     (
                         hash * 31 +
-                        dateString.charCodeAt(i)
+                        dateString.charCodeAt(
+                            i
+                        )
                     ) >>> 0;
+
             }
 
-            return hash % length;
+            return (
+                hash %
+                length
+            );
+
         }
 
-        function renderGameOfTheDay(games) {
+        function renderGameOfTheDay(
+            games
+        ) {
+
             const section =
                 document.getElementById(
                     "gameOfTheDay"
                 );
 
-            if (!games || !games.length) {
-                section.style.display = "none";
-                gameOfTheDay = null;
+            if (
+                !games ||
+                !games.length
+            ) {
+
+                section.style.display =
+                    "none";
+
+                gameOfTheDay =
+                    null;
+
                 return;
+
             }
 
             const index =
-                getDailyIndex(games.length);
+                getDailyIndex(
+                    games.length
+                );
 
             gameOfTheDay =
                 games[index];
 
-            if (!gameOfTheDay) {
-                section.style.display = "none";
+            if (
+                !gameOfTheDay
+            ) {
+
+                section.style.display =
+                    "none";
+
                 return;
+
             }
 
-            section.style.display = "block";
+            section.style.display =
+                "block";
 
             const image =
                 document.getElementById(
@@ -2246,22 +3993,47 @@
                 "Unknown Game";
 
             description.textContent =
-                `Jump into ${gameOfTheDay.name || "this game"} and see what makes it worth playing today.`;
+                `Jump into ${
+                    gameOfTheDay.name ||
+                    "this game"
+                } and see what makes it worth playing today.`;
 
-            if (gameOfTheDay.thumbnail) {
+            if (
+                gameOfTheDay.thumbnail
+            ) {
+
                 image.src =
                     gameOfTheDay.thumbnail;
 
                 image.alt =
-                    gameOfTheDay.name || "Roblox game";
+                    gameOfTheDay.name ||
+                    "Roblox game";
+
             } else {
-                image.removeAttribute("src");
-                image.alt = "";
+
+                image.removeAttribute(
+                    "src"
+                );
+
+                image.alt =
+                    "";
+
             }
+
+            const ratingText =
+                gameOfTheDay.rating
+                    ? `⭐ ${gameOfTheDay.rating}/5`
+                    : "⭐ New";
 
             meta.innerHTML = `
                 <span>
-                    👥 ${formatPlayers(gameOfTheDay.playing)} playing
+                    👥 ${formatPlayers(
+                        gameOfTheDay.playing
+                    )} playing
+                </span>
+
+                <span>
+                    ${ratingText}
                 </span>
 
                 <span>
@@ -2272,7 +4044,10 @@
                 </span>
             `;
 
-            if (gameOfTheDay.placeId) {
+            if (
+                gameOfTheDay.placeId
+            ) {
+
                 play.href =
                     `https://www.roblox.com/games/${encodeURIComponent(
                         gameOfTheDay.placeId
@@ -2280,39 +4055,55 @@
 
                 play.style.display =
                     "inline-block";
+
             } else {
-                play.removeAttribute("href");
+
+                play.removeAttribute(
+                    "href"
+                );
+
                 play.style.display =
                     "none";
+
             }
 
             updateGameOfTheDaySaveButton();
+
         }
 
         function toggleGameOfTheDayFavorite() {
-            if (!gameOfTheDay) {
+
+            if (
+                !gameOfTheDay
+            ) {
                 return;
             }
 
             toggleFavorite(
                 gameOfTheDay.universeId
             );
+
         }
 
         function updateGameOfTheDaySaveButton() {
+
             const button =
                 document.getElementById(
                     "gameOfTheDaySave"
                 );
 
-            if (!gameOfTheDay) {
+            if (
+                !gameOfTheDay
+            ) {
                 return;
             }
 
             const saved =
                 favorites.some(
                     (game) =>
-                        String(game.universeId) ===
+                        String(
+                            game.universeId
+                        ) ===
                         String(
                             gameOfTheDay.universeId
                         )
@@ -2327,27 +4118,296 @@
                 "active",
                 saved
             );
+
         }
 
-        /* =========================
-           RENDER GAMES
-        ========================= */
+        /* =================================
+           PEOPLE ARE PLAYING
+        ================================= */
 
-        function renderGames(games) {
+        function renderPlayingNow(
+            games
+        ) {
+
+            const section =
+                document.getElementById(
+                    "playingNowSection"
+                );
+
+            const grid =
+                document.getElementById(
+                    "playingNowGrid"
+                );
+
+            if (
+                !games ||
+                !games.length
+            ) {
+
+                hidePlayingNow();
+
+                return;
+
+            }
+
+            const sorted =
+                [...games]
+                    .sort(
+                        (
+                            a,
+                            b
+                        ) =>
+                            (
+                                Number(
+                                    b.playing
+                                ) || 0
+                            ) -
+                            (
+                                Number(
+                                    a.playing
+                                ) || 0
+                            )
+                    )
+                    .slice(
+                        0,
+                        4
+                    );
+
+            if (
+                !sorted.length
+            ) {
+
+                hidePlayingNow();
+
+                return;
+
+            }
+
+            section.style.display =
+                "block";
+
+            grid.innerHTML =
+                sorted
+                    .map(
+                        (game) => {
+
+                            const image =
+                                game.thumbnail
+                                    ? `
+                                        <img
+                                            src="${escapeHtml(
+                                                game.thumbnail
+                                            )}"
+                                            alt="${escapeHtml(
+                                                game.name
+                                            )}"
+                                            loading="lazy"
+                                        >
+                                    `
+                                    : "";
+
+                            return `
+                                <article class="playing-now-card">
+
+                                    ${image}
+
+                                    <div class="playing-now-info">
+
+                                        <div class="playing-now-name">
+                                            ${escapeHtml(
+                                                game.name ||
+                                                "Unknown Game"
+                                            )}
+                                        </div>
+
+                                        <div class="playing-now-count">
+                                            <span class="live-dot"></span>
+
+                                            ${formatPlayers(
+                                                game.playing
+                                            )}
+                                            playing now
+                                        </div>
+
+                                    </div>
+
+                                </article>
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+        function hidePlayingNow() {
+
+            document.getElementById(
+                "playingNowSection"
+            ).style.display =
+                "none";
+
+            document.getElementById(
+                "playingNowGrid"
+            ).innerHTML =
+                "";
+
+        }
+
+        /* =================================
+           GAME CARD BADGES
+        ================================= */
+
+        function getGameBadges(
+            game,
+            index
+        ) {
+
+            const badges = [];
+
+            if (
+                index === 0
+            ) {
+
+                badges.push(
+                    `
+                    <span class="card-badge hot">
+                        🔥 HOT
+                    </span>
+                    `
+                );
+
+            }
+
+            if (
+                Number(
+                    game.playing
+                ) >= 100000
+            ) {
+
+                badges.push(
+                    `
+                    <span class="card-badge">
+                        TRENDING
+                    </span>
+                    `
+                );
+
+            }
+
+            if (
+                Number(
+                    game.playing
+                ) > 1000 &&
+                Number(
+                    game.playing
+                ) < 10000
+            ) {
+
+                badges.push(
+                    `
+                    <span class="card-badge green">
+                        ✦ POPULAR
+                    </span>
+                    `
+                );
+
+            }
+
+            return badges.join("");
+
+        }
+
+        /* =================================
+           GAME CARD RATING
+        ================================= */
+
+        function renderStars(
+            game
+        ) {
+
+            return `
+                <div class="stars">
+
+                    ${[1, 2, 3, 4, 5]
+                        .map(
+                            (star) => `
+                                <button
+                                    class="star-button"
+                                    onclick="rateGame(
+                                        '${String(
+                                            game.universeId
+                                        )}',
+                                        ${star}
+                                    )"
+                                    aria-label="Rate ${star} out of 5"
+                                >
+                                    ★
+                                </button>
+                            `
+                        )
+                        .join("")}
+
+                </div>
+            `;
+
+        }
+
+        function ratingText(
+            game
+        ) {
+
+            if (
+                game.rating
+            ) {
+
+                return `
+                    ${game.rating}/5
+                    ${
+                        game.ratingCount
+                            ? `(${game.ratingCount})`
+                            : ""
+                    }
+                `;
+
+            }
+
+            return "Not rated";
+
+        }
+
+        /* =================================
+           RENDER GAMES
+        ================================= */
+
+        function renderGames(
+            games
+        ) {
+
             const grid =
                 document.getElementById(
                     "gameGrid"
                 );
 
-            if (!games.length) {
-                grid.innerHTML = "";
+            if (
+                !games.length
+            ) {
+
+                grid.innerHTML =
+                    "";
+
                 return;
+
             }
 
             grid.innerHTML =
                 games
                     .map(
-                        (game) => {
+                        (
+                            game,
+                            index
+                        ) => {
+
                             const saved =
                                 favorites.some(
                                     (favorite) =>
@@ -2363,8 +4423,12 @@
                                 game.thumbnail
                                     ? `
                                         <img
-                                            src="${escapeHtml(game.thumbnail)}"
-                                            alt="${escapeHtml(game.name)}"
+                                            src="${escapeHtml(
+                                                game.thumbnail
+                                            )}"
+                                            alt="${escapeHtml(
+                                                game.name
+                                            )}"
                                             loading="lazy"
                                         >
                                     `
@@ -2379,7 +4443,9 @@
                                     ? `
                                         <a
                                             class="play-game"
-                                            href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
+                                            href="https://www.roblox.com/games/${encodeURIComponent(
+                                                game.placeId
+                                            )}"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
@@ -2388,6 +4454,12 @@
                                     `
                                     : "";
 
+                            const badges =
+                                getGameBadges(
+                                    game,
+                                    index
+                                );
+
                             return `
                                 <article class="game-card">
 
@@ -2395,14 +4467,22 @@
 
                                         ${image}
 
+                                        <div class="card-badges">
+                                            ${badges}
+                                        </div>
+
                                         <button
                                             class="favorite-button ${
                                                 saved
                                                     ? "active"
                                                     : ""
                                             }"
-                                            onclick='toggleFavorite(${JSON.stringify(game.universeId)})'
-                                            aria-label="Favorite ${escapeHtml(game.name)}"
+                                            onclick='toggleFavorite(${JSON.stringify(
+                                                game.universeId
+                                            )})'
+                                            aria-label="Favorite ${escapeHtml(
+                                                game.name
+                                            )}"
                                         >
                                             ${
                                                 saved
@@ -2429,17 +4509,60 @@
                                             )}
                                         </p>
 
-                                        <div class="game-card-footer">
+                                        <div class="game-card-stats">
 
-                                            <div class="players">
-                                                <span class="player-dot"></span>
+                                            <span class="stat-pill players">
+                                                👥
                                                 ${formatPlayers(
                                                     game.playing
                                                 )}
-                                                playing
+                                            </span>
+
+                                            <span class="stat-pill rating">
+                                                ⭐
+                                                ${ratingText(
+                                                    game
+                                                )}
+                                            </span>
+
+                                        </div>
+
+                                        <div class="rating-area">
+
+                                            <div class="rating-label">
+
+                                                <span>
+                                                    RATE THIS GAME
+                                                </span>
+
+                                                <span>
+                                                    GameScout
+                                                </span>
+
                                             </div>
 
-                                            ${playButton}
+                                            ${renderStars(
+                                                game
+                                            )}
+
+                                            <div
+                                                class="rating-message"
+                                                id="rating-message-${escapeHtml(
+                                                    game.universeId
+                                                )}"
+                                            >
+                                                Tap a star to rate
+                                            </div>
+
+                                        </div>
+
+                                        <div class="game-card-footer">
+
+                                            <div class="card-actions">
+
+                                                ${playButton}
+
+                                            </div>
 
                                         </div>
 
@@ -2447,30 +4570,182 @@
 
                                 </article>
                             `;
+
                         }
                     )
                     .join("");
+
         }
 
-        /* =========================
+        /* =================================
+           RATING
+        ================================= */
+
+        async function rateGame(
+            universeId,
+            rating
+        ) {
+
+            const message =
+                document.getElementById(
+                    `rating-message-${universeId}`
+                );
+
+            if (
+                message
+            ) {
+
+                message.textContent =
+                    "Saving your rating…";
+
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/rating",
+                        {
+                            method:
+                                "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    universeId,
+                                    rating
+                                })
+                        }
+                    );
+
+                if (
+                    !response.ok
+                ) {
+                    throw new Error(
+                        "Rating failed."
+                    );
+                }
+
+                const data =
+                    await response.json();
+
+                const game =
+                    currentGames.find(
+                        (item) =>
+                            String(
+                                item.universeId
+                            ) ===
+                            String(
+                                universeId
+                            )
+                    );
+
+                if (
+                    game
+                ) {
+
+                    game.rating =
+                        data.score;
+
+                    game.ratingCount =
+                        data.count;
+
+                }
+
+                const favoriteGame =
+                    favorites.find(
+                        (item) =>
+                            String(
+                                item.universeId
+                            ) ===
+                            String(
+                                universeId
+                            )
+                    );
+
+                if (
+                    favoriteGame
+                ) {
+
+                    favoriteGame.rating =
+                        data.score;
+
+                    favoriteGame.ratingCount =
+                        data.count;
+
+                    saveFavorites();
+
+                }
+
+                if (
+                    message
+                ) {
+
+                    message.textContent =
+                        `Thanks! You rated it ${rating}/5 ⭐`;
+
+                }
+
+                renderGames(
+                    currentGames
+                );
+
+                renderFavorites();
+
+                renderGameOfTheDay(
+                    currentGames
+                );
+
+            } catch (error) {
+
+                console.error(
+                    error
+                );
+
+                if (
+                    message
+                ) {
+
+                    message.textContent =
+                        "Couldn't save that rating.";
+
+                }
+
+            }
+
+        }
+
+        /* =================================
            STATES
-        ========================= */
+        ================================= */
 
         function hideStates() {
+
             document.getElementById(
                 "loadingState"
-            ).style.display = "none";
+            ).style.display =
+                "none";
 
             document.getElementById(
                 "emptyState"
-            ).style.display = "none";
+            ).style.display =
+                "none";
 
             document.getElementById(
                 "errorState"
-            ).style.display = "none";
+            ).style.display =
+                "none";
+
         }
 
-        function showState(state) {
+        function showState(
+            state
+        ) {
+
             hideStates();
 
             const element =
@@ -2478,38 +4753,59 @@
                     `${state}State`
                 );
 
-            if (element) {
+            if (
+                element
+            ) {
+
                 element.style.display =
                     "block";
+
             }
 
-            if (state === "loading") {
+            if (
+                state ===
+                "loading"
+            ) {
+
                 document.getElementById(
                     "gameGrid"
-                ).innerHTML = "";
+                ).innerHTML =
+                    "";
 
                 document.getElementById(
                     "gameOfTheDay"
-                ).style.display = "none";
+                ).style.display =
+                    "none";
+
+                hidePlayingNow();
+
             }
+
         }
 
-        /* =========================
+        /* =================================
            FAVORITES
-        ========================= */
+        ================================= */
 
         function saveFavorites() {
+
             localStorage.setItem(
                 "gamescoutFavorites",
                 JSON.stringify(
                     favorites
                 )
             );
+
         }
 
-        function toggleFavorite(universeId) {
+        function toggleFavorite(
+            universeId
+        ) {
+
             const id =
-                String(universeId);
+                String(
+                    universeId
+                );
 
             const existingIndex =
                 favorites.findIndex(
@@ -2519,11 +4815,15 @@
                         ) === id
                 );
 
-            if (existingIndex >= 0) {
+            if (
+                existingIndex >= 0
+            ) {
+
                 favorites.splice(
                     existingIndex,
                     1
                 );
+
             } else {
 
                 const game =
@@ -2540,21 +4840,32 @@
                             ) === id
                     );
 
-                if (game) {
+                if (
+                    game
+                ) {
+
                     favorites.push(
                         game
                     );
+
                 }
+
             }
 
             saveFavorites();
 
             renderFavorites();
-            renderGames(currentGames);
+
+            renderGames(
+                currentGames
+            );
+
             updateGameOfTheDaySaveButton();
+
         }
 
         function renderFavorites() {
+
             const section =
                 document.getElementById(
                     "favoritesSection"
@@ -2565,14 +4876,19 @@
                     "favoritesGrid"
                 );
 
-            if (!favorites.length) {
+            if (
+                !favorites.length
+            ) {
+
                 section.classList.add(
                     "hidden"
                 );
 
-                grid.innerHTML = "";
+                grid.innerHTML =
+                    "";
 
                 return;
+
             }
 
             section.classList.remove(
@@ -2582,14 +4898,21 @@
             grid.innerHTML =
                 favorites
                     .map(
-                        (game) => {
+                        (
+                            game,
+                            index
+                        ) => {
 
                             const image =
                                 game.thumbnail
                                     ? `
                                         <img
-                                            src="${escapeHtml(game.thumbnail)}"
-                                            alt="${escapeHtml(game.name)}"
+                                            src="${escapeHtml(
+                                                game.thumbnail
+                                            )}"
+                                            alt="${escapeHtml(
+                                                game.name
+                                            )}"
                                             loading="lazy"
                                         >
                                     `
@@ -2604,7 +4927,9 @@
                                     ? `
                                         <a
                                             class="play-game"
-                                            href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
+                                            href="https://www.roblox.com/games/${encodeURIComponent(
+                                                game.placeId
+                                            )}"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
@@ -2620,10 +4945,22 @@
 
                                         ${image}
 
+                                        <div class="card-badges">
+
+                                            <span class="card-badge">
+                                                ♡ SAVED
+                                            </span>
+
+                                        </div>
+
                                         <button
                                             class="favorite-button active"
-                                            onclick='toggleFavorite(${JSON.stringify(game.universeId)})'
-                                            aria-label="Remove ${escapeHtml(game.name)} from favorites"
+                                            onclick='toggleFavorite(${JSON.stringify(
+                                                game.universeId
+                                            )})'
+                                            aria-label="Remove ${escapeHtml(
+                                                game.name
+                                            )} from favorites"
                                         >
                                             ♥
                                         </button>
@@ -2646,15 +4983,25 @@
                                             )}
                                         </p>
 
-                                        <div class="game-card-footer">
+                                        <div class="game-card-stats">
 
-                                            <div class="players">
-                                                <span class="player-dot"></span>
+                                            <span class="stat-pill players">
+                                                👥
                                                 ${formatPlayers(
                                                     game.playing
                                                 )}
-                                                playing
-                                            </div>
+                                            </span>
+
+                                            <span class="stat-pill rating">
+                                                ⭐
+                                                ${ratingText(
+                                                    game
+                                                )}
+                                            </span>
+
+                                        </div>
+
+                                        <div class="game-card-footer">
 
                                             ${playButton}
 
@@ -2664,16 +5011,19 @@
 
                                 </article>
                             `;
+
                         }
                     )
                     .join("");
+
         }
 
-        /* =========================
+        /* =================================
            RECOMMENDATIONS
-        ========================= */
+        ================================= */
 
         function openRecommendationModal() {
+
             document
                 .getElementById(
                     "recommendOverlay"
@@ -2681,9 +5031,11 @@
                 .classList.remove(
                     "hidden"
                 );
+
         }
 
         function closeRecommendationModal() {
+
             document
                 .getElementById(
                     "recommendOverlay"
@@ -2691,19 +5043,38 @@
                 .classList.add(
                     "hidden"
                 );
+
         }
 
-        async function recommendGames(vibe) {
+        async function recommendGames(
+            vibe
+        ) {
+
             closeRecommendationModal();
 
             const queries = {
-                chill: "chill relaxing",
-                competitive: "competitive",
-                horror: "horror scary",
-                funny: "funny chaotic",
-                strategy: "strategy thinking",
-                adventure: "adventure exploration",
-                popular: "popular"
+
+                chill:
+                    "chill relaxing",
+
+                competitive:
+                    "competitive",
+
+                horror:
+                    "horror scary",
+
+                funny:
+                    "funny chaotic",
+
+                strategy:
+                    "strategy thinking",
+
+                adventure:
+                    "adventure exploration",
+
+                popular:
+                    "popular"
+
             };
 
             const query =
@@ -2712,14 +5083,16 @@
 
             document.getElementById(
                 "searchInput"
-            ).value = query;
+            ).value =
+                query;
 
             await searchGames();
+
         }
 
-        /* =========================
+        /* =================================
            MODAL BEHAVIOR
-        ========================= */
+        ================================= */
 
         document
             .getElementById(
@@ -2733,7 +5106,9 @@
                         event.target.id ===
                         "recommendOverlay"
                     ) {
+
                         closeRecommendationModal();
+
                     }
 
                 }
@@ -2744,23 +5119,28 @@
             (event) => {
 
                 if (
-                    event.key === "Escape"
+                    event.key ===
+                    "Escape"
                 ) {
+
                     closeRecommendationModal();
+
                 }
 
             }
         );
 
-        /* =========================
+        /* =================================
            STARTUP
-        ========================= */
+        ================================= */
 
         renderFavorites();
+
         loadTrending();
+
         loadPopularSearches();
+
     </script>
 
 </body>
 </html>
-```
