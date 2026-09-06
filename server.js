@@ -7,73 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(__dirname));
 
-/* =========================================
-   GAMESEARCH / POPULAR SEARCHES
-========================================= */
-
 const popularSearches = new Map();
-
-/* =========================================
-   GAME RATINGS
-========================================= */
-
-const gameRatings = new Map();
-
-/*
-    Stored like:
-
-    universeId -> {
-        total: 42,
-        count: 8
-    }
-
-    This is intentionally in-memory for now.
-    Later we can connect a real database.
-*/
-
-function recordRating(universeId, rating) {
-    const id = String(universeId);
-
-    const current =
-        gameRatings.get(id) || {
-            total: 0,
-            count: 0
-        };
-
-    current.total += rating;
-    current.count += 1;
-
-    gameRatings.set(id, current);
-
-    return current;
-}
-
-function getRating(universeId) {
-    const data =
-        gameRatings.get(
-            String(universeId)
-        );
-
-    if (!data || !data.count) {
-        return {
-            score: null,
-            count: 0
-        };
-    }
-
-    return {
-        score:
-            Math.round(
-                (data.total / data.count) * 10
-            ) / 10,
-
-        count: data.count
-    };
-}
-
-/* =========================================
-   ROBLOX SEARCH
-========================================= */
 
 async function searchRoblox(query) {
     const sessionId =
@@ -91,36 +25,23 @@ async function searchRoblox(query) {
         "&pageType=all";
 
     console.log("");
-    console.log(
-        "🔎 Searching Roblox for:",
-        query
-    );
+    console.log("🔎 Searching Roblox for:", query);
 
-    const response =
-        await fetch(url);
+    const response = await fetch(url);
 
     if (!response.ok) {
-        throw new Error(
-            `Roblox search failed: ${response.status}`
-        );
+        throw new Error(`Roblox search failed: ${response.status}`);
     }
 
     return await response.json();
 }
-
-/* =========================================
-   EXTRACT GAMES
-========================================= */
 
 function extractGames(data) {
     const games = [];
     const visited = new Set();
 
     function walk(value) {
-        if (
-            !value ||
-            typeof value !== "object"
-        ) {
+        if (!value || typeof value !== "object") {
             return;
         }
 
@@ -172,49 +93,35 @@ function extractGames(data) {
 
             games.push({
                 id: String(universeId),
-                universeId:
-                    String(universeId),
-
+                universeId: String(universeId),
                 placeId:
                     placeId
                         ? String(placeId)
                         : "",
-
                 name: String(name),
-
                 creator:
-                    typeof creator ===
-                    "object"
+                    typeof creator === "object"
                         ? String(
                             creator.name ||
                             "Roblox Creator"
                         )
                         : String(creator),
-
                 playing:
                     Number(playing) || 0
             });
         }
 
-        for (
-            const key of
-            Object.keys(value)
-        ) {
+        for (const key of Object.keys(value)) {
             walk(value[key]);
         }
     }
 
     walk(data);
 
-    const unique =
-        new Map();
+    const unique = new Map();
 
     for (const game of games) {
-        if (
-            !unique.has(
-                game.universeId
-            )
-        ) {
+        if (!unique.has(game.universeId)) {
             unique.set(
                 game.universeId,
                 game
@@ -222,18 +129,10 @@ function extractGames(data) {
         }
     }
 
-    return Array.from(
-        unique.values()
-    );
+    return Array.from(unique.values());
 }
 
-/* =========================================
-   THUMBNAILS
-========================================= */
-
-async function getGameThumbnails(
-    universeIds
-) {
+async function getGameThumbnails(universeIds) {
     if (!universeIds.length) {
         return new Map();
     }
@@ -259,8 +158,7 @@ async function getGameThumbnails(
     );
 
     try {
-        const response =
-            await fetch(url);
+        const response = await fetch(url);
 
         if (!response.ok) {
             console.error(
@@ -271,38 +169,23 @@ async function getGameThumbnails(
             return new Map();
         }
 
-        const data =
-            await response.json();
+        const data = await response.json();
+        const thumbnailMap = new Map();
 
-        const thumbnailMap =
-            new Map();
-
-        if (
-            !Array.isArray(
-                data.data
-            )
-        ) {
+        if (!Array.isArray(data.data)) {
             return thumbnailMap;
         }
 
-        for (
-            const item of
-            data.data
-        ) {
+        for (const item of data.data) {
             if (!item) {
                 continue;
             }
 
             const universeId =
-                String(
-                    item.universeId ||
-                    ""
-                );
+                String(item.universeId || "");
 
             const thumbnails =
-                Array.isArray(
-                    item.thumbnails
-                )
+                Array.isArray(item.thumbnails)
                     ? item.thumbnails
                     : [];
 
@@ -325,7 +208,6 @@ async function getGameThumbnails(
         }
 
         return thumbnailMap;
-
     } catch (error) {
         console.error(
             "Thumbnail error:",
@@ -336,20 +218,12 @@ async function getGameThumbnails(
     }
 }
 
-/* =========================================
-   GAME DETAILS
-========================================= */
-
-async function getGameDetails(
-    universeIds
-) {
+async function getGameDetails(universeIds) {
     if (!universeIds.length) {
         return new Map();
     }
 
-    const detailsMap =
-        new Map();
-
+    const detailsMap = new Map();
     const batches = [];
 
     for (
@@ -365,10 +239,7 @@ async function getGameDetails(
         );
     }
 
-    for (
-        const batch of
-        batches
-    ) {
+    for (const batch of batches) {
         try {
             const url =
                 "https://games.roblox.com/v1/games" +
@@ -391,29 +262,18 @@ async function getGameDetails(
             const data =
                 await response.json();
 
-            if (
-                !Array.isArray(
-                    data.data
-                )
-            ) {
+            if (!Array.isArray(data.data)) {
                 continue;
             }
 
-            for (
-                const game of
-                data.data
-            ) {
-                if (
-                    game &&
-                    game.id
-                ) {
+            for (const game of data.data) {
+                if (game && game.id) {
                     detailsMap.set(
                         String(game.id),
                         game
                     );
                 }
             }
-
         } catch (error) {
             console.error(
                 "Game details error:",
@@ -425,13 +285,7 @@ async function getGameDetails(
     return detailsMap;
 }
 
-/* =========================================
-   BUILD FINAL GAME RESULTS
-========================================= */
-
-async function buildGameResults(
-    games
-) {
+async function buildGameResults(games) {
     if (!games.length) {
         return [];
     }
@@ -457,11 +311,6 @@ async function buildGameResults(
             (game) => {
                 const detail =
                     details.get(
-                        game.universeId
-                    );
-
-                const rating =
-                    getRating(
                         game.universeId
                     );
 
@@ -496,23 +345,13 @@ async function buildGameResults(
                     thumbnail:
                         thumbnails.get(
                             game.universeId
-                        ) || null,
-
-                    rating:
-                        rating.score,
-
-                    ratingCount:
-                        rating.count
+                        ) || null
                 };
             }
         );
 
     return finalGames;
 }
-
-/* =========================================
-   POPULAR SEARCHES
-========================================= */
 
 function recordSearch(query) {
     const clean =
@@ -546,10 +385,6 @@ function recordSearch(query) {
     );
 }
 
-/* =========================================
-   SEARCH API
-========================================= */
-
 app.get(
     "/api/search",
     async (req, res) => {
@@ -565,12 +400,8 @@ app.get(
                 });
             }
 
-            if (
-                query.length >
-                200
-            ) {
-                return res
-                    .status(400)
+            if (query.length > 200) {
+                return res.status(400)
                     .json({
                         error:
                             "Search query is too long."
@@ -599,19 +430,20 @@ app.get(
                     games
                 );
 
-            res.json({
-                games:
-                    finalGames
-            });
+            console.log(
+                "🖼️ Thumbnails/details loaded."
+            );
 
+            res.json({
+                games: finalGames
+            });
         } catch (error) {
             console.error(
                 "❌ Search error:",
                 error
             );
 
-            res
-                .status(500)
+            res.status(500)
                 .json({
                     error:
                         "Failed to search Roblox.",
@@ -620,10 +452,6 @@ app.get(
         }
     }
 );
-
-/* =========================================
-   TRENDING
-========================================= */
 
 app.get(
     "/api/trending",
@@ -650,18 +478,15 @@ app.get(
                 );
 
             res.json({
-                games:
-                    finalGames
+                games: finalGames
             });
-
         } catch (error) {
             console.error(
                 "❌ Trending error:",
                 error
             );
 
-            res
-                .status(500)
+            res.status(500)
                 .json({
                     error:
                         "Failed to load trending games.",
@@ -671,10 +496,6 @@ app.get(
     }
 );
 
-/* =========================================
-   POPULAR SEARCHES
-========================================= */
-
 app.get(
     "/api/popular-searches",
     (req, res) => {
@@ -683,12 +504,20 @@ app.get(
                 popularSearches.entries()
             )
             .sort(
-                (a, b) =>
+                (
+                    a,
+                    b
+                ) =>
                     b[1] - a[1]
             )
             .slice(0, 8)
             .map(
-                ([query, count]) => ({
+                (
+                    [
+                        query,
+                        count
+                    ]
+                ) => ({
                     query,
                     count
                 })
@@ -699,86 +528,6 @@ app.get(
         });
     }
 );
-
-/* =========================================
-   RATE A GAME
-========================================= */
-
-app.post(
-    "/api/rating",
-    (req, res) => {
-        try {
-            const universeId =
-                String(
-                    req.body?.universeId ||
-                    ""
-                ).trim();
-
-            const rating =
-                Number(
-                    req.body?.rating
-                );
-
-            if (
-                !universeId ||
-                !Number.isInteger(
-                    rating
-                ) ||
-                rating < 1 ||
-                rating > 5
-            ) {
-                return res
-                    .status(400)
-                    .json({
-                        error:
-                            "Invalid rating."
-                    });
-            }
-
-            const result =
-                recordRating(
-                    universeId,
-                    rating
-                );
-
-            const score =
-                Math.round(
-                    (
-                        result.total /
-                        result.count
-                    ) * 10
-                ) / 10;
-
-            console.log(
-                `⭐ Rating received: ${universeId} → ${rating}/5`
-            );
-
-            res.json({
-                success: true,
-                score,
-                count:
-                    result.count
-            });
-
-        } catch (error) {
-            console.error(
-                "❌ Rating error:",
-                error
-            );
-
-            res
-                .status(500)
-                .json({
-                    error:
-                        "Failed to save rating."
-                });
-        }
-    }
-);
-
-/* =========================================
-   ROOT
-========================================= */
 
 app.get(
     "/",
@@ -792,24 +541,14 @@ app.get(
     }
 );
 
-/* =========================================
-   404
-========================================= */
-
 app.use(
     (req, res) => {
-        res
-            .status(404)
+        res.status(404)
             .json({
-                error:
-                    "Not found."
+                error: "Not found."
             });
     }
 );
-
-/* =========================================
-   START SERVER
-========================================= */
 
 app.listen(
     PORT,
