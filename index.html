@@ -61,16 +61,15 @@
             text-decoration: none;
         }
 
-        /* =========================
+        /* =========================================
            DECORATIONS
-        ========================= */
+        ========================================= */
 
         .blob {
             position: fixed;
             border-radius: 999px;
             pointer-events: none;
             z-index: -1;
-            filter: blur(1px);
         }
 
         .blob.one {
@@ -99,14 +98,15 @@
             bottom: 80px;
         }
 
-        /* =========================
+        /* =========================================
            NAV
-        ========================= */
+        ========================================= */
 
         nav {
             position: sticky;
             top: 0;
             z-index: 100;
+
             height: 78px;
 
             display: flex;
@@ -140,6 +140,7 @@
             place-items: center;
 
             background: var(--orange);
+
             border: 2px solid var(--ink);
             border-radius: 10px;
 
@@ -174,7 +175,9 @@
         .live-dot {
             width: 8px;
             height: 8px;
+
             background: var(--green);
+
             border: 1px solid var(--ink);
             border-radius: 50%;
         }
@@ -185,9 +188,11 @@
             color: white;
 
             padding: 10px 16px;
+
             border-radius: 9px;
 
             font-weight: 700;
+
             transition: 0.2s;
         }
 
@@ -196,17 +201,20 @@
             box-shadow: 4px 4px 0 var(--orange);
         }
 
-        /* =========================
+        /* =========================================
            HERO
-        ========================= */
+        ========================================= */
 
         .hero {
             min-height: 650px;
+
             padding: 80px 7vw 70px;
 
             display: grid;
             grid-template-columns: 1.05fr 0.95fr;
+
             gap: 50px;
+
             align-items: center;
 
             position: relative;
@@ -218,6 +226,7 @@
             padding: 8px 12px;
 
             background: var(--yellow);
+
             border: 2px solid var(--ink);
             border-radius: 7px;
 
@@ -226,6 +235,7 @@
             letter-spacing: 1px;
 
             transform: rotate(-2deg);
+
             margin-bottom: 25px;
         }
 
@@ -233,7 +243,9 @@
             font-family: "Space Grotesk", sans-serif;
 
             font-size: clamp(58px, 8vw, 112px);
+
             line-height: 0.86;
+
             letter-spacing: -7px;
 
             max-width: 850px;
@@ -241,25 +253,30 @@
 
         .hero h1 span {
             color: var(--orange);
+
             display: inline-block;
+
             transform: rotate(-2deg);
         }
 
         .hero-description {
             max-width: 610px;
+
             margin-top: 30px;
 
             font-size: 18px;
             line-height: 1.6;
+
             color: var(--muted);
         }
 
-        /* =========================
+        /* =========================================
            SEARCH
-        ========================= */
+        ========================================= */
 
         .search-wrap {
             margin-top: 35px;
+
             max-width: 720px;
 
             display: flex;
@@ -273,6 +290,7 @@
             align-items: center;
 
             background: var(--paper);
+
             border: 2px solid var(--ink);
             border-radius: 12px;
 
@@ -283,11 +301,14 @@
 
         .search-box input {
             flex: 1;
+
             border: none;
             outline: none;
+
             background: transparent;
 
             font-size: 16px;
+
             color: var(--ink);
         }
 
@@ -297,6 +318,7 @@
 
         .search-button {
             border: 2px solid var(--ink);
+
             background: var(--orange);
             color: var(--ink);
 
@@ -317,6 +339,7 @@
         .quick-searches {
             display: flex;
             flex-wrap: wrap;
+
             gap: 8px;
 
             margin-top: 22px;
@@ -324,6 +347,7 @@
 
         .quick-searches button {
             background: transparent;
+
             border: 1.5px solid var(--ink);
             border-radius: 999px;
 
@@ -338,25 +362,96 @@
         .quick-searches button:hover {
             background: var(--ink);
             color: white;
+
             transform: rotate(-2deg);
         }
 
-        /* =========================
+        /* =========================================
+           RECOMMENDED SEARCHES
+        ========================================= */
+
+        .search-section-label {
+            margin-top: 22px;
+            margin-bottom: 9px;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            color: var(--muted);
+        }
+
+        .recommended-searches {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            max-width: 720px;
+        }
+
+        .recommended-searches button {
+            border: 1.5px solid var(--ink);
+            border-radius: 8px;
+
+            padding: 8px 12px;
+
+            background: var(--paper);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            transition:
+                transform 0.18s ease,
+                background 0.18s ease,
+                box-shadow 0.18s ease;
+        }
+
+        .recommended-searches button:hover {
+            background: var(--yellow);
+
+            transform:
+                translateY(-3px)
+                rotate(-1.5deg);
+
+            box-shadow: 3px 3px 0 var(--ink);
+        }
+
+        .popular-label {
+            margin-top: 18px;
+        }
+
+        .popular-searches {
+            min-height: 34px;
+        }
+
+        .popular-empty {
+            color: #aaa59b;
+
+            font-size: 11px;
+            font-style: italic;
+        }
+
+        /* =========================================
            DISCOVER ACTIONS
-        ========================= */
+        ========================================= */
 
         .discover-actions {
             margin-top: 30px;
 
             display: flex;
             align-items: center;
+
             gap: 22px;
+
             flex-wrap: wrap;
         }
 
         .discover-games-button {
             display: flex;
             align-items: center;
+
             gap: 20px;
 
             padding: 18px 22px;
@@ -370,6 +465,7 @@
             box-shadow: 8px 8px 0 var(--ink);
 
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 17px;
             font-weight: 700;
 
@@ -382,8 +478,12 @@
         }
 
         .discover-games-button:hover {
-            transform: rotate(1deg) translateY(-5px);
+            transform:
+                rotate(1deg)
+                translateY(-5px);
+
             box-shadow: 11px 11px 0 var(--ink);
+
             background: var(--yellow);
         }
 
@@ -396,10 +496,13 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+
             gap: 4px;
 
             border: 2px solid var(--ink);
+
             background: var(--paper);
+
             border-radius: 12px;
 
             padding: 13px 18px;
@@ -413,22 +516,27 @@
         }
 
         .recommend-button:hover {
-            transform: translateY(-4px) rotate(1deg);
+            transform:
+                translateY(-4px)
+                rotate(1deg);
+
             background: var(--yellow);
         }
 
         .recommend-button small {
             color: var(--muted);
+
             font-size: 11px;
             font-weight: 500;
         }
 
-        /* =========================
+        /* =========================================
            HERO ART
-        ========================= */
+        ========================================= */
 
         .hero-art {
             min-height: 470px;
+
             position: relative;
         }
 
@@ -443,13 +551,6 @@
             box-shadow: 10px 10px 0 var(--ink);
         }
 
-        .art-card img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .art-back {
             width: 62%;
             height: 240px;
@@ -458,6 +559,7 @@
             right: 0;
 
             background: var(--blue);
+
             transform: rotate(7deg);
         }
 
@@ -469,6 +571,7 @@
             left: 10px;
 
             background: var(--yellow);
+
             transform: rotate(-6deg);
         }
 
@@ -480,6 +583,7 @@
             bottom: 0;
 
             background: var(--orange);
+
             transform: rotate(3deg);
         }
 
@@ -491,6 +595,7 @@
             place-items: center;
 
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 55px;
             font-weight: 700;
         }
@@ -510,10 +615,12 @@
             padding: 20px;
 
             background: var(--pink);
+
             border: 3px solid var(--ink);
             border-radius: 50%;
 
             font-family: "Space Grotesk", sans-serif;
+
             font-weight: 700;
             text-align: center;
 
@@ -522,9 +629,9 @@
             box-shadow: 5px 5px 0 var(--ink);
         }
 
-        /* =========================
+        /* =========================================
            MARQUEE
-        ========================= */
+        ========================================= */
 
         .marquee {
             overflow: hidden;
@@ -543,11 +650,14 @@
         .marquee-track {
             display: inline-block;
 
-            animation: marquee 20s linear infinite;
+            animation:
+                marquee 20s linear infinite;
 
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 18px;
             font-weight: 700;
+
             letter-spacing: 1px;
         }
 
@@ -561,9 +671,9 @@
             }
         }
 
-        /* =========================
+        /* =========================================
            CONTENT
-        ========================= */
+        ========================================= */
 
         .content {
             padding: 70px 7vw 100px;
@@ -573,6 +683,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+
             gap: 20px;
 
             margin-bottom: 30px;
@@ -582,19 +693,23 @@
             font-family: "Space Grotesk", sans-serif;
 
             font-size: clamp(35px, 5vw, 62px);
+
             line-height: 0.95;
+
             letter-spacing: -3px;
         }
 
         .section-heading p {
             max-width: 400px;
+
             color: var(--muted);
+
             line-height: 1.5;
         }
 
-        /* =========================
+        /* =========================================
            FAVORITES
-        ========================= */
+        ========================================= */
 
         .favorites-panel {
             display: none;
@@ -602,6 +717,7 @@
             margin-bottom: 55px;
 
             background: var(--yellow);
+
             border: 2px solid var(--ink);
             border-radius: 16px;
 
@@ -624,6 +740,7 @@
 
         .favorites-title h3 {
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 25px;
         }
 
@@ -634,8 +751,11 @@
 
         .favorites-list {
             display: flex;
+
             gap: 15px;
+
             overflow-x: auto;
+
             padding-bottom: 5px;
         }
 
@@ -643,6 +763,7 @@
             min-width: 220px;
 
             background: var(--paper);
+
             border: 2px solid var(--ink);
             border-radius: 11px;
 
@@ -651,17 +772,19 @@
 
         .favorite-mini strong {
             display: block;
+
             margin-bottom: 5px;
         }
 
         .favorite-mini span {
             font-size: 12px;
+
             color: var(--muted);
         }
 
-        /* =========================
+        /* =========================================
            GAME GRID
-        ========================= */
+        ========================================= */
 
         .game-grid {
             display: grid;
@@ -690,12 +813,17 @@
         }
 
         .game-card:hover {
-            transform: translateY(-8px) rotate(-1deg);
-            box-shadow: 11px 11px 0 var(--ink);
+            transform:
+                translateY(-8px)
+                rotate(-1deg);
+
+            box-shadow:
+                11px 11px 0 var(--ink);
         }
 
         .game-image {
             width: 100%;
+
             aspect-ratio: 16 / 9;
 
             background:
@@ -718,10 +846,12 @@
 
             display: block;
 
-            transition: transform 0.4s ease;
+            transition:
+                transform 0.4s ease;
         }
 
-        .game-card:hover .game-image img {
+        .game-card:hover
+        .game-image img {
             transform: scale(1.07);
         }
 
@@ -730,6 +860,7 @@
             place-items: center;
 
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 35px;
             font-weight: 700;
         }
@@ -742,6 +873,7 @@
             font-family: "Space Grotesk", sans-serif;
 
             font-size: 22px;
+
             line-height: 1.05;
 
             margin-bottom: 8px;
@@ -749,7 +881,9 @@
 
         .game-creator {
             color: var(--muted);
+
             font-size: 13px;
+
             margin-bottom: 14px;
         }
 
@@ -767,6 +901,7 @@
         .playing {
             display: flex;
             align-items: center;
+
             gap: 6px;
         }
 
@@ -775,12 +910,15 @@
             height: 7px;
 
             border-radius: 50%;
+
             background: var(--green);
+
             border: 1px solid var(--ink);
         }
 
         .game-actions {
             display: flex;
+
             gap: 8px;
         }
 
@@ -809,7 +947,9 @@
 
         .play-button.disabled {
             background: #d8d4cb;
+
             color: #777;
+
             cursor: not-allowed;
         }
 
@@ -834,9 +974,9 @@
             background: var(--pink);
         }
 
-        /* =========================
+        /* =========================================
            STATES
-        ========================= */
+        ========================================= */
 
         .state {
             display: none;
@@ -852,7 +992,9 @@
 
         .state h3 {
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 30px;
+
             margin-bottom: 10px;
         }
 
@@ -867,11 +1009,13 @@
             margin: 0 auto 20px;
 
             border: 5px solid var(--line);
+
             border-top-color: var(--orange);
 
             border-radius: 50%;
 
-            animation: spin 0.8s linear infinite;
+            animation:
+                spin 0.8s linear infinite;
         }
 
         @keyframes spin {
@@ -880,21 +1024,24 @@
             }
         }
 
-        /* =========================
+        /* =========================================
            RECOMMENDATION MODAL
-        ========================= */
+        ========================================= */
 
         .recommend-overlay {
             position: fixed;
+
             inset: 0;
 
             display: none;
+
             align-items: center;
             justify-content: center;
 
             padding: 20px;
 
-            background: rgba(16, 17, 20, 0.75);
+            background:
+                rgba(16, 17, 20, 0.75);
 
             backdrop-filter: blur(12px);
 
@@ -909,14 +1056,17 @@
             width: min(850px, 100%);
 
             max-height: 90vh;
+
             overflow-y: auto;
 
             background: var(--paper);
 
             border: 3px solid var(--ink);
+
             border-radius: 20px;
 
-            box-shadow: 14px 14px 0 var(--orange);
+            box-shadow:
+                14px 14px 0 var(--orange);
 
             padding: 35px;
 
@@ -925,6 +1075,7 @@
 
         .modal-close {
             position: absolute;
+
             top: 17px;
             right: 17px;
 
@@ -932,6 +1083,7 @@
             height: 40px;
 
             border: 2px solid var(--ink);
+
             border-radius: 50%;
 
             background: var(--yellow);
@@ -945,7 +1097,9 @@
             font-family: "Space Grotesk", sans-serif;
 
             font-size: clamp(38px, 6vw, 65px);
+
             line-height: 0.9;
+
             letter-spacing: -3px;
 
             max-width: 700px;
@@ -955,12 +1109,16 @@
 
         .vibe-screen > p {
             color: var(--muted);
+
             margin-bottom: 28px;
         }
 
         .vibe-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 13px;
         }
 
@@ -968,6 +1126,7 @@
             min-height: 100px;
 
             border: 2px solid var(--ink);
+
             border-radius: 12px;
 
             background: var(--cream);
@@ -977,6 +1136,7 @@
             text-align: left;
 
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 18px;
             font-weight: 700;
 
@@ -987,7 +1147,10 @@
 
         .vibe-button:hover {
             background: var(--yellow);
-            transform: translateY(-4px) rotate(-1deg);
+
+            transform:
+                translateY(-4px)
+                rotate(-1deg);
         }
 
         .vibe-button small {
@@ -998,6 +1161,7 @@
             color: var(--muted);
 
             font-family: "DM Sans", sans-serif;
+
             font-size: 11px;
             font-weight: 500;
         }
@@ -1012,7 +1176,9 @@
 
         .recommend-result-card {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 25px;
 
@@ -1021,9 +1187,11 @@
 
         .recommend-image {
             width: 100%;
+
             aspect-ratio: 16 / 9;
 
             border: 2px solid var(--ink);
+
             border-radius: 12px;
 
             overflow: hidden;
@@ -1034,36 +1202,46 @@
         .recommend-image img {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
         }
 
         .recommend-details {
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
         }
 
         .recommend-details h3 {
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 35px;
+
             line-height: 1;
+
             margin-bottom: 10px;
         }
 
         .recommend-details p {
             color: var(--muted);
+
             margin-bottom: 20px;
         }
 
         .recommend-actions {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 9px;
         }
 
         .recommend-actions button,
         .recommend-actions a {
             border: 2px solid var(--ink);
+
             border-radius: 8px;
 
             padding: 11px 14px;
@@ -1088,6 +1266,7 @@
             display: none;
 
             text-align: center;
+
             padding: 50px;
         }
 
@@ -1101,6 +1280,7 @@
             padding: 30px;
 
             border: 2px solid var(--ink);
+
             border-radius: 12px;
 
             background: #ffe1d8;
@@ -1112,9 +1292,9 @@
             display: block;
         }
 
-        /* =========================
+        /* =========================================
            FOOTER
-        ========================= */
+        ========================================= */
 
         footer {
             border-top: 2px solid var(--ink);
@@ -1122,10 +1302,13 @@
             padding: 35px 7vw;
 
             display: flex;
+
             justify-content: space-between;
+
             gap: 20px;
 
             font-size: 12px;
+
             color: var(--muted);
         }
 
@@ -1133,9 +1316,9 @@
             color: var(--ink);
         }
 
-        /* =========================
+        /* =========================================
            RESPONSIVE
-        ========================= */
+        ========================================= */
 
         @media (max-width: 1000px) {
             .hero {
@@ -1147,13 +1330,15 @@
             }
 
             .game-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
         }
 
         @media (max-width: 700px) {
             nav {
                 height: 68px;
+
                 padding: 0 20px;
             }
 
@@ -1167,6 +1352,7 @@
 
             .hero h1 {
                 font-size: 65px;
+
                 letter-spacing: -4px;
             }
 
@@ -1179,11 +1365,13 @@
             }
 
             .search-box {
-                box-shadow: 5px 5px 0 var(--ink);
+                box-shadow:
+                    5px 5px 0 var(--ink);
             }
 
             .discover-actions {
                 flex-direction: column;
+
                 align-items: stretch;
             }
 
@@ -1212,11 +1400,13 @@
             }
 
             .content {
-                padding: 55px 20px 80px;
+                padding:
+                    55px 20px 80px;
             }
 
             .section-heading {
                 flex-direction: column;
+
                 align-items: flex-start;
             }
 
@@ -1225,7 +1415,8 @@
             }
 
             .vibe-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns:
+                    1fr 1fr;
             }
 
             .recommend-modal {
@@ -1256,6 +1447,7 @@
 
             .favorites-nav {
                 padding: 8px 11px;
+
                 font-size: 12px;
             }
         }
@@ -1268,26 +1460,43 @@
     <div class="blob two"></div>
     <div class="blob three"></div>
 
-    <!-- NAV -->
+    <!-- =========================================
+         NAV
+    ========================================= -->
+
     <nav>
+
         <div class="logo">
-            <div class="logo-mark">G</div>
+            <div class="logo-mark">
+                G
+            </div>
+
             GameScout
         </div>
 
         <div class="nav-right">
+
             <div class="live-pill">
                 <span class="live-dot"></span>
+
                 Roblox Discovery
             </div>
 
-            <button class="favorites-nav" onclick="scrollToFavorites()">
+            <button
+                class="favorites-nav"
+                onclick="scrollToFavorites()"
+            >
                 ♡ Favorites
             </button>
+
         </div>
+
     </nav>
 
-    <!-- HERO -->
+    <!-- =========================================
+         HERO
+    ========================================= -->
+
     <section class="hero">
 
         <div class="hero-copy">
@@ -1308,8 +1517,12 @@
                 whatever you're thinking.
             </p>
 
+            <!-- SEARCH -->
+
             <div class="search-wrap">
+
                 <div class="search-box">
+
                     <input
                         id="searchInput"
                         type="text"
@@ -1318,20 +1531,112 @@
                         onkeydown="handleSearchKey(event)"
                     >
 
-                    <button class="search-button" onclick="searchGames()">
+                    <button
+                        class="search-button"
+                        onclick="searchGames()"
+                    >
                         SEARCH →
                     </button>
+
                 </div>
+
             </div>
 
+            <!-- QUICK SEARCH -->
+
             <div class="quick-searches">
-                <button onclick="quickSearch('horror')">👻 Horror</button>
-                <button onclick="quickSearch('obby')">🏃 Obbies</button>
-                <button onclick="quickSearch('simulator')">⚙️ Simulators</button>
-                <button onclick="quickSearch('tycoon')">💰 Tycoons</button>
-                <button onclick="quickSearch('funny')">😂 Funny</button>
-                <button onclick="quickSearch('adventure')">🗺️ Adventure</button>
+
+                <button onclick="quickSearch('horror')">
+                    👻 Horror
+                </button>
+
+                <button onclick="quickSearch('obby')">
+                    🏃 Obbies
+                </button>
+
+                <button onclick="quickSearch('simulator')">
+                    ⚙️ Simulators
+                </button>
+
+                <button onclick="quickSearch('tycoon')">
+                    💰 Tycoons
+                </button>
+
+                <button onclick="quickSearch('funny')">
+                    😂 Funny
+                </button>
+
+                <button onclick="quickSearch('adventure')">
+                    🗺️ Adventure
+                </button>
+
             </div>
+
+            <!-- RECOMMENDED -->
+
+            <div class="search-section-label">
+                <span>✦ RECOMMENDED</span>
+            </div>
+
+            <div
+                class="recommended-searches"
+                id="recommendedSearches"
+            >
+
+                <button
+                    onclick="quickSearch('roleplay')"
+                >
+                    🎭 Roleplay
+                </button>
+
+                <button
+                    onclick="quickSearch('survival')"
+                >
+                    🧟 Survival
+                </button>
+
+                <button
+                    onclick="quickSearch('murder mystery')"
+                >
+                    🔎 Murder Mystery
+                </button>
+
+                <button
+                    onclick="quickSearch('cars')"
+                >
+                    🚗 Cars
+                </button>
+
+                <button
+                    onclick="quickSearch('anime')"
+                >
+                    ⚔️ Anime
+                </button>
+
+                <button
+                    onclick="quickSearch('fighting')"
+                >
+                    🥊 Fighting
+                </button>
+
+            </div>
+
+            <!-- POPULAR -->
+
+            <div class="search-section-label popular-label">
+                <span>🔥 PEOPLE ARE SEARCHING</span>
+            </div>
+
+            <div
+                class="recommended-searches popular-searches"
+                id="popularSearches"
+            >
+                <span class="popular-empty">
+                    Start searching to build the list...
+                </span>
+            </div>
+
+            <!-- ACTIONS -->
 
             <div class="discover-actions">
 
@@ -1339,8 +1644,13 @@
                     class="discover-games-button"
                     onclick="document.getElementById('gameGrid').scrollIntoView({ behavior: 'smooth' })"
                 >
-                    <span>DISCOVER GAMES</span>
-                    <span class="discover-arrow">↗</span>
+                    <span>
+                        DISCOVER GAMES
+                    </span>
+
+                    <span class="discover-arrow">
+                        ↗
+                    </span>
                 </button>
 
                 <button
@@ -1359,18 +1669,25 @@
         </div>
 
         <!-- HERO ART -->
+
         <div class="hero-art">
 
             <div class="art-card art-back">
-                <div class="art-placeholder">PLAY</div>
+                <div class="art-placeholder">
+                    PLAY
+                </div>
             </div>
 
             <div class="art-card art-middle">
-                <div class="art-placeholder">DISCOVER</div>
+                <div class="art-placeholder">
+                    DISCOVER
+                </div>
             </div>
 
             <div class="art-card art-front">
-                <div class="art-placeholder">ROBLOX</div>
+                <div class="art-placeholder">
+                    ROBLOX
+                </div>
             </div>
 
             <div class="sticker">
@@ -1383,40 +1700,63 @@
 
     </section>
 
-    <!-- MARQUEE -->
+    <!-- =========================================
+         MARQUEE
+    ========================================= -->
+
     <div class="marquee">
+
         <div class="marquee-track">
-            DISCOVER • SEARCH • PLAY • SAVE • REPEAT • DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
-            DISCOVER • SEARCH • PLAY • SAVE • REPEAT • DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
+            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
+            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
+            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
+            DISCOVER • SEARCH • PLAY • SAVE • REPEAT •
         </div>
+
     </div>
 
-    <!-- CONTENT -->
-    <main class="content" id="gameGrid">
+    <!-- =========================================
+         CONTENT
+    ========================================= -->
+
+    <main
+        class="content"
+        id="gameGrid"
+    >
 
         <!-- FAVORITES -->
+
         <section
             class="favorites-panel"
             id="favoritesPanel"
         >
+
             <div class="favorites-title">
-                <h3>♡ Your Favorites</h3>
+
+                <h3>
+                    ♡ Your Favorites
+                </h3>
+
                 <span
                     class="favorites-count"
                     id="favoritesCount"
                 >
                     0 SAVED
                 </span>
+
             </div>
 
             <div
                 class="favorites-list"
                 id="favoritesList"
             ></div>
+
         </section>
 
         <!-- HEADING -->
+
         <div class="section-heading">
+
             <div>
                 <h2 id="resultsTitle">
                     TRENDING NOW
@@ -1427,38 +1767,64 @@
                 A fresh batch of Roblox games to get you started.
                 Search above to find something more specific.
             </p>
+
         </div>
 
         <!-- LOADING -->
-        <div class="state" id="loadingState">
+
+        <div
+            class="state"
+            id="loadingState"
+        >
+
             <div class="loader"></div>
 
-            <h3>HUNTING FOR GAMES...</h3>
+            <h3>
+                HUNTING FOR GAMES...
+            </h3>
 
             <p>
                 GameScout is searching Roblox.
             </p>
+
         </div>
 
         <!-- ERROR -->
-        <div class="state" id="errorState">
-            <h3>UH OH 😭</h3>
+
+        <div
+            class="state"
+            id="errorState"
+        >
+
+            <h3>
+                UH OH 😭
+            </h3>
 
             <p id="errorMessage">
                 We couldn't discover games right now.
             </p>
+
         </div>
 
         <!-- EMPTY -->
-        <div class="state" id="emptyState">
-            <h3>NOTHING FOUND</h3>
+
+        <div
+            class="state"
+            id="emptyState"
+        >
+
+            <h3>
+                NOTHING FOUND
+            </h3>
 
             <p>
                 Try searching for something else.
             </p>
+
         </div>
 
         <!-- GAMES -->
+
         <div
             class="game-grid"
             id="gamesContainer"
@@ -1466,18 +1832,31 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
     <footer>
+
         <div>
-            <strong>GameScout</strong> — Roblox game discovery.
+            <strong>
+                GameScout
+            </strong>
+
+            — Roblox game discovery.
         </div>
 
         <div>
-            Made for finding games, not scrolling forever.
+            Made for finding games,
+            not scrolling forever.
         </div>
+
     </footer>
 
-    <!-- RECOMMENDATION MODAL -->
+    <!-- =========================================
+         RECOMMENDATION MODAL
+    ========================================= -->
+
     <div
         class="recommend-overlay"
         id="recommendOverlay"
@@ -1494,6 +1873,7 @@
             </button>
 
             <!-- VIBE SCREEN -->
+
             <div
                 class="vibe-screen"
                 id="vibeScreen"
@@ -1501,12 +1881,17 @@
 
                 <h2>
                     WHAT'S<br>
-                    YOUR <span style="color: var(--orange);">VIBE?</span>
+                    YOUR
+                    <span
+                        style="color:var(--orange);"
+                    >
+                        VIBE?
+                    </span>
                 </h2>
 
                 <p>
-                    Pick a mood and GameScout will hunt down some Roblox
-                    games for you.
+                    Pick a mood and GameScout will hunt down
+                    some Roblox games for you.
                 </p>
 
                 <div class="vibe-grid">
@@ -1516,6 +1901,7 @@
                         onclick="chooseVibe('chill')"
                     >
                         😌 Chill
+
                         <small>
                             Low stress. Good vibes.
                         </small>
@@ -1526,6 +1912,7 @@
                         onclick="chooseVibe('competitive')"
                     >
                         🏆 Competitive
+
                         <small>
                             I need to WIN.
                         </small>
@@ -1536,6 +1923,7 @@
                         onclick="chooseVibe('scary')"
                     >
                         👻 Scary
+
                         <small>
                             Make me regret this.
                         </small>
@@ -1546,6 +1934,7 @@
                         onclick="chooseVibe('chaotic')"
                     >
                         💥 Chaotic
+
                         <small>
                             Absolute nonsense.
                         </small>
@@ -1556,6 +1945,7 @@
                         onclick="chooseVibe('thinky')"
                     >
                         🧠 Thinky
+
                         <small>
                             Use my brain for once.
                         </small>
@@ -1566,6 +1956,7 @@
                         onclick="chooseVibe('adventure')"
                     >
                         🗺️ Adventure
+
                         <small>
                             Let's go somewhere.
                         </small>
@@ -1574,9 +1965,10 @@
                     <button
                         class="vibe-button"
                         onclick="chooseVibe('surprise')"
-                        style="background: var(--orange);"
+                        style="background:var(--orange);"
                     >
                         🎲 Surprise Me
+
                         <small>
                             You choose. I trust you.
                         </small>
@@ -1586,11 +1978,13 @@
 
             </div>
 
-            <!-- LOADING -->
+            <!-- RECOMMEND LOADING -->
+
             <div
                 class="recommend-loading"
                 id="recommendLoading"
             >
+
                 <div class="loader"></div>
 
                 <h3>
@@ -1600,19 +1994,23 @@
                 <p>
                     The GameScout brain is working.
                 </p>
+
             </div>
 
-            <!-- ERROR -->
+            <!-- RECOMMEND ERROR -->
+
             <div
                 class="recommend-error"
                 id="recommendError"
             >
+
                 <strong>
                     GameScout couldn't find a recommendation 😭
                 </strong>
 
-                <p style="margin-top: 8px;">
-                    Try another vibe or close this and search manually.
+                <p style="margin-top:8px;">
+                    Try another vibe or close this
+                    and search manually.
                 </p>
 
                 <button
@@ -1628,9 +2026,11 @@
                 >
                     TRY AGAIN
                 </button>
+
             </div>
 
-            <!-- RESULT -->
+            <!-- RECOMMEND RESULT -->
+
             <div
                 class="recommend-result"
                 id="recommendResult"
@@ -1638,7 +2038,12 @@
 
                 <h2>
                     YOU SHOULD<br>
-                    PLAY <span style="color: var(--orange);">THIS.</span>
+                    PLAY
+                    <span
+                        style="color:var(--orange);"
+                    >
+                        THIS.
+                    </span>
                 </h2>
 
                 <div class="recommend-result-card">
@@ -1650,15 +2055,21 @@
 
                     <div class="recommend-details">
 
-                        <h3 id="recommendName">
+                        <h3
+                            id="recommendName"
+                        >
                             Game Name
                         </h3>
 
-                        <p id="recommendCreator">
+                        <p
+                            id="recommendCreator"
+                        >
                             By Creator
                         </p>
 
-                        <p id="recommendPlaying">
+                        <p
+                            id="recommendPlaying"
+                        >
                             👥 Players
                         </p>
 
@@ -1689,8 +2100,8 @@
 
                             <button
                                 id="recommendSave"
-                                onclick="toggleRecommendedFavorite()"
                                 class="secondary"
+                                onclick="toggleRecommendedFavorite()"
                             >
                                 ♡ SAVE
                             </button>
@@ -1708,120 +2119,286 @@
     </div>
 
     <script>
+
         /* =========================================
            STATE
         ========================================= */
 
         let currentGames = [];
 
-        let favorites = JSON.parse(
-            localStorage.getItem("gamescoutFavorites") || "[]"
-        );
+        let favorites =
+            JSON.parse(
+                localStorage.getItem(
+                    "gamescoutFavorites"
+                ) || "[]"
+            );
 
         let recommendationGames = [];
+
         let recommendationIndex = 0;
+
         let currentVibe = "";
 
         /* =========================================
-           HELPERS
+           ESCAPE HTML
         ========================================= */
 
         function escapeHtml(value) {
+
             return String(value ?? "")
                 .replaceAll("&", "&amp;")
                 .replaceAll("<", "&lt;")
                 .replaceAll(">", "&gt;")
                 .replaceAll('"', "&quot;")
                 .replaceAll("'", "&#039;");
-        }
 
-        function formatPlayers(number) {
-            const value = Number(number) || 0;
-
-            if (value >= 1000000) {
-                return (value / 1000000).toFixed(1) + "M";
-            }
-
-            if (value >= 1000) {
-                return (value / 1000).toFixed(1) + "K";
-            }
-
-            return value.toLocaleString();
-        }
-
-        function shuffle(array) {
-            const copy = [...array];
-
-            for (let i = copy.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-
-                [copy[i], copy[j]] = [copy[j], copy[i]];
-            }
-
-            return copy;
         }
 
         /* =========================================
-           SEARCH
+           PLAYER FORMAT
+        ========================================= */
+
+        function formatPlayers(number) {
+
+            const value =
+                Number(number) || 0;
+
+            if (value >= 1000000) {
+                return (
+                    value / 1000000
+                ).toFixed(1) + "M";
+            }
+
+            if (value >= 1000) {
+                return (
+                    value / 1000
+                ).toFixed(1) + "K";
+            }
+
+            return value.toLocaleString();
+
+        }
+
+        /* =========================================
+           SHUFFLE
+        ========================================= */
+
+        function shuffle(array) {
+
+            const copy = [...array];
+
+            for (
+                let i = copy.length - 1;
+                i > 0;
+                i--
+            ) {
+
+                const j =
+                    Math.floor(
+                        Math.random() *
+                        (i + 1)
+                    );
+
+                [
+                    copy[i],
+                    copy[j]
+                ] = [
+                    copy[j],
+                    copy[i]
+                ];
+
+            }
+
+            return copy;
+
+        }
+
+        /* =========================================
+           SEARCH KEY
         ========================================= */
 
         function handleSearchKey(event) {
-            if (event.key === "Enter") {
+
+            if (
+                event.key === "Enter"
+            ) {
                 searchGames();
             }
+
         }
+
+        /* =========================================
+           QUICK SEARCH
+        ========================================= */
 
         function quickSearch(query) {
-            document.getElementById("searchInput").value = query;
+
+            document.getElementById(
+                "searchInput"
+            ).value = query;
 
             searchGames();
+
+            setTimeout(
+                loadPopularSearches,
+                700
+            );
+
         }
 
-        async function searchGames() {
-            const input = document.getElementById("searchInput");
+        /* =========================================
+           SEARCH GAMES
+        ========================================= */
 
-            const query = input.value.trim();
+        async function searchGames() {
+
+            const input =
+                document.getElementById(
+                    "searchInput"
+                );
+
+            const query =
+                input.value.trim();
 
             if (!query) {
                 input.focus();
                 return;
             }
 
+            setTimeout(
+                loadPopularSearches,
+                700
+            );
+
             showState("loading");
 
-            document.getElementById("resultsTitle").textContent =
+            document.getElementById(
+                "resultsTitle"
+            ).textContent =
                 "SEARCH RESULTS";
 
-            document.getElementById("resultsDescription").textContent =
+            document.getElementById(
+                "resultsDescription"
+            ).textContent =
                 `Games matching “${query}”.`;
 
             try {
-                const response = await fetch(
-                    `/api/search?q=${encodeURIComponent(query)}`
-                );
 
-                const data = await response.json();
+                const response =
+                    await fetch(
+                        `/api/search?q=${encodeURIComponent(query)}`
+                    );
+
+                const data =
+                    await response.json();
 
                 if (!response.ok) {
+
                     throw new Error(
-                        data.error || "Search failed."
+                        data.error ||
+                        "Search failed."
                     );
+
                 }
 
-                currentGames = Array.isArray(data.games)
-                    ? data.games
-                    : [];
+                currentGames =
+                    Array.isArray(data.games)
+                        ? data.games
+                        : [];
 
-                renderGames(currentGames);
+                renderGames(
+                    currentGames
+                );
 
             } catch (error) {
+
                 console.error(error);
 
                 showState("error");
 
-                document.getElementById("errorMessage").textContent =
+                document.getElementById(
+                    "errorMessage"
+                ).textContent =
                     "We couldn't discover games right now. Try again in a moment.";
+
             }
+
+        }
+
+        /* =========================================
+           POPULAR SEARCHES
+        ========================================= */
+
+        async function loadPopularSearches() {
+
+            const container =
+                document.getElementById(
+                    "popularSearches"
+                );
+
+            if (!container) return;
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/popular-searches"
+                    );
+
+                const data =
+                    await response.json();
+
+                const searches =
+                    Array.isArray(
+                        data.searches
+                    )
+                        ? data.searches
+                        : [];
+
+                if (!searches.length) {
+
+                    container.innerHTML = `
+                        <span class="popular-empty">
+                            Start searching to build the list...
+                        </span>
+                    `;
+
+                    return;
+                }
+
+                container.innerHTML =
+                    searches
+                        .map(
+                            (item, index) => {
+
+                                const icon =
+                                    index < 3
+                                        ? "🔥"
+                                        : "•";
+
+                                return `
+                                    <button
+                                        onclick="quickSearch('${escapeHtml(item.query)}')"
+                                        title="${item.count} search${item.count === 1 ? "" : "es"}"
+                                    >
+                                        ${icon}
+                                        ${escapeHtml(item.query)}
+                                    </button>
+                                `;
+
+                            }
+                        )
+                        .join("");
+
+            } catch (error) {
+
+                console.error(
+                    "Popular searches error:",
+                    error
+                );
+
+            }
+
         }
 
         /* =========================================
@@ -1829,144 +2406,212 @@
         ========================================= */
 
         async function loadTrending() {
+
             showState("loading");
 
             try {
-                const response = await fetch("/api/trending");
 
-                const data = await response.json();
+                const response =
+                    await fetch(
+                        "/api/trending"
+                    );
+
+                const data =
+                    await response.json();
 
                 if (!response.ok) {
+
                     throw new Error(
-                        data.error || "Trending request failed."
+                        data.error ||
+                        "Trending request failed."
                     );
+
                 }
 
-                currentGames = Array.isArray(data.games)
-                    ? data.games
-                    : [];
+                currentGames =
+                    Array.isArray(data.games)
+                        ? data.games
+                        : [];
 
-                renderGames(currentGames);
+                renderGames(
+                    currentGames
+                );
 
             } catch (error) {
+
                 console.error(error);
 
                 showState("error");
 
-                document.getElementById("errorMessage").textContent =
+                document.getElementById(
+                    "errorMessage"
+                ).textContent =
                     "We couldn't load trending games. Try searching for a game instead.";
+
             }
+
         }
 
         /* =========================================
-           GAME CARDS
+           RENDER GAMES
         ========================================= */
 
         function renderGames(games) {
+
             const container =
-                document.getElementById("gamesContainer");
+                document.getElementById(
+                    "gamesContainer"
+                );
 
             container.innerHTML = "";
 
             hideStates();
 
             if (!games.length) {
+
                 showState("empty");
+
                 return;
             }
 
-            games.forEach((game) => {
-                const card = document.createElement("article");
+            games.forEach(
+                (game) => {
 
-                card.className = "game-card";
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
 
-                const saved = isFavorite(game);
+                    card.className =
+                        "game-card";
 
-                let imageHtml = `
-                    <div class="game-image no-image">
-                        🎮
-                    </div>
-                `;
+                    const saved =
+                        isFavorite(game);
 
-                if (game.thumbnail) {
-                    imageHtml = `
-                        <div class="game-image">
-                            <img
-                                src="${escapeHtml(game.thumbnail)}"
-                                alt="${escapeHtml(game.name)}"
-                                loading="lazy"
-                                onerror="this.parentElement.classList.add('no-image'); this.remove();"
+                    let imageHtml = `
+                        <div class="game-image no-image">
+                            🎮
+                        </div>
+                    `;
+
+                    if (game.thumbnail) {
+
+                        imageHtml = `
+                            <div class="game-image">
+                                <img
+                                    src="${escapeHtml(game.thumbnail)}"
+                                    alt="${escapeHtml(game.name)}"
+                                    loading="lazy"
+                                    onerror="this.parentElement.classList.add('no-image'); this.remove();"
+                                >
+                            </div>
+                        `;
+
+                    }
+
+                    let playButton = "";
+
+                    if (game.placeId) {
+
+                        playButton = `
+                            <a
+                                class="play-button"
+                                href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                        </div>
-                    `;
-                }
+                                PLAY →
+                            </a>
+                        `;
 
-                let playButton = "";
+                    } else {
 
-                if (game.placeId) {
-                    playButton = `
-                        <a
-                            class="play-button"
-                            href="https://www.roblox.com/games/${encodeURIComponent(game.placeId)}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            PLAY →
-                        </a>
-                    `;
-                } else {
-                    playButton = `
-                        <span class="play-button disabled">
-                            UNAVAILABLE
-                        </span>
-                    `;
-                }
+                        playButton = `
+                            <span
+                                class="play-button disabled"
+                            >
+                                UNAVAILABLE
+                            </span>
+                        `;
 
-                card.innerHTML = `
-                    ${imageHtml}
+                    }
 
-                    <div class="game-info">
+                    card.innerHTML = `
 
-                        <div class="game-name">
-                            ${escapeHtml(game.name)}
-                        </div>
+                        ${imageHtml}
 
-                        <div class="game-creator">
-                            by ${escapeHtml(game.creator || "Roblox Creator")}
-                        </div>
+                        <div class="game-info">
 
-                        <div class="game-meta">
-
-                            <div class="playing">
-                                <span class="playing-dot"></span>
-                                ${formatPlayers(game.playing)} playing
+                            <div class="game-name">
+                                ${escapeHtml(game.name)}
                             </div>
 
-                            <span>
-                                ROBLOX
-                            </span>
+                            <div class="game-creator">
+                                by
+                                ${escapeHtml(
+                                    game.creator ||
+                                    "Roblox Creator"
+                                )}
+                            </div>
+
+                            <div class="game-meta">
+
+                                <div class="playing">
+
+                                    <span
+                                        class="playing-dot"
+                                    ></span>
+
+                                    ${formatPlayers(
+                                        game.playing
+                                    )}
+                                    playing
+
+                                </div>
+
+                                <span>
+                                    ROBLOX
+                                </span>
+
+                            </div>
+
+                            <div class="game-actions">
+
+                                ${playButton}
+
+                                <button
+                                    class="favorite-button ${
+                                        saved
+                                            ? "saved"
+                                            : ""
+                                    }"
+                                    onclick="toggleFavorite('${escapeHtml(
+                                        game.universeId ||
+                                        game.id
+                                    )}')"
+                                    aria-label="Save ${escapeHtml(
+                                        game.name
+                                    )}"
+                                >
+                                    ${
+                                        saved
+                                            ? "♥"
+                                            : "♡"
+                                    }
+                                </button>
+
+                            </div>
 
                         </div>
+                    `;
 
-                        <div class="game-actions">
+                    container.appendChild(
+                        card
+                    );
 
-                            ${playButton}
+                }
+            );
 
-                            <button
-                                class="favorite-button ${saved ? "saved" : ""}"
-                                onclick="toggleFavorite('${escapeHtml(game.universeId || game.id)}')"
-                                aria-label="Save ${escapeHtml(game.name)}"
-                            >
-                                ${saved ? "♥" : "♡"}
-                            </button>
-
-                        </div>
-
-                    </div>
-                `;
-
-                container.appendChild(card);
-            });
         }
 
         /* =========================================
@@ -1974,37 +2619,67 @@
         ========================================= */
 
         function hideStates() {
+
             document
                 .querySelectorAll(".state")
-                .forEach((state) => {
-                    state.classList.remove("visible");
-                });
+                .forEach(
+                    (state) => {
+
+                        state.classList.remove(
+                            "visible"
+                        );
+
+                    }
+                );
+
         }
 
         function showState(type) {
+
             hideStates();
 
-            if (type === "loading") {
+            if (
+                type === "loading"
+            ) {
+
                 document
-                    .getElementById("loadingState")
-                    .classList.add("visible");
+                    .getElementById(
+                        "loadingState"
+                    )
+                    .classList.add(
+                        "visible"
+                    );
+
             }
 
-            if (type === "error") {
+            if (
+                type === "error"
+            ) {
+
                 document
-                    .getElementById("errorState")
-                    .classList.add("visible");
+                    .getElementById(
+                        "errorState"
+                    )
+                    .classList.add(
+                        "visible"
+                    );
+
             }
 
-            if (type === "empty") {
+            if (
+                type === "empty"
+            ) {
+
                 document
-                    .getElementById("emptyState")
-                    .classList.add("visible");
+                    .getElementById(
+                        "emptyState"
+                    )
+                    .classList.add(
+                        "visible"
+                    );
+
             }
 
-            if (type === "games") {
-                hideStates();
-            }
         }
 
         /* =========================================
@@ -2012,69 +2687,120 @@
         ========================================= */
 
         function getGameId(game) {
-            return String(game.universeId || game.id || "");
+
+            return String(
+                game.universeId ||
+                game.id ||
+                ""
+            );
+
         }
 
         function isFavorite(game) {
-            const id = getGameId(game);
+
+            const id =
+                getGameId(game);
 
             return favorites.some(
                 (favorite) =>
-                    String(favorite.universeId || favorite.id) === id
+                    String(
+                        favorite.universeId ||
+                        favorite.id
+                    ) === id
             );
+
         }
 
         function toggleFavorite(id) {
+
             const game =
                 currentGames.find(
-                    (item) => getGameId(item) === String(id)
+                    (item) =>
+                        getGameId(item) ===
+                        String(id)
                 ) ||
                 recommendationGames.find(
-                    (item) => getGameId(item) === String(id)
+                    (item) =>
+                        getGameId(item) ===
+                        String(id)
                 );
 
             if (!game) return;
 
-            const existingIndex = favorites.findIndex(
-                (favorite) =>
-                    getGameId(favorite) === getGameId(game)
-            );
+            const existingIndex =
+                favorites.findIndex(
+                    (favorite) =>
+                        getGameId(
+                            favorite
+                        ) ===
+                        getGameId(game)
+                );
 
-            if (existingIndex >= 0) {
-                favorites.splice(existingIndex, 1);
+            if (
+                existingIndex >= 0
+            ) {
+
+                favorites.splice(
+                    existingIndex,
+                    1
+                );
+
             } else {
-                favorites.push(game);
+
+                favorites.push(
+                    game
+                );
+
             }
 
             localStorage.setItem(
                 "gamescoutFavorites",
-                JSON.stringify(favorites)
+                JSON.stringify(
+                    favorites
+                )
             );
 
             renderFavorites();
-            renderGames(currentGames);
+
+            renderGames(
+                currentGames
+            );
 
             updateRecommendationSaveButton();
+
         }
 
         function toggleRecommendedFavorite() {
+
             const game =
-                recommendationGames[recommendationIndex];
+                recommendationGames[
+                    recommendationIndex
+                ];
 
             if (!game) return;
 
-            toggleFavorite(getGameId(game));
+            toggleFavorite(
+                getGameId(game)
+            );
+
         }
 
         function renderFavorites() {
+
             const panel =
-                document.getElementById("favoritesPanel");
+                document.getElementById(
+                    "favoritesPanel"
+                );
 
             const list =
-                document.getElementById("favoritesList");
+                document.getElementById(
+                    "favoritesList"
+                );
 
             const count =
-                document.getElementById("favoritesCount");
+                document.getElementById(
+                    "favoritesCount"
+                );
 
             count.textContent =
                 `${favorites.length} SAVED`;
@@ -2082,218 +2808,371 @@
             list.innerHTML = "";
 
             if (!favorites.length) {
-                panel.classList.remove("visible");
+
+                panel.classList.remove(
+                    "visible"
+                );
+
                 return;
             }
 
-            panel.classList.add("visible");
+            panel.classList.add(
+                "visible"
+            );
 
-            favorites.forEach((game) => {
-                const item =
-                    document.createElement("div");
+            favorites.forEach(
+                (game) => {
 
-                item.className = "favorite-mini";
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
 
-                item.innerHTML = `
-                    <strong>
-                        ${escapeHtml(game.name)}
-                    </strong>
+                    item.className =
+                        "favorite-mini";
 
-                    <span>
-                        by ${escapeHtml(game.creator || "Roblox Creator")}
-                    </span>
-                `;
+                    item.innerHTML = `
+                        <strong>
+                            ${escapeHtml(
+                                game.name
+                            )}
+                        </strong>
 
-                list.appendChild(item);
-            });
+                        <span>
+                            by
+                            ${escapeHtml(
+                                game.creator ||
+                                "Roblox Creator"
+                            )}
+                        </span>
+                    `;
+
+                    list.appendChild(
+                        item
+                    );
+
+                }
+            );
+
         }
 
         function scrollToFavorites() {
+
             const panel =
-                document.getElementById("favoritesPanel");
+                document.getElementById(
+                    "favoritesPanel"
+                );
 
             if (favorites.length) {
+
                 panel.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
                 });
+
             } else {
+
                 document
-                    .getElementById("gameGrid")
+                    .getElementById(
+                        "gameGrid"
+                    )
                     .scrollIntoView({
                         behavior: "smooth"
                     });
+
             }
+
         }
 
         /* =========================================
-           RECOMMENDATION SYSTEM
+           RECOMMENDATION
         ========================================= */
 
         function openRecommendation() {
-            const overlay =
-                document.getElementById("recommendOverlay");
 
-            overlay.classList.add("open");
+            const overlay =
+                document.getElementById(
+                    "recommendOverlay"
+                );
+
+            overlay.classList.add(
+                "open"
+            );
 
             backToVibes();
+
         }
 
         function closeRecommendation() {
+
             document
-                .getElementById("recommendOverlay")
-                .classList.remove("open");
+                .getElementById(
+                    "recommendOverlay"
+                )
+                .classList.remove(
+                    "open"
+                );
+
         }
 
-        function closeRecommendationFromBackground(event) {
+        function closeRecommendationFromBackground(
+            event
+        ) {
+
             if (
                 event.target ===
-                document.getElementById("recommendOverlay")
+                document.getElementById(
+                    "recommendOverlay"
+                )
             ) {
+
                 closeRecommendation();
+
             }
+
         }
 
         function backToVibes() {
-            document
-                .getElementById("vibeScreen")
-                .style.display = "block";
+
+            document.getElementById(
+                "vibeScreen"
+            ).style.display =
+                "block";
 
             document
-                .getElementById("recommendLoading")
-                .classList.remove("visible");
+                .getElementById(
+                    "recommendLoading"
+                )
+                .classList.remove(
+                    "visible"
+                );
 
             document
-                .getElementById("recommendResult")
-                .classList.remove("visible");
+                .getElementById(
+                    "recommendResult"
+                )
+                .classList.remove(
+                    "visible"
+                );
 
             document
-                .getElementById("recommendError")
-                .classList.remove("visible");
+                .getElementById(
+                    "recommendError"
+                )
+                .classList.remove(
+                    "visible"
+                );
+
         }
 
         async function chooseVibe(vibe) {
-            currentVibe = vibe;
+
+            currentVibe =
+                vibe;
 
             const searches = {
-                chill: "chill",
-                competitive: "competitive",
-                scary: "horror",
-                chaotic: "funny",
-                thinky: "strategy",
-                adventure: "adventure",
-                surprise: "popular"
+
+                chill:
+                    "chill",
+
+                competitive:
+                    "competitive",
+
+                scary:
+                    "horror",
+
+                chaotic:
+                    "funny",
+
+                thinky:
+                    "strategy",
+
+                adventure:
+                    "adventure",
+
+                surprise:
+                    "popular"
+
             };
 
-            document
-                .getElementById("vibeScreen")
-                .style.display = "none";
+            document.getElementById(
+                "vibeScreen"
+            ).style.display =
+                "none";
 
             document
-                .getElementById("recommendResult")
-                .classList.remove("visible");
-
-            document
-                .getElementById("recommendError")
-                .classList.remove("visible");
-
-            document
-                .getElementById("recommendLoading")
-                .classList.add("visible");
-
-            try {
-                const response = await fetch(
-                    `/api/search?q=${encodeURIComponent(
-                        searches[vibe] || "popular"
-                    )}`
+                .getElementById(
+                    "recommendResult"
+                )
+                .classList.remove(
+                    "visible"
                 );
 
-                const data = await response.json();
+            document
+                .getElementById(
+                    "recommendError"
+                )
+                .classList.remove(
+                    "visible"
+                );
+
+            document
+                .getElementById(
+                    "recommendLoading"
+                )
+                .classList.add(
+                    "visible"
+                );
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/search?q=${encodeURIComponent(
+                            searches[vibe] ||
+                            "popular"
+                        )}`
+                    );
+
+                const data =
+                    await response.json();
 
                 if (!response.ok) {
+
                     throw new Error(
-                        data.error || "Recommendation failed."
+                        data.error ||
+                        "Recommendation failed."
                     );
+
                 }
 
-                const games = Array.isArray(data.games)
-                    ? data.games.filter(
-                        (game) =>
-                            game &&
-                            game.name &&
-                            game.placeId
+                const games =
+                    Array.isArray(
+                        data.games
                     )
-                    : [];
+                        ? data.games.filter(
+                            (game) =>
+                                game &&
+                                game.name &&
+                                game.placeId
+                        )
+                        : [];
 
                 if (!games.length) {
+
                     throw new Error(
                         "No playable games found."
                     );
+
                 }
 
                 recommendationGames =
                     shuffle(games);
 
-                recommendationIndex = 0;
+                recommendationIndex =
+                    0;
 
                 document
-                    .getElementById("recommendLoading")
-                    .classList.remove("visible");
+                    .getElementById(
+                        "recommendLoading"
+                    )
+                    .classList.remove(
+                        "visible"
+                    );
 
                 showRecommendation();
 
             } catch (error) {
+
                 console.error(
                     "Recommendation error:",
                     error
                 );
 
                 document
-                    .getElementById("recommendLoading")
-                    .classList.remove("visible");
+                    .getElementById(
+                        "recommendLoading"
+                    )
+                    .classList.remove(
+                        "visible"
+                    );
 
                 document
-                    .getElementById("recommendError")
-                    .classList.add("visible");
+                    .getElementById(
+                        "recommendError"
+                    )
+                    .classList.add(
+                        "visible"
+                    );
+
             }
+
         }
 
         function showRecommendation() {
+
             const game =
-                recommendationGames[recommendationIndex];
+                recommendationGames[
+                    recommendationIndex
+                ];
 
             if (!game) return;
 
             document
-                .getElementById("recommendResult")
-                .classList.add("visible");
+                .getElementById(
+                    "recommendResult"
+                )
+                .classList.add(
+                    "visible"
+                );
 
             document
-                .getElementById("recommendName")
+                .getElementById(
+                    "recommendName"
+                )
                 .textContent =
-                game.name || "Unknown Game";
+                game.name ||
+                "Unknown Game";
 
             document
-                .getElementById("recommendCreator")
+                .getElementById(
+                    "recommendCreator"
+                )
                 .textContent =
-                `by ${game.creator || "Roblox Creator"}`;
+                `by ${
+                    game.creator ||
+                    "Roblox Creator"
+                }`;
 
             document
-                .getElementById("recommendPlaying")
+                .getElementById(
+                    "recommendPlaying"
+                )
                 .textContent =
-                `👥 ${formatPlayers(game.playing)} playing`;
+                `👥 ${formatPlayers(
+                    game.playing
+                )} playing`;
 
             const image =
-                document.getElementById("recommendImage");
+                document.getElementById(
+                    "recommendImage"
+                );
 
             if (game.thumbnail) {
+
                 image.innerHTML = `
                     <img
-                        src="${escapeHtml(game.thumbnail)}"
-                        alt="${escapeHtml(game.name)}"
+                        src="${escapeHtml(
+                            game.thumbnail
+                        )}"
+                        alt="${escapeHtml(
+                            game.name
+                        )}"
                     >
                 `;
+
             } else {
+
                 image.innerHTML = `
                     <div
                         style="
@@ -2307,29 +3186,51 @@
                         🎮
                     </div>
                 `;
+
             }
 
             const play =
-                document.getElementById("recommendPlay");
+                document.getElementById(
+                    "recommendPlay"
+                );
 
             if (game.placeId) {
+
                 play.href =
-                    `https://www.roblox.com/games/${encodeURIComponent(game.placeId)}`;
+                    `https://www.roblox.com/games/${encodeURIComponent(
+                        game.placeId
+                    )}`;
 
-                play.style.pointerEvents = "auto";
-                play.style.opacity = "1";
+                play.style.pointerEvents =
+                    "auto";
+
+                play.style.opacity =
+                    "1";
+
             } else {
-                play.href = "#";
 
-                play.style.pointerEvents = "none";
-                play.style.opacity = "0.5";
+                play.href =
+                    "#";
+
+                play.style.pointerEvents =
+                    "none";
+
+                play.style.opacity =
+                    "0.5";
+
             }
 
             updateRecommendationSaveButton();
+
         }
 
         function showAnotherRecommendation() {
-            if (!recommendationGames.length) return;
+
+            if (
+                !recommendationGames.length
+            ) {
+                return;
+            }
 
             recommendationIndex++;
 
@@ -2337,57 +3238,95 @@
                 recommendationIndex >=
                 recommendationGames.length
             ) {
-                recommendationGames =
-                    shuffle(recommendationGames);
 
-                recommendationIndex = 0;
+                recommendationGames =
+                    shuffle(
+                        recommendationGames
+                    );
+
+                recommendationIndex =
+                    0;
+
             }
 
             showRecommendation();
+
         }
 
         function updateRecommendationSaveButton() {
+
             const button =
-                document.getElementById("recommendSave");
+                document.getElementById(
+                    "recommendSave"
+                );
 
             const game =
-                recommendationGames[recommendationIndex];
+                recommendationGames[
+                    recommendationIndex
+                ];
 
             if (!game) return;
 
-            if (isFavorite(game)) {
-                button.textContent = "♥ SAVED";
-                button.classList.remove("secondary");
+            if (
+                isFavorite(game)
+            ) {
+
+                button.textContent =
+                    "♥ SAVED";
+
+                button.classList.remove(
+                    "secondary"
+                );
+
             } else {
-                button.textContent = "♡ SAVE";
-                button.classList.add("secondary");
+
+                button.textContent =
+                    "♡ SAVE";
+
+                button.classList.add(
+                    "secondary"
+                );
+
             }
+
         }
 
         /* =========================================
-           KEYBOARD
+           ESCAPE KEY
         ========================================= */
 
         document.addEventListener(
             "keydown",
             (event) => {
+
                 if (
                     event.key === "Escape" &&
                     document
-                        .getElementById("recommendOverlay")
-                        .classList.contains("open")
+                        .getElementById(
+                            "recommendOverlay"
+                        )
+                        .classList.contains(
+                            "open"
+                        )
                 ) {
+
                     closeRecommendation();
+
                 }
+
             }
         );
 
         /* =========================================
-           START
+           START GAME SCOUT
         ========================================= */
 
         renderFavorites();
+
         loadTrending();
+
+        loadPopularSearches();
+
     </script>
 
 </body>
